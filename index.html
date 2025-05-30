@@ -1,24 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Project</title>
+    <title>Py.Edia Kamus - Dark Theme</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
+    <script src="https://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
+    <style>
+        .modal { display: none; }
+        .modal.flex { display: flex; }
+        #liveCodeEditor::-webkit-scrollbar, #liveCodeOutput::-webkit-scrollbar, textarea::-webkit-scrollbar, pre::-webkit-scrollbar {
+            width: 8px;
+        }
+        #liveCodeEditor::-webkit-scrollbar-track, #liveCodeOutput::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track, pre::-webkit-scrollbar-track {
+            background: #1f2937; /* bg-gray-800 */
+        }
+        #liveCodeEditor::-webkit-scrollbar-thumb, #liveCodeOutput::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb {
+            background: #4b5563; /* bg-gray-600 */
+            border-radius: 4px;
+        }
+        #liveCodeEditor::-webkit-scrollbar-thumb:hover, #liveCodeOutput::-webkit-scrollbar-thumb:hover, textarea::-webkit-scrollbar-thumb:hover, pre::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* bg-gray-500 */
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-center text-blue-600 mb-8">Welcome to Tailwind Project</h1>
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <p class="text-gray-700">This is a starter template using Tailwind CSS via CDN.</p>
+<body class="bg-gray-900 font-sans text-gray-200">
+
+    <nav class="bg-[#222222] sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center flex-shrink-0">
+                    <a href="#" class="font-semibold text-4xl tracking-tight text-blue-600">Py.Edia</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm">
+                    <a href="#" id="aboutLink" class="text-white hover:opacity-75 flex flex-col items-center space-y-1">
+                        <span>About Us</span>
+                    </a>
+                    <a href="#" id="tutorialLink" class="text-white hover:opacity-75 flex flex-col items-center space-y-1">
+                        <span>Tutorial</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+    <header class="mb-8 text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold text-blue-400">Py.Edia</h1>
+    </header>
+
+    <div class="mb-8 p-4 sm:p-6 bg-gray-800 rounded-xl shadow-md max-w-3xl mx-auto">
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex-grow">
+                <label for="searchBar" class="block text-sm font-medium text-gray-300 mb-1">Cari Istilah:</label>
+                <input type="text" id="searchBar" placeholder="Ketik istilah, pengertian, atau contoh..."
+                       class="w-full px-4 py-2.5 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition duration-150 ease-in-out placeholder-gray-500">
+            </div>
+            <div class="sm:w-1/3">
+                <label for="categoryFilter" class="block text-sm font-medium text-gray-300 mb-1">Filter Kategori:</label>
+                <select id="categoryFilter"
+                        class="w-full px-4 py-2.5 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition duration-150 ease-in-out">
+                            <option selected value="" class="bg-gray-700 text-gray-200">Pilih Kategori...</option>
+                            <option value="all" class="bg-gray-700 text-gray-200">Semua Kategori</option>
+                    </select>
+            </div>
         </div>
     </div>
-    <div class="w-max mx-auto mt-8 relative flex justify-center items-center">
-        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
-            Click Me
-        </button>
-    <script src="js/main.js"></script>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
+        <div class="bg-[#222222] p-4 sm:p-6 rounded-3xl shadow-lg hover:scale-105 transition-transform duration-300 content-box">
+            <h2 id="funfact-title-1" class="text-base sm:text-lg font-bold mb-2 text-white content-box-title">Fun Fact 1</h2>
+            <p id="funfact-content-1" class="text-sm text-white content-box-text">Loading fun fact...</p>
+        </div>
+        <div class="bg-[#222222] p-4 sm:p-6 rounded-3xl shadow-lg hover:scale-105 transition-transform duration-300 content-box">
+            <h2 id="funfact-title-2" class="text-base sm:text-lg font-bold mb-2 text-white content-box-title">Fun Fact 2</h2>
+            <p id="funfact-content-2" class="text-sm text-white content-box-text">Loading fun fact...</p>
+        </div>
+        <div class="bg-[#222222] p-4 sm:p-6 rounded-3xl shadow-lg hover:scale-105 transition-transform duration-300 content-box">
+            <h2 id="funfact-title-3" class="text-base sm:text-lg font-bold mb-2 text-white content-box-title">Fun Fact 3</h2>
+            <p id="funfact-content-3" class="text-sm text-white content-box-text">Loading fun fact...</p>
+        </div>
+    </div>
+
+    <main id="hasilPencarianDiv" class="w-full max-w-3xl mx-auto grid grid-cols-1 gap-6">
+        <p class="text-gray-400 col-span-full text-center py-10">Memuat data kamus...</p>
+    </main>
+
+    <footer class="mt-12 text-center text-gray-400 text-sm">
+        <p>&copy; <span id="currentYear"></span> Py.Edia. Didukung oleh Tailwind CSS.</p>
+    </footer>
+</div>
+
+    <template id="kamusItemTemplate">
+        <div class="kamus-item-card bg-gray-800 p-5 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col border border-gray-700">
+            <h3 data-field="namaFungsi" class="text-xl font-semibold text-blue-400 mb-2">Nama Fungsi Placeholder</h3>
+            <div class="flex flex-wrap items-center gap-2 text-xs mb-4">
+                <span class="font-medium text-gray-300">Kategori:</span>
+                <span data-field="kategori" class="bg-blue-600 text-blue-100 px-2.5 py-0.5 rounded-full">Kategori</span>
+                <span class="mx-1 text-gray-600">|</span>
+                <span class="font-medium text-gray-300">Tingkat:</span>
+                <span data-field="tingkat" class="bg-green-600 text-green-100 px-2.5 py-0.5 rounded-full">Tingkat</span>
+            </div>
+            <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mt-1 mb-1">Pengertian:</h4>
+            <p data-field="pengertian" class="text-gray-100 text-sm mb-3 flex-grow">Pengertian placeholder...</p>
+
+            <div class="more-content mt-3 max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <div data-section="contohPenggunaan" class="mt-2" style="display: none;">
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Contoh Penggunaan:</h4>
+                    <pre data-field="contohPenggunaan" class="bg-gray-900 text-gray-100 text-xs p-3 rounded-md overflow-x-auto whitespace-pre-wrap max-h-60 custom-scrollbar">Contoh penggunaan...</pre>
+                </div>
+
+                <div data-section="parameter" class="mt-2" style="display: none;">
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Parameter:</h4>
+                    <ul data-field="parameter" class="list-disc list-inside text-sm text-gray-300 pl-2 space-y-1">Parameter...</ul>
+                    <p data-message="parameter-empty" class="text-sm italic text-gray-400 mt-1" style="display: none;">Tidak ada parameter khusus.</p>
+                </div>
+
+                <div data-section="nilaiKembali" class="mt-2" style="display: none;">
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Nilai Kembali:</h4>
+                    <p data-field="nilaiKembali" class="text-sm text-gray-200">Nilai kembali...</p>
+                </div>
+
+                <div data-section="catatanPenting" class="mt-2" style="display: none;">
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Catatan Penting:</h4>
+                    <p data-field="catatanPenting" class="text-sm text-gray-300 italic">Catatan penting...</p>
+                </div>
+
+                <div data-section="potensiError" class="mt-2" style="display: none;">
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Potensi Error:</h4>
+                    <ul data-field="potensiError" class="list-disc list-inside text-sm text-gray-300 pl-2 space-y-1">Error...</ul>
+                    <p data-message="potensiError-empty" class="text-sm italic text-gray-400 mt-1" style="display: none;">Tidak ada potensi error yang spesifik dicatat.</p>
+                </div>
+
+                <div class="mt-4 pt-2 border-t border-gray-700">
+                    <button data-action="openLiveCode" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-150 ease-in-out">
+                        Live Code <span class="ml-1">▶</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-4">
+                <button data-action="toggleMore" class="w-full text-sm text-blue-400 hover:text-blue-300 focus:outline-none py-1.5 border border-blue-500 hover:border-blue-400 rounded-md hover:bg-gray-700 transition-colors duration-150 ease-in-out">
+                    Tampilkan Lebih Banyak
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <div id="liveCodingModal" class="modal fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-70 p-4">
+        <div class="modal-content bg-gray-800 text-gray-200 p-6 rounded-lg shadow-xl w-full max-w-5xl flex flex-col border border-gray-700" style="max-height: 95vh; overflow-y: auto;">
+            <div class="flex justify-between items-center mb-4"> <h2 id="liveCodingModalTitle" class="text-2xl font-semibold text-indigo-400">Live Coding</h2>
+                <button id="closeLiveCodingModal" class="text-gray-400 hover:text-gray-200 text-2xl">&times;</button>
+            </div>
+                <div class="flex-grow flex flex-col md:flex-row gap-4 overflow-y-auto">
+                <div class="w-full md:w-1/2 flex flex-col">
+                    <label for="liveCodeEditor" class="mb-1 text-sm font-semibold text-gray-300">Kode Python (bisa diedit):</label>
+                    <textarea id="liveCodeEditor" class="w-full h-64 md:flex-grow p-2.5 rounded-md bg-gray-900 text-white   border border-grey-800 focus:ring-indigo-500 focus:border-indigo-500 font-mono text-sm" spellcheck="false"></textarea>
+                </div>
+
+                <div class="w-full md:w-1/2 flex flex-col">
+                    <label for="liveCodeOutput" class="mb-1 text-sm font-semibold text-gray-300">Output:</label>
+                    <pre id="liveCodeOutput" class="w-full h-64 md:flex-grow p-2.5 rounded-md bg-gray-900 text-gray-300 border border-gray-700 whitespace-pre-wrap break-words overflow-y-auto font-mono text-sm min-h-[50px]"></pre>
+                </div>
+            </div>
+            <div class="mt-6 text-right"> <button id="runLiveCodeBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition duration-150 ease-in-out">
+                    Jalankan Kode
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js" defer></script>
 </body>
 </html>
-
