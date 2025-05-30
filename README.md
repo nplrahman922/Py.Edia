@@ -1,4 +1,4 @@
-# Py.edia - Interactive Python Dictionary
+# Py.Edia - Interactive Python Dictionary
 
 Welcome to Py.edia, your Interactive Python Dictionary! This web application is designed as a practical resource to help learners and Python practitioners understand various functions, keywords, and fundamental to advanced concepts in the Python language.
 
