@@ -216,8 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Code Generator Templates
   const codeTemplates = [
     {
-      name: "Basic Function",
-      description: "Create a simple function template",
+      name: "Fungsi Dasar",
+      description: "Membuat fungsi Python dasar",
       code: `def my_function(parameter1, parameter2):
       """
       Description of what this function does.
@@ -238,8 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
   print(f"Result: {result}")`,
     },
     {
-      name: "Class Template",
-      description: "Create a basic class structure",
+      name: "Struktur Kelas",
+      description: "Membuat struktur kelas sederhana python",
       code: `class MyClass:
       """A sample class template."""
       
@@ -268,8 +268,8 @@ document.addEventListener("DOMContentLoaded", () => {
   print(my_object)`,
     },
     {
-      name: "File Handler",
-      description: "Template for file operations",
+      name: "Menangani File",
+      description: "Template untuk menangani file pada Python",
       code: `def read_file(filename):
       """Read content from a file."""
       try:
@@ -301,8 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
   print(read_content)`,
     },
     {
-      name: "API Request",
-      description: "Template for making API requests",
+      name: "Menggunakan kode API",
+      description: "Template untuk menghubungkan dengan kode API",
       code: `import requests
   import json
 
@@ -344,8 +344,8 @@ document.addEventListener("DOMContentLoaded", () => {
   # print(data)`,
     },
     {
-      name: "Data Processing",
-      description: "Template for data analysis",
+      name: "Pemrosesan Data",
+      description: "Template untuk menganalisis data numerik",
       code: `def analyze_data(data_list):
       """
       Analyze a list of numbers.
@@ -422,7 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Learning Path Data
   const learningPath = [
     {
-      level: "Beginner",
+      level: "Pemula",
       color: "green",
       topics: [
         { name: "Python Syntax", functions: ["print()", "input()", "Python Comments"] },
@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      level: "Intermediate",
+      level: "Menengah",
       color: "blue",
       topics: [
         { name: "Data Structures", functions: ["Python Lists", "Python Tuples", "Python Sets", "Python Dictionaries"] },
@@ -442,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      level: "Advanced",
+      level: "Lanjutan",
       color: "purple",
       topics: [
         { name: "Object-Oriented Programming", functions: ["class", "def", "__init__"] },

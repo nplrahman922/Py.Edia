@@ -111,17 +111,17 @@
              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 feature-grid"> 
                 <button id="randomFunctionBtn" class="feature-button bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 hover:border-purple-400 p-4 rounded-xl transition-all duration-300 hover:scale-105 group">
                     <div class="text-2xl mb-2 group-hover:animate-bounce">🎲</div>
-                    <div class="text-sm font-medium text-purple-300">Random Function</div>
+                    <div class="text-sm font-medium text-purple-300">Tampilkan Random</div>
                 </button>
                 
                 <button id="codeGeneratorBtn" class="feature-button bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 hover:border-green-400 p-4 rounded-xl transition-all duration-300 hover:scale-105 group">
                     <div class="text-2xl mb-2 group-hover:animate-bounce">⚡</div>
-                    <div class="text-sm font-medium text-green-300">Code Generator</div>
+                    <div class="text-sm font-medium text-green-300">Membuat Kode Otomatis</div>
                 </button>
                 
                 <button id="learningPathBtn" class="feature-button bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 hover:border-blue-400 p-4 rounded-xl transition-all duration-300 hover:scale-105 group">
                     <div class="text-2xl mb-2 group-hover:animate-bounce">🗺️</div>
-                    <div class="text-sm font-medium text-blue-300">Learning Path</div>
+                    <div class="text-sm font-medium text-blue-300">Rute Pembelajaran</div>
                 </button>
                 
                 </div>
@@ -381,15 +381,15 @@
     <div id="bookmarkModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
         <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-4xl border border-gray-600/50 animate-fadeIn" style="max-height: 85vh; overflow-y: auto;">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">📚 My Bookmarks</h2>
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">📚Bookmarks Saya</h2>
                 <button id="closeBookmarkModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
             </div>
             <div id="bookmarkList" class="space-y-4">
                 </div>
             <div id="emptyBookmarks" class="text-center py-12" style="display: none;">
                 <div class="text-6xl mb-4">📖</div>
-                <h3 class="text-xl font-semibold text-gray-300 mb-2">No Bookmarks Yet</h3>
-                <p class="text-gray-400">Start bookmarking your favorite Python functions!</p>
+                <h3 class="text-xl font-semibold text-gray-300 mb-2">Bookmark anda masing kosong</h3>
+                <p class="text-gray-400">Mulai Tambah Bookmark ke fungsi Python favorit anda!</p>
             </div>
         </div>
     </div>
@@ -397,18 +397,18 @@
     <div id="codeGeneratorModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
         <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-5xl border border-gray-600/50 animate-fadeIn" style="max-height: 90vh; overflow-y: auto;">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">⚡ Python Code Generator</h2>
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">⚡ Membuat Kode Otomatis</h2>
                 <button id="closeCodeGeneratorModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
             </div>
             
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 text-green-300">Select Code Template:</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-green-300">Pilih Kode yang ingin dibuat:</h3>
                     <div class="space-y-3" id="codeTemplates">
                         </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4 text-green-300">Generated Code:</h3>
+                    <h3 class="text-lg font-semibold mb-4 text-green-300">Kode Yang Telah Jadi:</h3>
                     <textarea id="generatedCode" class="w-full h-80 p-4 rounded-xl bg-gray-900/80 text-white border border-gray-700 font-mono text-sm code-preview" readonly></textarea>
                     <button id="copyGeneratedCode" class="mt-3 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200">
                         📋 Copy Code
@@ -421,7 +421,7 @@
     <div id="learningPathModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
         <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-6xl border border-gray-600/50 animate-fadeIn" style="max-height: 90vh; overflow-y: auto;">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">🗺️ Python Learning Path</h2>
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">🗺️ Rute Pembelajaran Python Anda</h2>
                 <button id="closeLearningPathModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
             </div>
             
