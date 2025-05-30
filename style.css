@@ -1,6 +1,3 @@
-.bg-nav{
-    background-color: #0D335D;
-}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -35,3 +32,28 @@ body {
 .menu-visible {
     display: block; /* atau flex, tergantung layout yang diinginkan */
 }
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-bg-shift {
+    background-size: 200% 200%;
+    background-image: linear-gradient(to right, #000000, #2f2f2f, #000000); /* Hitam ke abu gelap */
+    animation: gradient-shift 6s ease infinite;
+}
+ .fade-out-bottom {
+     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+     -webkit-mask-repeat: no-repeat;
+     mask-repeat: no-repeat;
+ }
+
+
+
+
+
