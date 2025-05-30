@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    fetch('../dictionary.json')
+    fetch('dictionary.json')
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
             muatKamus();
         })
         .catch(error => {
-            console.error("Gagal memuat atau memproses data kamus:", error);
+            console.error("Gagal memuat atau memproses data dari dictionary:", error);
             if (hasilPencarianDiv) {
                 setElementHTML(hasilPencarianDiv, `<div class="col-span-full text-center text-red-400 p-4 bg-gray-800 border border-red-500 rounded-md">Gagal memuat data kamus: ${error.message}</div>`);
             }
