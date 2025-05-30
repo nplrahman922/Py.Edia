@@ -1,0 +1,30 @@
+[
+  {
+    "judul": "Nama yang Terinspirasi Komedi  Monty Python",
+    "isi": "Guido van Rossum, pencipta Python, menamai bahasa pemrograman ini bukan karena ular, melainkan karena kecintaannya pada grup komedi Inggris, Monty Python's Flying Circus."
+  },
+  {
+    "judul": "Filosofi Zen Python",
+    "isi": "Python memiliki filosofi desain yang dikenal sebagai \"The Zen of Python\", yang dapat diakses dengan mengetik `import this` di interpreter Python. Filosofi ini menekankan pada keterbacaan dan kesederhanaan kode."
+  },
+  {
+    "judul": "Bahasa Pemrograman Serbaguna",
+    "isi": "Python digunakan dalam berbagai bidang, mulai dari pengembangan web, ilmu data, kecerdasan buatan, hingga otomatisasi skrip dan pengembangan game."
+  },
+  {
+    "judul": "Sintaks yang Mudah Dibaca",
+    "isi": "Salah satu keunggulan utama Python adalah sintaksnya yang bersih dan mudah dibaca, mirip dengan bahasa Inggris, sehingga cocok untuk pemula."
+  },
+  {
+    "judul": "Manajemen Memori Otomatis",
+    "isi": "Python menangani manajemen memori secara otomatis melalui garbage collection, sehingga programmer tidak perlu khawatir tentang alokasi dan dealokasi memori secara manual."
+  },
+  {
+    "judul": "Komunitas yang Besar dan Aktif",
+    "isi": "Python memiliki salah satu komunitas terbesar dan paling aktif di dunia, yang berarti banyak sumber daya, pustaka, dan dukungan yang tersedia."
+  },
+  {
+    "judul": "Digunakan oleh Perusahaan Raksasa",
+    "isi": "Banyak perusahaan raksasa seperti Google, Netflix, Instagram, dan Spotify menggunakan Python secara ekstensif dalam berbagai aplikasi dan layanan mereka."
+  }
+]

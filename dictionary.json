@@ -1,0 +1,1781 @@
+[
+  {
+    "namaFungsi": "Python HOME (Pengenalan)",
+    "kategori": "Dasar-dasar Python",
+    "tingkat": "Pemula",
+    "pengertian": "Titik awal untuk memahami Python, mencakup apa itu Python, keunggulannya, dan di mana menemukan dokumentasi resmi serta sumber daya lainnya.",
+    "contohPenggunaan": "Python adalah bahasa pemrograman tingkat tinggi, interpretatif, interaktif, dan berorientasi objek. Dikenal karena sintaksisnya yang mudah dibaca dan serbaguna, cocok untuk pengembangan web, analisis data, kecerdasan buatan, dan banyak lagi.\n\nSitus web resmi: https://www.python.org",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Apa yang membuat Python populer di kalangan programmer?",
+      "pilihan": [
+        "Sintaks yang mudah dibaca dan dipahami",
+        "Hanya bisa digunakan untuk web development",
+        "Tidak memerlukan instalasi",
+        "Hanya tersedia untuk Windows"
+      ],
+      "jawabanBenar": 0,
+      "penjelasan": "Python populer karena sintaksnya yang bersih dan mudah dibaca, mirip dengan bahasa Inggris, sehingga mudah dipelajari dan dipahami."
+    }
+  },
+  {
+    "namaFungsi": "Python Intro (Dasar)",
+    "kategori": "Dasar-dasar Python",
+    "tingkat": "Pemula",
+    "pengertian": "Pengenalan fundamental mengenai Python, seringkali menjelaskan filosofi desainnya, kemudahan penggunaan, dan bagaimana Python dieksekusi.",
+    "contohPenggunaan": "Python dirancang agar mudah dibaca dan ditulis. Kode Python dieksekusi baris per baris dari atas ke bawah. Contoh sederhana:\n\nprint(\"Halo, Python!\")\n\nIni akan menampilkan 'Halo, Python!' di layar.",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Bagaimana cara Python mengeksekusi kode?",
+      "pilihan": [
+        "Semua kode dikompilasi sekaligus",
+        "Baris per baris dari atas ke bawah",
+        "Secara acak",
+        "Dari bawah ke atas"
+      ],
+      "jawabanBenar": 1,
+      "penjelasan": "Python mengeksekusi kode baris per baris dari atas ke bawah, yang membuatnya mudah untuk debugging dan pemahaman alur program."
+    }
+  },
+  {
+    "namaFungsi": "Python Get Started (Memulai)",
+    "kategori": "Dasar-dasar Python",
+    "tingkat": "Pemula",
+    "pengertian": "Langkah-langkah awal untuk mulai menggunakan Python, termasuk instalasi interpreter Python di sistem operasi Anda dan cara menjalankan skrip Python pertama.",
+    "contohPenggunaan": "1. Unduh Python dari python.org.\n2. Instal Python di komputermu.\n3. Buka terminal atau command prompt.\n4. Ketik 'python' atau 'python3' untuk masuk ke mode interaktif, atau 'python nama_file.py' untuk menjalankan skrip.\n\n# Contoh file nama_file.py:\n# print(\"Skrip Python pertamaku berjalan!\")",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Perintah apa yang digunakan untuk menjalankan file Python bernama 'hello.py'?",
+      "pilihan": ["run hello.py", "python hello.py", "execute hello.py", "start hello.py"],
+      "jawabanBenar": 1,
+      "penjelasan": "Untuk menjalankan file Python, gunakan perintah 'python nama_file.py' di terminal atau command prompt."
+    }
+  },
+  {
+    "namaFungsi": "Python Syntax (Sintaksis)",
+    "kategori": "Dasar-dasar Python",
+    "tingkat": "Pemula",
+    "pengertian": "Aturan penulisan kode Python yang benar. Python menggunakan indentasi untuk mendefinisikan blok kode, bukan kurung kurawal seperti banyak bahasa lain.",
+    "contohPenggunaan": "# Variabel dideklarasikan tanpa tipe eksplisit\nx = 10\nnama = \"Budi\"\n\n# Indentasi penting untuk blok kode\nif x > 5:\n    print(\"x lebih besar dari 5\") # Baris ini diindentasi\nelse:\n    print(\"x tidak lebih besar dari 5\")",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Apa yang digunakan Python untuk mendefinisikan blok kode?",
+      "pilihan": ["Kurung kurawal { }", "Indentasi (spasi atau tab)", "Titik koma ;", "Tanda kurung ( )"],
+      "jawabanBenar": 1,
+      "penjelasan": "Python menggunakan indentasi (spasi atau tab) untuk mendefinisikan blok kode, bukan kurung kurawal seperti bahasa pemrograman lainnya."
+    }
+  },
+  {
+    "namaFungsi": "Python Comments (Komentar)",
+    "kategori": "Dasar-dasar Python",
+    "tingkat": "Pemula",
+    "pengertian": "Komentar digunakan untuk menjelaskan kode Python. Komentar tidak dieksekusi oleh interpreter. Komentar satu baris dimulai dengan `#`, komentar multi-baris bisa menggunakan tiga tanda kutip `'''` atau `\"\"\"`.",
+    "contohPenggunaan": "# Ini adalah komentar satu baris\nx = 5 # Ini juga komentar di akhir baris\n\n'''\nIni adalah\nkomentar\nmulti-baris.\n'''\n\n\"\"\"\nIni juga\nkomentar\nmulti-baris lainnya.\n\"\"\"\nprint(x)",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Simbol apa yang digunakan untuk membuat komentar satu baris di Python?",
+      "pilihan": ["//", "#", "/*", "--"],
+      "jawabanBenar": 1,
+      "penjelasan": "Python menggunakan simbol # untuk membuat komentar satu baris. Semua teks setelah # akan diabaikan oleh interpreter."
+    }
+  },
+  {
+    "namaFungsi": "Python Variables (Variabel)",
+    "kategori": "Dasar-dasar Python",
+    "tingkat": "Pemula",
+    "pengertian": "Variabel adalah wadah untuk menyimpan nilai data. Di Python, variabel dibuat saat Anda pertama kali memberinya nilai. Nama variabel sensitif terhadap huruf besar-kecil.",
+    "contohPenggunaan": "umur = 25             # Integer\nharga = 19.99         # Float\nnama_depan = \"Alex\"   # String\naktif = True          # Boolean\n\nprint(umur)\nprint(nama_depan)\n\n# Nama variabel peka huruf besar-kecil\na = 4\nA = \"Sally\"\n# A tidak akan menimpa a",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Apakah variabel 'nama' dan 'Nama' adalah variabel yang sama di Python?",
+      "pilihan": [
+        "Ya, keduanya sama",
+        "Tidak, Python case-sensitive",
+        "Tergantung pada tipe data",
+        "Hanya berbeda di Python 3"
+      ],
+      "jawabanBenar": 1,
+      "penjelasan": "Python adalah bahasa yang case-sensitive, artinya 'nama' dan 'Nama' dianggap sebagai dua variabel yang berbeda."
+    }
+  },
+  {
+    "namaFungsi": "Python Data Types (Tipe Data)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "Python memiliki berbagai tipe data bawaan untuk menyimpan berbagai jenis nilai, seperti teks, angka, koleksi, dll. Tipe data utama meliputi string, integer, float, boolean, list, tuple, set, dan dictionary.",
+    "contohPenggunaan": "x = \"Halo\"      # str (string)\ny = 20         # int (integer)\nz = 20.5       # float (bilangan desimal)\na = True       # bool (boolean)\nb = [1, 2, 3]  # list\nc = (1, 2, 3)  # tuple\nd = {1, 2, 3}  # set\ne = {\"nama\": \"Adi\", \"usia\": 30} # dict (dictionary)\n\nprint(type(x))\nprint(type(e))",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Tipe data apa yang digunakan untuk menyimpan nilai True atau False?",
+      "pilihan": ["string", "integer", "boolean", "float"],
+      "jawabanBenar": 2,
+      "penjelasan": "Boolean (bool) adalah tipe data yang digunakan untuk menyimpan nilai True atau False, sangat berguna untuk kondisi logika."
+    }
+  },
+  {
+    "namaFungsi": "Python Numbers (Angka)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "Python mendukung tipe data numerik integer (bilangan bulat), float (bilangan titik mengambang/desimal), dan complex (bilangan kompleks).",
+    "contohPenggunaan": "a = 10       # Integer\nb = 3.14     # Float\nc = 2 + 5j   # Complex\n\n# Menggunakan str.format() untuk kompatibilitas yang lebih baik dengan Skulpt\nprint(\"Tipe a: {}, nilai: {}\".format(type(a), a))\nprint(\"Tipe b: {}, nilai: {}\".format(type(b), b))\nprint(\"Tipe c: {}, nilai: {}\".format(type(c), c))\n\n# Operasi aritmatika\npenjumlahan = a + 5\npembagian_float = a / 3\npembagian_bulat = a // 3\nprint(pembagian_float)\nprint(pembagian_bulat)",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Manakah dari berikut ini yang BUKAN tipe data numerik standar di Python?",
+      "pilihan": ["int", "float", "double", "complex"],
+      "jawabanBenar": 2,
+      "penjelasan": "Python memiliki tipe numerik int, float, dan complex. 'double' bukan tipe data standar Python, meskipun float seringkali diimplementasikan sebagai double-precision."
+    }
+  },
+  {
+    "namaFungsi": "Python Casting (Konversi Tipe)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "Casting adalah proses mengubah tipe data suatu variabel. Ini dapat dilakukan menggunakan fungsi konstruktor seperti `int()`, `float()`, `str()`, dll.",
+    "contohPenggunaan": "x = 10.75\n\n# Konversi ke integer\nint_x = int(x)\nprint(\"Integer dari {} adalah {}\".format(x, int_x)) # Output: 10\n\n# Konversi ke float\ny = 5\nfloat_y = float(y)\nprint(\"Float dari {} adalah {}\".format(y, float_y)) # Output: 5.0\n\n# Konversi ke string\nz = 100\nstr_z = str(z)\nprint(\"String dari {} adalah '{}'\".format(z, str_z)) # Output: '100'\nprint(type(str_z))",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Fungsi apa yang digunakan untuk mengubah nilai menjadi tipe data string?",
+      "pilihan": ["int()", "string()", "str()", "text()"],
+      "jawabanBenar": 2,
+      "penjelasan": "Fungsi `str()` digunakan untuk mengkonversi nilai menjadi tipe data string di Python."
+    }
+  },
+  {
+    "namaFungsi": "Python Strings (Teks)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "String adalah urutan karakter yang digunakan untuk menyimpan data teks. String di Python bersifat immutable (tidak dapat diubah setelah dibuat) dan dapat didefinisikan menggunakan tanda kutip tunggal (`'`), ganda (`\"`), atau tiga tanda kutip (`'''` atau `\"\"\"`) untuk string multi-baris.",
+    "contohPenggunaan": "salam = \"Halo, Dunia!\"\nnama = 'Budi'\n\nprint(salam)\nprint(salam[0])      # Mengakses karakter pertama (H)\nprint(salam[6:11])   # Slicing string (Dunia)\n\n# String Formatting (f-string, metode modern)\n# Untuk Skulpt, jika f-string kompleks, lebih baik gunakan .format() atau konkatenasi.\n# Di sini, f-string untuk 'info' cukup sederhana dan tidak langsung di print(), jadi mungkin aman.\nnama_orang = \"Andi\"\numur_orang = 30\ninfo = \"{} berusia {} tahun.\".format(nama_orang, umur_orang) # Diubah ke .format() untuk konsistensi\nprint(info) # Output: Andi berusia 30 tahun.\n\n# Metode string lainnya\nprint(salam.upper()) # Output: HALO, DUNIA!\nprint(salam.lower()) # Output: halo, dunia!",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Apakah string di Python bersifat mutable (dapat diubah setelah dibuat)?",
+      "pilihan": ["Ya, selalu mutable", "Tidak, string bersifat immutable", "Hanya jika didefinisikan dengan kutip ganda", "Tergantung versi Python"],
+      "jawabanBenar": 1,
+      "penjelasan": "String di Python bersifat immutable, artinya setelah string dibuat, isinya tidak dapat diubah secara langsung."
+    }
+  },
+  {
+    "namaFungsi": "Python String Formatting",
+    "kategori": "Operasi String",
+    "tingkat": "Pemula",
+    "pengertian": "Teknik untuk menyisipkan nilai variabel ke dalam string. Metode yang umum digunakan adalah f-strings (formatted string literals), metode `str.format()`, dan operator `%` (gaya lama).",
+    "contohPenggunaan": "nama = \"Citra\"\numur = 25\n\n# 1. f-string (direkomendasikan)\nkalimat1 = \"Nama saya {} dan saya berusia {} tahun.\".format(nama, umur)\nprint(kalimat1)\n\n# 2. Metode str.format()\nkalimat2 = \"Nama saya {} dan saya berusia {} tahun.\".format(nama, umur)\nprint(kalimat2)\n\n# 3. Operator % (gaya lama)\nkalimat3 = \"Nama saya %s dan saya berusia %d tahun.\" % (nama, umur)\nprint(kalimat3)",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Manakah metode formatting string yang paling direkomendasikan di Python modern (Python 3.6+)?",
+      "pilihan": ["Operator %", "str.format()", "f-string", "Konkatenasi (+)"],
+      "jawabanBenar": 2,
+      "penjelasan": "F-string (formatted string literals) adalah metode yang paling direkomendasikan untuk formatting string di Python 3.6+ karena lebih ringkas dan mudah dibaca."
+    }
+  },
+  {
+    "namaFungsi": "Python Operators (Operator)",
+    "kategori": "Operator Python",
+    "tingkat": "Pemula",
+    "pengertian": "Operator adalah simbol khusus yang melakukan operasi pada operan (nilai atau variabel). Jenis operator meliputi aritmatika, perbandingan, penugasan, logika, identitas, keanggotaan, dan bitwise(operasi perhitungan bit).",
+    "contohPenggunaan": "# Operator Aritmatika\na = 10\nb = 3\nprint(\"Penjumlahan: {}\".format(a + b)) # 13\nprint(\"Pengurangan: {}\".format(a - b)) # 7\nprint(\"Perkalian: {}\".format(a * b))   # 30\nprint(\"Pembagian: {}\".format(a / b))   # 3.33...\nprint(\"Modulus: {}\".format(a % b))     # 1 (sisa bagi)\nprint(\"Pangkat: {}\".format(a ** b))    # 1000\nprint(\"Pembagian Bulat: {}\".format(a // b)) # 3\n\n# Operator Perbandingan\nprint(\"Apakah a > b? {}\".format(a > b)) # True\n\n# Operator Logika\nx = True\ny = False\nprint(\"x AND y: {}\".format(x and y)) # False\nprint(\"x OR y: {}\".format(x or y))   # True\nprint(\"NOT x: {}\".format(not x))     # False",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Operator `//` di Python digunakan untuk operasi apa?",
+      "pilihan": ["Pembagian standar (hasil float)", "Modulus (sisa bagi)", "Pangkat", "Pembagian bulat (floor division)"],
+      "jawabanBenar": 3,
+      "penjelasan": "Operator `//` adalah operator pembagian bulat (floor division) yang menghasilkan bagian integer dari hasil pembagian."
+    }
+  },
+  {
+    "namaFungsi": "Python Booleans",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "Boolean merepresentasikan satu dari dua nilai: `True` atau `False`. Boolean sering digunakan dalam ekspresi kondisional dan perulangan.",
+    "contohPenggunaan": "benar = True\nsalah = False\n\nprint(benar)    # Output: True\nprint(salah)    # Output: False\nprint(type(benar)) # Output: <class 'bool'>\n\n# Dalam kondisi\nprint(10 > 5)   # Output: True\nprint(10 == 5)  # Output: False\n\nif benar:\n    print(\"Ini akan dicetak karena kondisinya True\")",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Manakah dari berikut ini yang akan menghasilkan nilai Boolean `False`?",
+      "pilihan": ["`bool(10)`", "`bool(\"Python\")`", "`bool([1, 2])`", "`bool(0)`"],
+      "jawabanBenar": 3,
+      "penjelasan": "Dalam Python, `0`, string kosong `\"\"`, list kosong `[]`, dan `None` dievaluasi sebagai `False` dalam konteks Boolean. Nilai numerik non-nol, string non-kosong, dan list non-kosong dievaluasi sebagai `True`."
+    }
+  },
+  {
+    "namaFungsi": "Python Lists (Daftar)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "List adalah kumpulan item yang terurut dan dapat diubah (mutable). Didefinisikan dengan tanda kurung siku `[]` dan item dipisahkan koma. List dapat berisi item dengan tipe data yang berbeda.",
+    "contohPenggunaan": "buah = [\"apel\", \"pisang\", \"mangga\"]\nangka_campuran = [1, \"dua\", 3.0, True]\n\nprint(buah[0])       # Mengakses item: apel\nbuah[1] = \"jeruk\"    # Mengubah item\nprint(buah)          # Output: ['apel', 'jeruk', 'mangga']\n\nbuah.append(\"anggur\") # Menambah item di akhir\nprint(buah)          # Output: ['apel', 'jeruk', 'mangga', 'anggur']\n\nbuah.insert(1, \"kiwi\") # Menyisipkan item\nprint(buah)          # Output: ['apel', 'kiwi', 'jeruk', 'mangga', 'anggur']\n\nbuah.remove(\"mangga\") # Menghapus item\nprint(buah)\n\nprint(len(buah))     # Mendapatkan panjang list",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Indeks list dimulai dari 0. Mengakses indeks di luar jangkauan akan menyebabkan IndexError. List bersifat mutable, artinya isinya dapat diubah setelah dibuat.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Simbol apa yang digunakan untuk mendefinisikan sebuah list di Python?",
+      "pilihan": ["`()` (kurung biasa)", "`{}` (kurung kurawal)", "`[]` (kurung siku)", "`<>` (kurung sudut)"],
+      "jawabanBenar": 2,
+      "penjelasan": "List di Python didefinisikan menggunakan tanda kurung siku `[]`, dengan item-item di dalamnya dipisahkan oleh koma."
+    }
+  },
+  {
+    "namaFungsi": "Python Tuples (Tuple)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Pemula",
+    "pengertian": "Tuple adalah kumpulan item yang terurut dan tidak dapat diubah (immutable). Didefinisikan dengan tanda kurung biasa `()` dan item dipisahkan koma. Cocok untuk data yang tidak seharusnya berubah.",
+    "contohPenggunaan": "koordinat = (10, 20)\nwarna_rgb = (\"merah\", \"hijau\", \"biru\")\n\nprint(koordinat[0]) # Mengakses item: 10\n# koordinat[0] = 5  # Akan menghasilkan TypeError karena tuple immutable\n\nprint(len(koordinat)) # Panjang tuple: 2\n\n# Tuple dengan satu item (perhatikan koma)\ntuple_tunggal = (\"sendiri\",)\nprint(type(tuple_tunggal)) # Output: <class 'tuple'>\n\n# Tuple unpacking\nx, y = koordinat\nprint(\"x: {}, y: {}\".format(x, y))",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Tuple bersifat immutable, artinya setelah dibuat isinya tidak dapat diubah. Untuk tuple dengan satu elemen, jangan lupa tambahkan koma di akhir, contoh: `('item',)`.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Apa perbedaan utama antara List dan Tuple di Python?",
+      "pilihan": ["List terurut, Tuple tidak terurut", "List mutable, Tuple immutable", "List menggunakan `[]`, Tuple menggunakan `{}`", "Tidak ada perbedaan signifikan"],
+      "jawabanBenar": 1,
+      "penjelasan": "Perbedaan utama adalah List bersifat mutable (dapat diubah setelah dibuat), sedangkan Tuple bersifat immutable (tidak dapat diubah setelah dibuat)."
+    }
+  },
+  {
+    "namaFungsi": "Python Sets (Himpunan)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Menengah",
+    "pengertian": "Set adalah kumpulan item yang tidak terurut, tidak terindeks, dan tidak mengizinkan duplikasi (setiap item unik). Didefinisikan dengan kurung kurawal `{}` atau fungsi `set()`.",
+    "contohPenggunaan": "angka_unik = {1, 2, 3, 2, 4, 5, 1}\nprint(angka_unik)  # Output: {1, 2, 3, 4, 5} (duplikasi dihilangkan, urutan bisa berbeda)\n\n# Menambah item\nangka_unik.add(6)\nprint(angka_unik)\n\n# Menghapus item\nangka_unik.remove(3) # Jika item tidak ada, akan error\nangka_unik.discard(10) # Jika item tidak ada, tidak error\nprint(angka_unik)\n\n# Operasi set\nset1 = {1, 2, 3}\nset2 = {3, 4, 5}\nprint(\"Union: {}\".format(set1.union(set2)))           # Gabungan\nprint(\"Intersection: {}\".format(set1.intersection(set2))) # Irisan\nprint(\"Difference: {}\".format(set1.difference(set2)))     # Selisih",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Karena set tidak terurut, item di dalamnya tidak dapat diakses menggunakan indeks. Set sangat efisien untuk operasi keanggotaan (cek apakah item ada di set) dan menghilangkan duplikasi.",
+    "potensiError": ["KeyError: jika menggunakan `remove()` untuk item yang tidak ada."],
+    "quiz": {
+      "pertanyaan": "Manakah karakteristik utama dari Set di Python?",
+      "pilihan": ["Terurut dan mengizinkan duplikasi", "Tidak terurut dan mengizinkan duplikasi", "Terurut dan tidak mengizinkan duplikasi", "Tidak terurut dan tidak mengizinkan duplikasi"],
+      "jawabanBenar": 3,
+      "penjelasan": "Set adalah kumpulan item yang tidak terurut, tidak terindeks, dan tidak mengizinkan duplikasi (setiap item unik)."
+    }
+  },
+  {
+    "namaFungsi": "Python Dictionaries (Kamus)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Menengah",
+    "pengertian": "Dictionary adalah kumpulan pasangan kunci-nilai (key-value pairs) yang tidak terurut (sebelum Python 3.7, setelahnya terurut berdasarkan insersi) dan dapat diubah (mutable). Kunci harus unik dan immutable (misalnya string, angka, tuple).",
+    "contohPenggunaan": "profil = {\n    \"nama\": \"Rina\",\n    \"usia\": 28,\n    \"pekerjaan\": \"Developer\"\n}\n\nprint(profil[\"nama\"])       # Mengakses nilai: Rina\nprint(profil.get(\"kota\"))  # Mengakses nilai dengan aman: None (jika tidak ada)\n\n# Mengubah nilai\nprofil[\"usia\"] = 29\n\n# Menambah pasangan kunci-nilai baru\nprofil[\"email\"] = \"rina@example.com\"\nprint(profil)\n\n# Menghapus item\nprofil.pop(\"pekerjaan\")\nprint(profil)\n\n# Iterasi melalui dictionary\nfor kunci, nilai in profil.items():\n    print(\"{}: {}\".format(kunci, nilai))\n\nfor kunci in profil.keys():\n    print(\"Kunci: {}\".format(kunci))",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Kunci dalam dictionary harus unik. Jika Anda mencoba menambahkan kunci yang sudah ada, nilai yang lama akan ditimpa. Gunakan metode `get()` untuk mengakses nilai dengan aman tanpa risiko `KeyError` jika kunci tidak ada.",
+    "potensiError": ["KeyError: jika mengakses kunci yang tidak ada menggunakan `kamus['kunci']`."],
+    "quiz": {
+      "pertanyaan": "Bagaimana cara mengakses nilai dalam dictionary jika Anda tidak yakin apakah kuncinya ada dan ingin menghindari `KeyError`?",
+      "pilihan": ["Menggunakan `kamus[kunci]`", "Menggunakan metode `kamus.get(kunci)`", "Menggunakan `kamus.find(kunci)`", "Menggunakan `kamus.access(kunci)`"],
+      "jawabanBenar": 1,
+      "penjelasan": "Metode `kamus.get(kunci)` digunakan untuk mengakses nilai. Jika kunci tidak ada, ia akan mengembalikan `None` (atau nilai default yang ditentukan) daripada menimbulkan `KeyError`."
+    }
+  },
+  {
+    "namaFungsi": "Python Arrays (Larik)",
+    "kategori": "Tipe Data & Struktur Data",
+    "tingkat": "Menengah",
+    "pengertian": "Python tidak memiliki tipe data array bawaan seperti di C++ atau Java secara langsung. Biasanya, 'list' digunakan untuk keperluan array. Namun, Python memiliki modul `array` yang menyediakan array yang lebih efisien secara memori untuk tipe data numerik tertentu, dan library pihak ketiga seperti NumPy menyediakan struktur array yang sangat kuat.",
+    "contohPenggunaan": "# Menggunakan list sebagai array\nmy_array_list = [1, 2, 3, 4, 5]\nprint(my_array_list[2]) # Output: 3\n\n# Menggunakan modul 'array'\nimport array as arr\n\n# 'i' untuk signed integer\nangka_int = arr.array('i', [10, 20, 30, 40])\nprint(angka_int[1])     # Output: 20\n\n# 'd' untuk double-precision float\nangka_float = arr.array('d', [1.5, 2.7, 3.8])\nprint(angka_float[0])   # Output: 1.5\n\n# Pustaka NumPy (umum digunakan untuk array numerik)\n# import numpy as np\n# np_array = np.array([1, 2, 3, 4, 5])\n# print(np_array * 2) # Operasi vektor",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Modul `array` membatasi item dalam array harus memiliki tipe data yang sama. Untuk operasi numerik yang kompleks dan efisien, pustaka NumPy sangat direkomendasikan.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Manakah pustaka Python yang sangat populer untuk bekerja dengan array dan operasi numerik tingkat lanjut?",
+      "pilihan": ["Pandas", "Matplotlib", "SciPy", "NumPy"],
+      "jawabanBenar": 3,
+      "penjelasan": "NumPy adalah pustaka fundamental untuk komputasi numerik di Python, menyediakan dukungan untuk array multidimensi yang besar dan berbagai fungsi matematika."
+    }
+  },
+  {
+    "namaFungsi": "Python If...Else (Kondisional)",
+    "kategori": "Struktur Kontrol",
+    "tingkat": "Pemula",
+    "pengertian": "Struktur kontrol yang memungkinkan eksekusi blok kode yang berbeda berdasarkan apakah suatu kondisi bernilai `True` atau `False`. Bisa menggunakan `if`, `elif` (else if), dan `else`.",
+    "contohPenggunaan": "nilai = 85\n\nif nilai >= 90:\n    print(\"Nilai Anda A\")\nelif nilai >= 80:\n    print(\"Nilai Anda B\")\nelif nilai >= 70:\n    print(\"Nilai Anda C\")\nelse:\n    print(\"Anda perlu belajar lebih giat\")\n\n# Contoh sederhana\numur = 17\nif umur >= 18:\n    print(\"Dewasa\")\nelse:\n    print(\"Belum dewasa\")",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Indentasi sangat penting dalam Python untuk mendefinisikan blok kode di bawah `if`, `elif`, dan `else`.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Kata kunci apa yang digunakan untuk 'else if' dalam struktur kondisional Python?",
+      "pilihan": ["elseif", "else if", "elif", "case"],
+      "jawabanBenar": 2,
+      "penjelasan": "Python menggunakan kata kunci `elif` (singkatan dari 'else if') untuk mengecek kondisi tambahan jika kondisi `if` sebelumnya tidak terpenuhi."
+    }
+  },
+  {
+    "namaFungsi": "Python Match (Pencocokan Pola)",
+    "kategori": "Struktur Kontrol",
+    "tingkat": "Menengah",
+    "pengertian": "Struktur kontrol 'match-case' menyediakan cara untuk melakukan pencocokan pola struktural. Mirip dengan `switch` di bahasa lain, tetapi lebih kuat.",
+    "contohPenggunaan": "# Membutuhkan Python 3.10+\nstatus_code = 404\n\nmatch status_code:\n    case 200:\n        print(\"OK\")\n    case 404:\n        print(\"Not Found\")\n    case 401 | 403: # Mencocokkan beberapa nilai\n        print(\"Authentication/Authorization Error\")\n    case _:\n        print(\"Unknown status code\") # Case default\n\n# Contoh dengan struktur data\nperintah = (\"lihat\", \"item_abc\")\nmatch perintah:\n    case (\"lihat\", item):\n        print(\"Menampilkan item: {}\".format(item))\n    case (\"hapus\", item):\n        print(\"Menghapus item: {}\".format(item))\n    case _:\n        print(\"Perintah tidak dikenal\")",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Pernyataan `match-case` hanya tersedia di Python 3.10 dan versi yang lebih baru. `case _:` bertindak sebagai klausa default jika tidak ada pola lain yang cocok.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Pernyataan `match-case` pertama kali diperkenalkan pada Python versi berapa?",
+      "pilihan": ["Python 2.7", "Python 3.0", "Python 3.8", "Python 3.10"],
+      "jawabanBenar": 3,
+      "penjelasan": "Struktur kontrol `match-case` untuk pencocokan pola struktural diperkenalkan di Python 3.10."
+    }
+  },
+  {
+    "namaFungsi": "Python While Loops (Perulangan While)",
+    "kategori": "Struktur Kontrol",
+    "tingkat": "Pemula",
+    "pengertian": "Perulangan `while` mengeksekusi blok kode selama kondisi yang diberikan bernilai `True`. Penting untuk memastikan kondisi akhirnya menjadi `False` untuk menghindari perulangan tak terbatas.",
+    "contohPenggunaan": "hitung = 0\nwhile hitung < 5:\n    print(\"Hitungan ke: {}\".format(hitung))\n    hitung += 1 # Sama dengan hitung = hitung + 1\n\nprint(\"Selesai menghitung.\")\n\n# Contoh dengan break\nangka = 1\nwhile True: # Perulangan yang tampak tak terbatas\n    print(angka)\n    if angka >= 3:\n        break # Keluar dari perulangan\n    angka += 1",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Pastikan variabel kondisi di dalam loop `while` diubah agar pada suatu titik kondisi menjadi `False`, jika tidak, Anda akan membuat loop tak terbatas. Gunakan `break` untuk keluar dari loop secara paksa.",
+    "potensiError": ["Terjadinya perulangan tak terbatas jika kondisi tidak pernah menjadi `False`."],
+    "quiz": {
+      "pertanyaan": "Apa yang harus diwaspadai saat menggunakan perulangan `while`?",
+      "pilihan": ["Jumlah iterasi yang terlalu sedikit", "Penggunaan memori yang berlebihan", "Kondisi yang tidak pernah menjadi `False` (loop tak terbatas)", "Kecepatan eksekusi yang lambat"],
+      "jawabanBenar": 2,
+      "penjelasan": "Sangat penting untuk memastikan bahwa kondisi dalam perulangan `while` pada akhirnya akan menjadi `False` untuk menghindari loop tak terbatas, yang dapat menyebabkan program macet."
+    }
+  },
+  {
+    "namaFungsi": "Python For Loops (Perulangan For)",
+    "kategori": "Struktur Kontrol",
+    "tingkat": "Pemula",
+    "pengertian": "Perulangan `for` digunakan untuk melakukan iterasi atas urutan (seperti list, tuple, dictionary, set, atau string) atau objek iterable lainnya.",
+    "contohPenggunaan": "# Iterasi atas list\nbuah = [\"apel\", \"pisang\", \"mangga\"]\nfor b in buah:\n    print(b)\n\n# Iterasi atas string\nfor karakter in \"Python\":\n    print(karakter)\n\n# Menggunakan range()\nfor i in range(5): # Dari 0 hingga 4\n    print(i)\n\nfor i in range(2, 6): # Dari 2 hingga 5\n    print(i)\n\n# Iterasi atas dictionary\nprofil = {\"nama\": \"Adi\", \"usia\": 22}\nfor kunci, nilai in profil.items():\n    print(\"{}: {}\".format(kunci, nilai))",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Perulangan `for` di Python bekerja dengan mengambil item dari iterable satu per satu. Fungsi `range()` sering digunakan untuk menghasilkan urutan angka untuk iterasi.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Fungsi apakah yang sering digunakan bersama `for` loop untuk melakukan iterasi sejumlah tertentu?",
+      "pilihan": ["`count()`", "`loop()`", "`iterate()`", "`range()`"],
+      "jawabanBenar": 3,
+      "penjelasan": "Fungsi `range()` sering digunakan dengan `for` loop untuk menghasilkan urutan angka yang dapat diiterasi, misalnya `for i in range(5)` akan berulang 5 kali."
+    }
+  },
+  {
+    "namaFungsi": "Python Functions (Fungsi)",
+    "kategori": "Fungsi & Scope",
+    "tingkat": "Pemula",
+    "pengertian": "Fungsi adalah blok kode yang terorganisir dan dapat digunakan kembali yang melakukan tindakan tertentu. Fungsi membantu memecah program menjadi bagian-bagian yang lebih kecil dan modular. Didefinisikan menggunakan kata kunci `def`.",
+    "contohPenggunaan": "# Mendefinisikan fungsi\ndef sapa(nama):\n    \"\"\"Fungsi ini menyapa orang yang namanya diberikan.\"\"\"\n    print(\"Halo, {}!\".format(nama))\n\n# Memanggil fungsi\nsapa(\"Budi\")\nsapa(\"Ani\")\n\n# Fungsi dengan nilai kembali (return value)\ndef tambah(a, b):\n    return a + b\n\nhasil = tambah(5, 3)\nprint(\"Hasil penjumlahan: {}\".format(hasil)) # Output: 8\n\n# Fungsi dengan argumen default\ndef info_pengguna(nama, usia=30):\n    print(\"{} berusia {} tahun.\".format(nama, usia))\n\ninfo_pengguna(\"Dina\") # Usia akan default ke 30\ninfo_pengguna(\"Eko\", 25)",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Gunakan `return` untuk mengembalikan nilai dari fungsi. Jika tidak ada `return` atau `return` tanpa nilai, fungsi akan mengembalikan `None`.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Kata kunci apa yang digunakan untuk mendefinisikan fungsi di Python?",
+      "pilihan": ["`function`", "`fun`", "`def`", "`define`"],
+      "jawabanBenar": 2,
+      "penjelasan": "Fungsi di Python didefinisikan menggunakan kata kunci `def`, diikuti oleh nama fungsi dan tanda kurung."
+    }
+  },
+  {
+    "namaFungsi": "Python Lambda (Fungsi Anonim)",
+    "kategori": "Fungsi & Scope",
+    "tingkat": "Menengah",
+    "pengertian": "Fungsi lambda adalah fungsi anonim kecil yang didefinisikan menggunakan kata kunci `lambda`. Fungsi ini bisa memiliki banyak argumen tetapi hanya satu ekspresi. Sering digunakan untuk fungsi sederhana sekali pakai.",
+    "contohPenggunaan": "# Fungsi lambda untuk menambah dua angka\ntambah = lambda a, b: a + b\nprint(tambah(5, 3)) # Output: 8\n\n# Fungsi lambda untuk menggandakan angka\ngandakan = lambda x: x * 2\nprint(gandakan(7)) # Output: 14\n\n# Penggunaan umum dengan fungsi seperti map() atau filter()\nangka = [1, 2, 3, 4, 5]\n\n# Menggunakan lambda dengan map() untuk mengkuadratkan setiap angka\nkuadrat = list(map(lambda x: x**2, angka))\nprint(kuadrat) # Output: [1, 4, 9, 16, 25]\n\n# Menggunakan lambda dengan filter() untuk mendapatkan angka genap\nangka_genap = list(filter(lambda x: x % 2 == 0, angka))\nprint(angka_genap) # Output: [2, 4]",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Fungsi lambda dibatasi hanya untuk satu ekspresi. Mereka sering digunakan sebagai argumen untuk fungsi tingkat tinggi seperti `map()`, `filter()`, dan `sorted()`.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Berapa banyak ekspresi yang bisa dimiliki oleh sebuah fungsi lambda?",
+      "pilihan": ["Tidak terbatas", "Hanya satu ekspresi", "Dua ekspresi", "Tergantung jumlah argumen"],
+      "jawabanBenar": 1,
+      "penjelasan": "Fungsi lambda di Python dirancang untuk menjadi fungsi kecil dan hanya dapat berisi satu ekspresi."
+    }
+  },
+  {
+    "namaFungsi": "Python Scope (Cakupan Variabel)",
+    "kategori": "Fungsi & Scope",
+    "tingkat": "Menengah",
+    "pengertian": "Scope menentukan di mana dalam program suatu variabel dapat diakses. Python memiliki scope lokal (di dalam fungsi), enclosing function locals (untuk fungsi bersarang), global (di tingkat modul), dan built-in (fungsi bawaan Python). Aturan LEGB (Local, Enclosing, Global, Built-in) menentukan urutan pencarian variabel.",
+    "contohPenggunaan": "x_global = 10 # Variabel global\n\ndef fungsi_luar():\n    x_enclosing = 20 # Variabel di scope enclosing\n\n    def fungsi_dalam():\n        x_lokal = 30 # Variabel lokal\n        print(\"Dalam fungsi_dalam, x_lokal: {}\".format(x_lokal))\n        print(\"Dalam fungsi_dalam, x_enclosing: {}\".format(x_enclosing))\n        print(\"Dalam fungsi_dalam, x_global: {}\".format(x_global))\n    \n    fungsi_dalam()\n    print(\"Dalam fungsi_luar, x_enclosing: {}\".format(x_enclosing))\n\nfungsi_luar()\nprint(\"Di luar fungsi, x_global: {}\".format(x_global))\n\n# Mengubah variabel global dari dalam fungsi\ny = 100\ndef ubah_global():\n    global y # Kata kunci 'global' untuk mengubah variabel global\n    y = 50\n\nubah_global()\nprint(\"Nilai y setelah diubah: {}\".format(y)) # Output: 50",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Gunakan kata kunci `global` untuk memodifikasi variabel global dari dalam fungsi. Gunakan `nonlocal` untuk memodifikasi variabel di scope enclosing (fungsi luar) dari dalam fungsi bersarang.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Aturan apa yang menentukan urutan Python mencari variabel dalam scope yang berbeda?",
+      "pilihan": ["GELB (Global, Enclosing, Local, Built-in)", "LEGB (Local, Enclosing, Global, Built-in)", "LBGE (Local, Built-in, Global, Enclosing)", "BLEG (Built-in, Local, Enclosing, Global)"],
+      "jawabanBenar": 1,
+      "penjelasan": "Python mengikuti aturan LEGB (Local, Enclosing function locals, Global, Built-in) untuk menentukan dari scope mana sebuah variabel akan diambil."
+    }
+  },
+  {
+    "namaFungsi": "False",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Nilai boolean yang merepresentasikan salah.",
+    "contohPenggunaan": "apakah_lulus = False\nprint(apakah_lulus)\n# Output: False",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`False` adalah salah satu dari dua nilai boolean, yang lainnya adalah `True`. Dalam konteks numerik, `False` dievaluasi sebagai 0.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Dalam konteks numerik, nilai `False` dievaluasi sebagai?",
+        "pilihan": ["1", "0", "-1", "None"],
+        "jawabanBenar": 1,
+        "penjelasan": "`False` dievaluasi sebagai 0 dalam konteks numerik di Python."
+    }
+  },
+  {
+    "namaFungsi": "True",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Nilai boolean yang merepresentasikan benar.",
+    "contohPenggunaan": "data_valid = True\nprint(data_valid)\n# Output: True",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`True` adalah salah satu dari dua nilai boolean, yang lainnya adalah `False`. Dalam konteks numerik, `True` dievaluasi sebagai 1.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Nilai boolean `True` dalam konteks numerik setara dengan angka berapa?",
+        "pilihan": ["0", "1", "2", "Tidak ada padanan numerik"],
+        "jawabanBenar": 1,
+        "penjelasan": "Dalam Python, `True` dievaluasi sebagai 1 dalam konteks numerik."
+    }
+  },
+  {
+    "namaFungsi": "None",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Mewakili ketiadaan nilai atau nilai null.",
+    "contohPenggunaan": "hasil = None\nprint(hasil)\n# Output: None",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`None` adalah objek tunggal yang sering digunakan untuk menandakan ketiadaan nilai. Fungsi yang tidak secara eksplisit mengembalikan nilai akan mengembalikan `None`.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa yang akan dikembalikan oleh fungsi Python jika tidak ada pernyataan `return` eksplisit?",
+        "pilihan": ["0", "True", "Error", "None"],
+        "jawabanBenar": 3,
+        "penjelasan": "Fungsi di Python yang tidak memiliki pernyataan `return` secara eksplisit akan mengembalikan `None` secara default."
+    }
+  },
+  {
+    "namaFungsi": "and",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Operator logika \"dan\"; menghasilkan `True` jika kedua operan `True`.",
+    "contohPenggunaan": "a = True\nb = False\nprint(a and b)\n# Output: False",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Operator `and` menggunakan evaluasi sirkuit pendek: jika operan pertama `False`, operan kedua tidak dievaluasi.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Jika `x = False` dan `y = True`, apa hasil dari `x and y`?",
+        "pilihan": ["True", "False", "None", "Error"],
+        "jawabanBenar": 1,
+        "penjelasan": "Operator `and` menghasilkan `True` hanya jika kedua operannya `True`. Karena `x` adalah `False`, hasilnya adalah `False`."
+    }
+  },
+  {
+    "namaFungsi": "or",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Operator logika \"atau\"; menghasilkan `True` jika salah satu operan `True`.",
+    "contohPenggunaan": "a = True\nb = False\nprint(a or b)\n# Output: True",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Operator `or` menggunakan evaluasi sirkuit pendek: jika operan pertama `True`, operan kedua tidak dievaluasi.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `True or False` di Python?",
+        "pilihan": ["True", "False", "None", "Error"],
+        "jawabanBenar": 0,
+        "penjelasan": "Operator `or` menghasilkan `True` jika setidaknya salah satu operannya `True`."
+    }
+  },
+  {
+    "namaFungsi": "not",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Operator logika \"tidak\"; membalik nilai boolean.",
+    "contohPenggunaan": "a = True\nprint(not a)\n# Output: False",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `not True`?",
+        "pilihan": ["True", "False", "None", "Error"],
+        "jawabanBenar": 1,
+        "penjelasan": "Operator `not` membalik nilai boolean. Jadi, `not True` adalah `False`."
+    }
+  },
+  {
+    "namaFungsi": "as",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk membuat alias saat mengimpor modul atau dalam blok `with` dan `except`.",
+    "contohPenggunaan": "import math as m\nprint(m.sqrt(16))\n# Output: 4.0\n\ntry:\n    x = 1 / 0\nexcept ZeroDivisionError as e:\n    print(\"Terjadi error: {}\".format(e))\n# Output: Terjadi error: division by zero",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Dalam konteks `import math as m`, apa fungsi kata kunci `as`?",
+        "pilihan": ["Membandingkan `math` dengan `m`", "Menjalankan `math` kemudian `m`", "Membuat `m` sebagai alias untuk `math`", "Menghapus modul `math`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Kata kunci `as` digunakan untuk membuat alias, sehingga modul `math` dapat dipanggil menggunakan nama `m`."
+    }
+  },
+  {
+    "namaFungsi": "assert",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk debugging; memeriksa apakah suatu kondisi `True`, jika tidak maka `AssertionError` akan muncul.",
+    "contohPenggunaan": "x = 5\nassert x > 0, \"x harus positif\"\n# Tidak ada output jika assert benar\n# assert x < 0, \"x seharusnya negatif\" # Ini akan memunculkan AssertionError",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Pernyataan `assert` dapat dinonaktifkan dengan opsi interpreter `-O` (optimize), jadi jangan gunakan untuk validasi input produksi.",
+    "potensiError": ["AssertionError: jika kondisi salah."],
+    "quiz": {
+        "pertanyaan": "Kapan pernyataan `assert` biasanya digunakan?",
+        "pilihan": ["Untuk validasi input pengguna di aplikasi produksi", "Untuk menangani error secara umum", "Untuk keperluan debugging dan memeriksa kondisi internal", "Untuk mencetak pesan ke konsol"],
+        "jawabanBenar": 2,
+        "penjelasan": "`assert` digunakan untuk debugging, membantu memastikan bahwa kondisi tertentu dalam program terpenuhi. Jika tidak, ia akan memunculkan `AssertionError`."
+    }
+  },
+  {
+    "namaFungsi": "async",
+    "kategori": "Kata Kunci",
+    "tingkat": "Lanjutan",
+    "pengertian": "Digunakan untuk mendeklarasikan fungsi asynchronous (coroutine) ayang digunakan untuk sinkronisasi pada fungsi lainnya.",
+    "contohPenggunaan": "import asyncio\n\nasync def fungsi_async():\n    print(\"Mulai fungsi async\")\n    await asyncio.sleep(1)\n    print(\"Selesai fungsi async\")\n\n# Untuk menjalankan: asyncio.run(fungsi_async())",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Fungsi `async def` mengembalikan objek coroutine. `async` digunakan bersama `await`.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kata kunci `async` digunakan untuk mendeklarasikan apa?",
+        "pilihan": ["Fungsi biasa", "Kelas", "Fungsi asynchronous (coroutine)", "Variabel global"],
+        "jawabanBenar": 2,
+        "penjelasan": "`async def` digunakan untuk mendeklarasikan sebuah fungsi asynchronous atau coroutine dalam pemrograman konkuren di Python."
+    }
+  },
+  {
+    "namaFungsi": "await",
+    "kategori": "Kata Kunci",
+    "tingkat": "Lanjutan",
+    "pengertian": "Digunakan di dalam fungsi `async` untuk menunggu hasil dari awaitable object (misalnya coroutine lain).",
+    "contohPenggunaan": "import asyncio\n\nasync def tugas_lain():\n    await asyncio.sleep(0.5)\n    return \"Hasil dari tugas lain\"\n\nasync def fungsi_utama():\n    print(\"Menunggu tugas lain...\")\n    hasil = await tugas_lain()\n    print(hasil)\n\n# Untuk menjalankan: asyncio.run(fungsi_utama())",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`await` hanya dapat digunakan di dalam fungsi yang dideklarasikan dengan `async def`.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Di dalam jenis fungsi apa kata kunci `await` dapat digunakan?",
+        "pilihan": ["Fungsi lambda", "Fungsi yang dideklarasikan dengan `def` biasa", "Fungsi yang dideklarasikan dengan `async def`", "Semua jenis fungsi"],
+        "jawabanBenar": 2,
+        "penjelasan": "Kata kunci `await` hanya valid dan dapat digunakan di dalam fungsi yang dideklarasikan sebagai `async def`."
+    }
+  },
+  {
+    "namaFungsi": "break",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Menghentikan perulangan `for` atau `while` saat ini.",
+    "contohPenggunaan": "for i in range(5):\n    if i == 3:\n        break\n    print(i)\n# Output:\n# 0\n# 1\n# 2",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`break` hanya menghentikan loop terdalam tempat ia berada.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa fungsi dari pernyataan `break` dalam sebuah loop?",
+        "pilihan": ["Melanjutkan ke iterasi berikutnya", "Menghentikan eksekusi fungsi", "Menghentikan loop saat ini dan keluar darinya", "Menyebabkan error"],
+        "jawabanBenar": 2,
+        "penjelasan": "Pernyataan `break` digunakan untuk segera menghentikan dan keluar dari loop `for` atau `while` terdalam tempat ia berada."
+    }
+  },
+  {
+    "namaFungsi": "class",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk mendefinisikan kelas baru (blueprint untuk membuat objek).",
+    "contohPenggunaan": "class Mobil:\n    def __init__(self, warna):\n        self.warna = warna\n\n    def info(self):\n        print(\"Mobil ini berwarna {}\".format(self.warna))\n\nmobil_saya = Mobil(\"merah\")\nmobil_saya.info()\n# Output: Mobil ini berwarna merah",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Kelas merupakan inti dari Object Oriented Programming (OOP) di Python.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kata kunci `class` di Python digunakan untuk apa?",
+        "pilihan": ["Mendefinisikan fungsi", "Mendefinisikan variabel global", "Mendefinisikan kelas (blueprint objek)", "Mendefinisikan modul"],
+        "jawabanBenar": 2,
+        "penjelasan": "Kata kunci `class` digunakan untuk mendefinisikan sebuah kelas, yang merupakan blueprint untuk membuat objek dalam pemrograman berorientasi objek."
+    }
+  },
+  {
+    "namaFungsi": "continue",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Melanjutkan ke iterasi berikutnya dari perulangan `for` atau `while`.",
+    "contohPenggunaan": "for i in range(5):\n    if i == 2:\n        continue\n    print(i)\n# Output:\n# 0\n# 1\n# 3\n# 4",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`continue` melewati sisa kode di dalam loop untuk iterasi saat ini dan melanjutkan ke iterasi berikutnya.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa yang terjadi ketika pernyataan `continue` dieksekusi dalam sebuah loop?",
+        "pilihan": ["Loop segera berhenti", "Sisa kode dalam iterasi saat ini dilewati, dan loop melanjutkan ke iterasi berikutnya", "Fungsi yang mengandung loop berhenti", "Menyebabkan error"],
+        "jawabanBenar": 1,
+        "penjelasan": "Pernyataan `continue` menyebabkan sisa kode dalam iterasi loop saat ini dilewati, dan kontrol program langsung melompat ke awal iterasi berikutnya."
+    }
+  },
+  {
+    "namaFungsi": "def",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan untuk mendefinisikan fungsi baru.",
+    "contohPenggunaan": "def sapa(nama):\n    print(\"Halo, {}!\".format(nama))\n\nsapa(\"Dunia\")\n# Output: Halo, Dunia!",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Untuk apa kata kunci `def` digunakan dalam Python?",
+        "pilihan": ["Mendefinisikan kelas", "Mendefinisikan variabel", "Mendefinisikan fungsi", "Mendefinisikan loop"],
+        "jawabanBenar": 2,
+        "penjelasan": "`def` adalah kata kunci yang digunakan untuk mendefinisikan atau membuat sebuah fungsi baru di Python."
+    }
+  },
+  {
+    "namaFungsi": "del",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk menghapus variabel, item dari list, item dari dictionary, dll.",
+    "contohPenggunaan": "x = 10\ndel x\n# print(x) # Akan error NameError\n\ndaftar = [1, 2, 3, 4]\ndel daftar[1]\nprint(daftar)\n# Output: [1, 3, 4]",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Setelah `del` digunakan pada sebuah nama, nama tersebut tidak lagi terdefinisi.",
+    "potensiError": ["NameError: jika mencoba menggunakan nama yang sudah dihapus.", "IndexError: jika mencoba menghapus item list dengan indeks di luar jangkauan.", "KeyError: jika mencoba menghapus item dictionary dengan kunci yang tidak ada."],
+    "quiz": {
+        "pertanyaan": "Manakah dari berikut ini yang BUKAN penggunaan umum dari `del`?",
+        "pilihan": ["Menghapus variabel", "Menghapus item dari list", "Menghapus kunci-nilai dari dictionary", "Menghapus isi file"],
+        "jawabanBenar": 3,
+        "penjelasan": "`del` digunakan untuk menghapus referensi ke objek seperti variabel, item list, atau item dictionary. Untuk menghapus isi file, operasi file I/O yang berbeda diperlukan."
+    }
+  },
+  {
+    "namaFungsi": "elif",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Bagian dari struktur kondisional `if-elif-else`; \"else if\".",
+    "contohPenggunaan": "nilai = 75\nif nilai >= 85:\n    print(\"A\")\nelif nilai >= 70:\n    print(\"B\")\nelse:\n    print(\"C\")\n# Output: B",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`elif` harus didahului oleh `if` dan dapat diikuti oleh `elif` lain atau `else`.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kata kunci `elif` adalah singkatan dari apa?",
+        "pilihan": ["Else For", "Else If", "Equal If", "End If"],
+        "jawabanBenar": 1,
+        "penjelasan": "`elif` adalah kependekan dari \"else if\" dan digunakan untuk mengecek kondisi tambahan dalam struktur `if-elif-else`."
+    }
+  },
+  {
+    "namaFungsi": "else",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Bagian dari struktur kondisional `if-elif-else` atau digunakan dengan loop (`for-else`, `while-else`) dan blok `try-except-else`.",
+    "contohPenggunaan": "# Dengan if\nangka = 5\nif angka % 2 == 0:\n    print(\"Genap\")\nelse:\n    print(\"Ganjil\")\n# Output: Ganjil\n\n# Dengan for (else dieksekusi jika loop selesai tanpa break)\nfor i in range(3):\n    print(i)\nelse:\n    print(\"Loop selesai tanpa break\")\n# Output:\n# 0\n# 1\n# 2\n# Loop selesai tanpa break",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Klausa `else` pada loop dieksekusi hanya jika loop berakhir secara normal (tidak melalui `break`). Klausa `else` pada `try-except` dieksekusi jika tidak ada eksepsi yang terjadi di blok `try`.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kapan blok `else` dalam loop `for-else` akan dieksekusi?",
+        "pilihan": ["Setiap kali loop beriterasi", "Hanya jika loop dihentikan oleh `break`", "Hanya jika loop selesai secara normal tanpa `break`", "Tidak pernah dieksekusi"],
+        "jawabanBenar": 2,
+        "penjelasan": "Blok `else` dalam konstruksi `for-else` atau `while-else` dieksekusi jika loop menyelesaikan semua iterasinya tanpa diinterupsi oleh pernyataan `break`."
+    }
+  },
+  {
+    "namaFungsi": "except",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Bagian dari blok `try-except` untuk menangani error (exception).",
+    "contohPenggunaan": "try:\n    hasil = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Tidak bisa membagi dengan nol!\")\n# Output: Tidak bisa membagi dengan nol!",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Anda dapat menangani beberapa jenis eksepsi dengan beberapa blok `except` atau satu blok `except` dengan tuple eksepsi.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Dalam blok `try-except`, apa fungsi dari klausa `except`?",
+        "pilihan": ["Mendefinisikan kode yang mungkin menghasilkan error", "Menjalankan kode pembersihan", "Menangani error yang terjadi di blok `try`", "Memunculkan error secara manual"],
+        "jawabanBenar": 2,
+        "penjelasan": "Klausa `except` dalam blok `try-except` digunakan untuk menangani jenis error (exception) tertentu yang mungkin terjadi di dalam blok `try`."
+    }
+  },
+  {
+    "namaFungsi": "finally",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Bagian dari blok `try-except-finally`; blok `finally` akan selalu dieksekusi, terlepas dari apakah ada error atau tidak.",
+    "contohPenggunaan": "try:\n    f = open(\"file_tidak_ada.txt\", \"r\")\n    # Lakukan sesuatu dengan f\nexcept FileNotFoundError:\n    print(\"File tidak ditemukan.\")\nfinally:\n    print(\"Blok finally selalu dieksekusi.\")\n    # if 'f' in locals() and f: f.close() # Pastikan file ditutup jika dibuka",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Blok `finally` berguna untuk melakukan aksi pembersihan, seperti menutup file atau koneksi jaringan.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kapan blok `finally` dalam struktur `try-except-finally` dieksekusi?",
+        "pilihan": ["Hanya jika terjadi error di blok `try`", "Hanya jika tidak terjadi error di blok `try`", "Selalu dieksekusi, terlepas dari ada atau tidaknya error", "Hanya jika error tertentu ditangkap oleh `except`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Blok `finally` selalu dieksekusi setelah blok `try` dan `except` selesai, tidak peduli apakah ada error yang terjadi atau ditangani."
+    }
+  },
+  {
+    "namaFungsi": "for",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan untuk membuat perulangan (iterasi) atas item dari sebuah sequence atau iterable lainnya.",
+    "contohPenggunaan": "for buah in [\"apel\", \"pisang\", \"mangga\"]:\n    print(buah)\n# Output:\n# apel\n# pisang\n# mangga",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Manakah dari berikut ini yang merupakan penggunaan umum loop `for` di Python?",
+        "pilihan": ["Menjalankan blok kode selama kondisi True", "Melakukan iterasi atas item dalam sebuah list", "Mendefinisikan fungsi", "Menangani error"],
+        "jawabanBenar": 1,
+        "penjelasan": "Loop `for` sangat umum digunakan untuk melakukan iterasi atau perulangan atas setiap item dalam sebuah sequence seperti list, tuple, atau string."
+    }
+  },
+  {
+    "namaFungsi": "from",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan bersama `import` untuk mengimpor bagian tertentu dari sebuah modul.",
+    "contohPenggunaan": "from math import sqrt, pi\nprint(sqrt(25))\nprint(pi)\n# Output:\n# 5.0\n# 3.141592653589793",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Menggunakan `from module import *` umumnya tidak disarankan karena dapat menyebabkan polusi namespace.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa keuntungan menggunakan `from math import sqrt` dibandingkan `import math`?",
+        "pilihan": ["Memuat seluruh modul `math`", "Memungkinkan pemanggilan `sqrt()` secara langsung tanpa `math.`", "Lebih aman karena menghindari polusi namespace", "Tidak ada keuntungan"],
+        "jawabanBenar": 1,
+        "penjelasan": "Menggunakan `from math import sqrt` memungkinkan Anda memanggil `sqrt()` secara langsung, bukan `math.sqrt()`. Namun, `import math` lebih eksplisit dan menghindari potensi konflik nama."
+    }
+  },
+  {
+    "namaFungsi": "global",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk mendeklarasikan bahwa variabel di dalam fungsi adalah variabel global.",
+    "contohPenggunaan": "x = 10\ndef ubah_global():\n    global x\n    x = 20\nubah_global()\nprint(x)\n# Output: 20",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa fungsi kata kunci `global` di dalam sebuah fungsi Python?",
+        "pilihan": ["Membuat variabel baru di scope global", "Mengindikasikan bahwa fungsi tersebut adalah global", "Memungkinkan fungsi untuk memodifikasi variabel di scope global", "Mengimpor variabel dari modul global"],
+        "jawabanBenar": 2,
+        "penjelasan": "Kata kunci `global` digunakan di dalam fungsi untuk menyatakan bahwa variabel yang disebutkan merujuk pada variabel di scope global, sehingga memungkinkan modifikasi variabel global tersebut."
+    }
+  },
+  {
+    "namaFungsi": "if",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan untuk membuat blok kondisional.",
+    "contohPenggunaan": "umur = 18\nif umur >= 17:\n    print(\"Anda boleh membuat KTP.\")\n# Output: Anda boleh membuat KTP.",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Struktur kontrol `if` digunakan untuk apa dalam Python?",
+        "pilihan": ["Melakukan perulangan", "Mendefinisikan fungsi", "Eksekusi kondisional berdasarkan suatu kondisi", "Menangani error"],
+        "jawabanBenar": 2,
+        "penjelasan": "Pernyataan `if` digunakan untuk eksekusi kondisional: blok kode di bawah `if` hanya akan dieksekusi jika kondisi yang diberikan bernilai `True`."
+    }
+  },
+  {
+    "namaFungsi": "import",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan untuk mengimpor modul ke dalam skrip Python.",
+    "contohPenggunaan": "import math\nprint(math.pow(2, 3))\n# Output: 8.0",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Bagaimana cara menggunakan fungsi `sqrt` dari modul `math` setelah menjalankan `import math`?",
+        "pilihan": ["`sqrt(25)`", "`math.sqrt(25)`", "`import sqrt from math`", "`math->sqrt(25)`"],
+        "jawabanBenar": 1,
+        "penjelasan": "Setelah `import math`, fungsi-fungsi dalam modul tersebut diakses dengan prefix nama modul, misalnya `math.sqrt()`."
+    }
+  },
+  {
+    "namaFungsi": "in",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Operator keanggotaan; menghasilkan `True` jika nilai ditemukan dalam sequence. Juga digunakan dalam loop `for`.",
+    "contohPenggunaan": "daftar_angka = [1, 2, 3, 4]\nprint(3 in daftar_angka) # Output: True\nprint(5 in daftar_angka) # Output: False\n\nfor i in range(3):\n    print(i)",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `'a' in 'banana'`?",
+        "pilihan": ["True", "False", "Error", "None"],
+        "jawabanBenar": 0,
+        "penjelasan": "Operator `in` adalah operator keanggotaan. Karena karakter 'a' terdapat dalam string 'banana', hasilnya adalah `True`."
+    }
+  },
+  {
+    "namaFungsi": "is",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Operator identitas; menghasilkan `True` jika kedua variabel merujuk ke objek yang sama di memori.",
+    "contohPenggunaan": "a = [1, 2]\nb = [1, 2]\nc = a\nprint(a is b) # Output: False (objek berbeda meskipun nilainya sama)\nprint(a is c) # Output: True (merujuk ke objek yang sama)",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Gunakan `is` untuk membandingkan identitas objek, gunakan `==` untuk membandingkan kesetaraan nilai.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kapan operator `is` menghasilkan `True`?",
+        "pilihan": ["Ketika dua variabel memiliki nilai yang sama", "Ketika dua variabel merujuk ke objek yang sama di memori", "Ketika dua variabel memiliki tipe data yang sama", "Selalu True jika variabel tidak None"],
+        "jawabanBenar": 1,
+        "penjelasan": "Operator `is` memeriksa identitas objek, artinya ia menghasilkan `True` jika kedua variabel menunjuk ke lokasi memori yang sama (objek yang sama)."
+    }
+  },
+  {
+    "namaFungsi": "lambda",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk membuat fungsi anonim kecil (fungsi tanpa nama).",
+    "contohPenggunaan": "kali_dua = lambda x: x * 2\nprint(kali_dua(5))\n# Output: 10",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Fungsi `lambda` sering disebut sebagai fungsi apa?",
+        "pilihan": ["Fungsi utama", "Fungsi rekursif", "Fungsi anonim", "Fungsi global"],
+        "jawabanBenar": 2,
+        "penjelasan": "Fungsi `lambda` digunakan untuk membuat fungsi kecil tanpa nama, sehingga sering disebut fungsi anonim."
+    }
+  },
+  {
+    "namaFungsi": "nonlocal",
+    "kategori": "Kata Kunci",
+    "tingkat": "Lanjutan",
+    "pengertian": "Digunakan untuk mendeklarasikan bahwa variabel di dalam fungsi bersarang merujuk ke variabel di fungsi luarnya (bukan global).",
+    "contohPenggunaan": "def fungsi_luar():\n    x = \"lokal luar\"\n    def fungsi_dalam():\n        nonlocal x\n        x = \"lokal dalam diubah\"\n        print(x)\n    fungsi_dalam()\n    print(x)\n\nfungsi_luar()\n# Output:\n# lokal dalam diubah\n# lokal dalam diubah",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`nonlocal` hanya berlaku untuk variabel di scope fungsi enclosing terdekat yang bukan global.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Dalam fungsi bersarang, kata kunci `nonlocal` digunakan untuk merujuk ke variabel di scope mana?",
+        "pilihan": ["Scope global", "Scope lokal fungsi dalam", "Scope fungsi luar terdekat (enclosing)", "Scope built-in"],
+        "jawabanBenar": 2,
+        "penjelasan": "`nonlocal` digunakan dalam fungsi bersarang untuk mengindikasikan bahwa variabel merujuk ke variabel dengan nama yang sama di scope fungsi luar terdekat (bukan global)."
+    }
+  },
+  {
+    "namaFungsi": "pass",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Pernyataan placeholder; tidak melakukan apa-apa.",
+    "contohPenggunaan": "def fungsi_belum_selesai():\n    pass\n\nif True:\n    pass # TODO: Implementasikan nanti",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "`pass` berguna ketika sintaksis memerlukan pernyataan tetapi tidak ada tindakan yang perlu dilakukan.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa fungsi dari pernyataan `pass` di Python?",
+        "pilihan": ["Menghentikan program", "Tidak melakukan apa-apa (placeholder)", "Melanjutkan ke baris berikutnya", "Mencetak pesan 'pass'"],
+        "jawabanBenar": 1,
+        "penjelasan": "`pass` adalah pernyataan null; tidak ada yang terjadi ketika dieksekusi. Ini berguna sebagai placeholder di mana kode secara sintaksis diperlukan tetapi belum ada logika yang diimplementasikan."
+    }
+  },
+  {
+    "namaFungsi": "raise",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk memunculkan (melemparkan) sebuah exception secara manual.",
+    "contohPenggunaan": "# def cek_nilai(nilai):\n#     if nilai < 0:\n#         raise ValueError(\"Nilai tidak boleh negatif\")\n#     return nilai\n# \n# try:\n#     print(cek_nilai(-5))\n# except ValueError as e:\n#     print(e)\n# Akan menghentikan program dan menampilkan ValueError jika tidak ditangani",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Anda dapat memunculkan instance dari kelas eksepsi bawaan atau kustom.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kata kunci `raise` digunakan untuk apa?",
+        "pilihan": ["Menangkap error", "Mendefinisikan error baru", "Memunculkan (melemparkan) exception secara manual", "Mengabaikan error"],
+        "jawabanBenar": 2,
+        "penjelasan": "`raise` digunakan untuk secara eksplisit memunculkan atau melemparkan sebuah exception pada titik tertentu dalam kode."
+    }
+  },
+  {
+    "namaFungsi": "return",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan untuk keluar dari fungsi dan secara opsional mengembalikan nilai.",
+    "contohPenggunaan": "def tambah(a, b):\n    return a + b\n\nhasil = tambah(3, 7)\nprint(hasil)\n# Output: 10",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa yang terjadi jika sebuah fungsi dieksekusi hingga pernyataan `return`?",
+        "pilihan": ["Fungsi melanjutkan eksekusi setelah return", "Fungsi keluar dan mengembalikan nilai (jika ada) ke pemanggil", "Menyebabkan error", "Mencetak nilai yang di-return ke konsol"],
+        "jawabanBenar": 1,
+        "penjelasan": "Pernyataan `return` menyebabkan fungsi berhenti dieksekusi dan mengirimkan nilai kembali ke kode yang memanggil fungsi tersebut."
+    }
+  },
+  {
+    "namaFungsi": "try",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Memulai blok `try-except` untuk penanganan error.",
+    "contohPenggunaan": "try:\n    angka = int(\"bukan_angka\")\nexcept ValueError:\n    print(\"Tidak bisa konversi ke integer.\")\n# Output: Tidak bisa konversi ke integer.",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Blok kode yang berpotensi menimbulkan error ditempatkan di bawah kata kunci apa dalam penanganan exception?",
+        "pilihan": ["`except`", "`finally`", "`try`", "`catch`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Blok `try` digunakan untuk melingkupi kode yang mungkin menimbulkan exception atau error selama eksekusi."
+    }
+  },
+  {
+    "namaFungsi": "while",
+    "kategori": "Kata Kunci",
+    "tingkat": "Pemula",
+    "pengertian": "Digunakan untuk membuat perulangan yang akan terus berjalan selama kondisinya `True`.",
+    "contohPenggunaan": "hitung = 0\nwhile hitung < 3:\n    print(\"Hitungan: {}\".format(hitung)) # Diubah dari f-string\n    hitung += 1\n# Output:\n# Hitungan: 0\n# Hitungan: 1\n# Hitungan: 2",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Kapan perulangan `while` akan berhenti?",
+        "pilihan": ["Setelah jumlah iterasi tertentu", "Ketika kondisinya menjadi `False`", "Ketika kata kunci `break` dieksekusi", "Bisa keduanya (b atau c)"],
+        "jawabanBenar": 3,
+        "penjelasan": "Perulangan `while` akan terus berjalan selama kondisinya `True` dan akan berhenti jika kondisi menjadi `False` atau jika pernyataan `break` dieksekusi di dalam loop."
+    }
+  },
+  {
+    "namaFungsi": "with",
+    "kategori": "Kata Kunci",
+    "tingkat": "Menengah",
+    "pengertian": "Digunakan untuk menyederhanakan manajemen resource (misalnya file).",
+    "contohPenggunaan": "try:\n    with open(\"contoh.txt\", \"w\") as f:\n        f.write(\"Halo dengan with!\")\n    # File otomatis ditutup di sini, bahkan jika ada error di dalam blok 'with'\nexcept Exception as e:\n    print(\"Terjadi error: {}\".format(e))",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Pernyataan `with` memastikan bahwa metode pembersihan (seperti menutup file) selalu dijalankan. Objek yang digunakan dengan `with` harus mendukung context management protocol (memiliki metode `__enter__` dan `__exit__`).",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa keuntungan utama menggunakan pernyataan `with open(...)` untuk bekerja dengan file?",
+        "pilihan": ["Membuka file lebih cepat", "Menulis ke file lebih efisien", "Memastikan file ditutup secara otomatis, bahkan jika terjadi error", "Hanya bisa digunakan untuk file teks"],
+        "jawabanBenar": 2,
+        "penjelasan": "Pernyataan `with` untuk file memastikan bahwa file akan ditutup secara otomatis setelah blok `with` selesai dieksekusi, bahkan jika terjadi error, ini membantu mencegah kebocoran resource."
+    }
+  },
+  {
+    "namaFungsi": "yield",
+    "kategori": "Kata Kunci",
+    "tingkat": "Lanjutan",
+    "pengertian": "Digunakan dalam fungsi generator untuk menghasilkan serangkaian nilai satu per satu.",
+    "contohPenggunaan": "def generator_angka(n):\n    for i in range(n):\n        yield i * i\n\nfor angka_kuadrat in generator_angka(4):\n    print(angka_kuadrat)\n# Output:\n# 0\n# 1\n# 4\n# 9",
+    "parameter": [],
+    "nilaiKembali": null,
+    "catatanPenting": "Fungsi yang mengandung `yield` disebut fungsi generator dan mengembalikan objek generator. Generator bersifat lazy, artinya nilai dihasilkan hanya saat diminta.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Fungsi yang menggunakan kata kunci `yield` disebut apa?",
+        "pilihan": ["Fungsi lambda", "Fungsi rekursif", "Fungsi generator", "Fungsi async"],
+        "jawabanBenar": 2,
+        "penjelasan": "Fungsi yang mengandung pernyataan `yield` disebut fungsi generator. Ia menghasilkan nilai satu per satu dan statusnya dipertahankan antar panggilan."
+    }
+  },
+  {
+    "namaFungsi": "print()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Menampilkan output ke konsol.",
+    "parameter": [
+      {"nama": "objects", "deskripsi": "Satu atau lebih objek yang akan dicetak, dipisahkan koma.", "tipeData": "any", "opsional": false, "nilaiDefault": null},
+      {"nama": "sep", "deskripsi": "String pemisah antar objek.", "tipeData": "string", "opsional": true, "nilaiDefault": "' ' (spasi)"},
+      {"nama": "end", "deskripsi": "String yang dicetak di akhir.", "tipeData": "string", "opsional": true, "nilaiDefault": "'\\n' (baris baru)"},
+      {"nama": "file", "deskripsi": "Objek file tempat output ditulis.", "tipeData": "file-like object", "opsional": true, "nilaiDefault": "sys.stdout"},
+      {"nama": "flush", "deskripsi": "Boolean apakah output di-flush secara paksa.", "tipeData": "boolean", "opsional": true, "nilaiDefault": "False"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Fungsi ini tidak mengembalikan nilai."
+    },
+    "contohPenggunaan": "print(\"Halo, Python!\")\n# Output: Halo, Python!\nprint(\"Apel\", \"Pisang\", \"Mangga\", sep=\", \")\n# Output: Apel, Pisang, Mangga",
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Apa output dari kode: print(\"A\", \"B\", \"C\", sep=\"-\")?",
+      "pilihan": ["A B C", "A-B-C", "A,B,C", "ABC"],
+      "jawabanBenar": 1,
+      "penjelasan": "Parameter 'sep' menentukan pemisah antar objek. Dengan sep=\"-\", output akan menjadi A-B-C."
+    }
+  },
+  {
+    "namaFungsi": "input()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Membaca input dari pengguna melalui konsol(CLI).",
+    "parameter": [
+        {"nama": "prompt", "deskripsi": "String opsional yang ditampilkan kepada pengguna sebelum menunggu input.", "tipeData": "string", "opsional": true, "nilaiDefault": ""}
+    ],
+    "nilaiKembali": {
+      "tipeData": "string",
+      "deskripsi": "Teks yang dimasukkan oleh pengguna sebagai string."
+    },
+    "contohPenggunaan": "nama = input(\"Masukkan nama Anda: \")\nprint(\"Halo, {}!\".format(nama))\n\numur_str = input(\"Masukkan usia Anda: \")\n# Untuk menggunakan usia sebagai angka, perlu konversi:\n# umur_int = int(umur_str)\n# print(\"Tahun depan usia Anda adalah {}\".format(umur_int + 1))",
+    "catatanPenting": "Fungsi input() selalu mengembalikan nilai dalam bentuk string. Jika Anda memerlukan input numerik atau tipe data lain, Anda perlu melakukan konversi eksplisit menggunakan fungsi seperti `int()`, `float()`, dll.",
+    "potensiError": [],
+    "quiz": {
+      "pertanyaan": "Tipe data apa yang selalu dikembalikan oleh fungsi input()?",
+      "pilihan": ["integer", "float", "string", "boolean"],
+      "jawabanBenar": 2,
+      "penjelasan": "Fungsi input() selalu mengembalikan string, meskipun pengguna memasukkan angka. Untuk menggunakan sebagai angka, perlu konversi dengan int() atau float()."
+    }
+  },
+  {
+    "namaFungsi": "len()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan panjang (jumlah item) dari sebuah objek.",
+    "parameter": [
+      {"nama": "obj", "deskripsi": "Objek yang akan dihitung panjangnya (misalnya string, list, tuple, dictionary, set).", "tipeData": "object", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "integer",
+      "deskripsi": "Jumlah item dalam objek `obj`."
+    },
+    "contohPenggunaan": "kata = \"Python\"\nprint(len(kata)) # Output: 6\ndaftar = [10, 20, 30]\nprint(len(daftar)) # Output: 3\nkamus = {'a': 1, 'b': 2}\nprint(len(kamus)) # Output: 2",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika objek tidak memiliki panjang (misalnya integer)."],
+    "quiz": {
+      "pertanyaan": "Berapa output dari len([1, 2, [3, 4], 5])?",
+      "pilihan": ["3", "4", "5", "6"],
+      "jawabanBenar": 1,
+      "penjelasan": "len() menghitung jumlah elemen di level teratas. List [1, 2, [3, 4], 5] memiliki 4 elemen: 1, 2, [3, 4], dan 5."
+    }
+  },
+  {
+    "namaFungsi": "type()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan tipe dari sebuah objek.",
+     "parameter": [
+      {"nama": "object", "deskripsi": "Objek yang ingin diketahui tipenya.", "tipeData": "any", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "type",
+      "deskripsi": "Objek tipe dari `object`."
+    },
+    "contohPenggunaan": "x = 5\nprint(type(x)) # Output: <class 'int'>\ny = \"halo\"\nprint(type(y)) # Output: <class 'str'>\nz = [1, 2]\nprint(type(z)) # Output: <class 'list'>",
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa yang dikembalikan oleh `type(10.5)`?",
+        "pilihan": ["`int`", "`float`", "`str`", "`number`"],
+        "jawabanBenar": 1,
+        "penjelasan": "Fungsi `type()` mengembalikan tipe objek. `10.5` adalah bilangan float, sehingga `type(10.5)` akan mengembalikan `<class 'float'>`."
+    }
+  },
+  {
+    "namaFungsi": "int()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi nilai ke integer.",
+    "parameter": [
+      {"nama": "x", "deskripsi": "Angka atau string yang akan dikonversi menjadi integer.", "tipeData": "number atau string", "opsional": true, "nilaiDefault": "0"},
+      {"nama": "base", "deskripsi": "Basis bilangan jika x adalah string (misalnya 2 untuk biner, 10 untuk desimal, 16 untuk heksadesimal).", "tipeData": "integer", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "integer",
+      "deskripsi": "Representasi integer dari x."
+    },
+    "contohPenggunaan": "angka_str = \"123\"\nangka_int = int(angka_str)\nprint(angka_int + 7) # Output: 130\n\nangka_float = 9.8\nprint(int(angka_float)) # Output: 9 (bagian desimal dihilangkan)\n\nbiner_str = \"1011\"\nangka_dari_biner = int(biner_str, 2)\nprint(angka_dari_biner) # Output: 11",
+    "catatanPenting": "Jika string tidak dapat dikonversi ke integer dengan basis yang diberikan (atau basis 10 jika tidak ditentukan), akan muncul `ValueError`.",
+    "potensiError": ["ValueError: jika string tidak valid untuk konversi ke integer.", "TypeError: jika tipe argumen tidak sesuai."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `int(\"101\", 2)`?",
+        "pilihan": ["101", "7", "5", "Error"],
+        "jawabanBenar": 2,
+        "penjelasan": "`int(\"101\", 2)` mengkonversi string biner \"101\" ke integer desimal. 1*2^2 + 0*2^1 + 1*2^0 = 4 + 0 + 1 = 5."
+    }
+  },
+  {
+    "namaFungsi": "float()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi nilai ke float (bilangan desimal).",
+    "parameter": [
+      {"nama": "x", "deskripsi": "Angka atau string yang akan dikonversi menjadi float.", "tipeData": "number atau string", "opsional": true, "nilaiDefault": "0.0"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "float",
+      "deskripsi": "Representasi float dari x."
+    },
+    "contohPenggunaan": "angka_str = \"3.14\"\nangka_float = float(angka_str)\nprint(angka_float * 2) # Output: 6.28\n\nangka_int = 10\nprint(float(angka_int)) # Output: 10.0",
+    "catatanPenting": "Jika string tidak dapat dikonversi ke float, akan muncul `ValueError`.",
+    "potensiError": ["ValueError: jika string tidak valid untuk konversi ke float.", "TypeError: jika tipe argumen tidak sesuai."],
+    "quiz": {
+        "pertanyaan": "Manakah dari berikut ini yang akan menghasilkan `ValueError` jika digunakan dengan `float()`?",
+        "pilihan": ["`float(\"123\")`", "`float(\"3.14e-2\")`", "`float(\"infinity\")`", "`float(\"angka\")`"],
+        "jawabanBenar": 3,
+        "penjelasan": "`float(\"angka\")` akan menghasilkan `ValueError` karena string \"angka\" tidak dapat dikonversi menjadi representasi float yang valid."
+    }
+  },
+  {
+    "namaFungsi": "str()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi nilai ke string.",
+    "parameter": [
+      {"nama": "object", "deskripsi": "Objek yang akan dikonversi menjadi string.", "tipeData": "any", "opsional": true, "nilaiDefault": "'' (string kosong jika tidak ada argumen)"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "string",
+      "deskripsi": "Representasi string dari objek."
+    },
+    "contohPenggunaan": "angka = 100\nangka_str = str(angka)\nprint(\"Nilainya adalah: \" + angka_str) # Output: Nilainya adalah: 100\n\ndaftar = [1, 2, 3]\ndaftar_str = str(daftar)\nprint(daftar_str) # Output: '[1, 2, 3]'",
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `str(True)`?",
+        "pilihan": ["`\"True\"`", "`\"1\"`", "`\"true\"`", "Error"],
+        "jawabanBenar": 0,
+        "penjelasan": "Fungsi `str()` akan mengkonversi nilai boolean `True` menjadi representasi stringnya, yaitu `\"True\"`."
+    }
+  },
+  {
+    "namaFungsi": "list()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi iterable ke list.",
+    "parameter": [
+      {"nama": "iterable", "deskripsi": "Objek iterable (misalnya tuple, string, set, range) yang akan dikonversi.", "tipeData": "iterable", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "list",
+      "deskripsi": "List baru yang berisi item dari iterable. Mengembalikan list kosong jika tidak ada argumen."
+    },
+    "contohPenggunaan": "tuple_data = (1, 2, 3)\nlist_data = list(tuple_data)\nprint(list_data) # Output: [1, 2, 3]\n\nkata_list = list(\"halo\")\nprint(kata_list) # Output: ['h', 'a', 'l', 'o']\n\nrange_list = list(range(3))\nprint(range_list) # Output: [0, 1, 2]",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika argumen bukan iterable (jika diberikan)."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `list(\"py\")`?",
+        "pilihan": ["`[\"py\"]`", "`(\"p\", \"y\")`", "`[\"p\", \"y\"]`", "Error"],
+        "jawabanBenar": 2,
+        "penjelasan": "Fungsi `list()` jika diberikan string sebagai argumen akan membuat list baru yang berisi setiap karakter dari string tersebut sebagai elemen terpisah."
+    }
+  },
+  {
+    "namaFungsi": "tuple()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi iterable ke tuple.",
+     "parameter": [
+      {"nama": "iterable", "deskripsi": "Objek iterable (misalnya list, string, set, range) yang akan dikonversi.", "tipeData": "iterable", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "tuple",
+      "deskripsi": "Tuple baru yang berisi item dari iterable. Mengembalikan tuple kosong jika tidak ada argumen."
+    },
+    "contohPenggunaan": "list_data = [4, 5, 6]\ntuple_data = tuple(list_data)\nprint(tuple_data) # Output: (4, 5, 6)",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika argumen bukan iterable (jika diberikan)."],
+    "quiz": {
+        "pertanyaan": "Manakah dari berikut ini yang akan dikembalikan oleh `tuple([1, 2, 1])`?",
+        "pilihan": ["`(1, 2)`", "`[1, 2, 1]`", "`(1, 2, 1)`", "`(1, 1, 2)`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Fungsi `tuple()` mengkonversi iterable (dalam hal ini list `[1, 2, 1]`) menjadi tuple baru dengan elemen yang sama dan urutan yang sama."
+    }
+  },
+  {
+    "namaFungsi": "set()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi iterable ke set (koleksi item unik tidak terurut).",
+    "parameter": [
+      {"nama": "iterable", "deskripsi": "Objek iterable (misalnya list, string, tuple, range) yang akan dikonversi.", "tipeData": "iterable", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "set",
+      "deskripsi": "Set baru yang berisi item unik dari iterable. Mengembalikan set kosong jika tidak ada argumen."
+    },
+    "contohPenggunaan": "list_duplikat = [1, 2, 2, 3, 4, 4, 4]\nset_unik = set(list_duplikat)\nprint(set_unik) # Output: {1, 2, 3, 4} (urutan bisa bervariasi)",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika argumen bukan iterable (jika diberikan)."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `set([1, 2, 2, 3, 1])`?",
+        "pilihan": ["`[1, 2, 2, 3, 1]`", "`{1, 2, 3}`", "`{1, 1, 2, 2, 3}`", "`[1, 2, 3]`"],
+        "jawabanBenar": 1,
+        "penjelasan": "Fungsi `set()` mengkonversi iterable menjadi set, yang secara otomatis menghilangkan elemen duplikat. Urutan elemen dalam set tidak dijamin."
+    }
+  },
+  {
+    "namaFungsi": "dict()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Membuat dictionary baru atau mengkonversi dari urutan pasangan kunci-nilai.",
+    "parameter": [
+      {"nama": "iterable_atau_mapping", "deskripsi": "Bisa berupa objek mapping, iterable pasangan kunci-nilai, atau argumen kata kunci.", "tipeData": "mapping atau iterable atau **kwargs", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "dict",
+      "deskripsi": "Dictionary baru."
+    },
+    "contohPenggunaan": "# Dari argumen kata kunci\nkamus1 = dict(nama=\"Budi\", usia=25)\nprint(kamus1) # Output: {'nama': 'Budi', 'usia': 25}\n\n# Dari iterable pasangan kunci-nilai\npasangan = [('a', 1), ('b', 2)]\nkamus2 = dict(pasangan)\nprint(kamus2) # Output: {'a': 1, 'b': 2}\n\n# Dari mapping lain (misalnya dictionary lain)\nkamus_asli = {'kota': 'Jakarta'}\nkamus_kopian = dict(kamus_asli)\nprint(kamus_kopian) # Output: {'kota': 'Jakarta'}",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika argumen tidak sesuai.", "ValueError: jika iterable pasangan kunci-nilai tidak valid."],
+    "quiz": {
+        "pertanyaan": "Manakah cara yang TIDAK valid untuk membuat dictionary menggunakan `dict()`?",
+        "pilihan": ["`dict(nama='Ani', umur=20)`", "`dict([('k1', 'v1'), ('k2', 'v2')])`", "`dict({'x': 1, 'y': 2})`", "`dict('nama=Ani, umur=20')`"],
+        "jawabanBenar": 3,
+        "penjelasan": "`dict('nama=Ani, umur=20')` tidak valid. `dict()` dapat menerima argumen kata kunci, iterable pasangan kunci-nilai, atau mapping lain, tetapi bukan string tunggal dengan format tersebut."
+    }
+  },
+  {
+    "namaFungsi": "sum()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Menjumlahkan item dari sebuah iterable (harus berupa numerik(angka)).",
+    "parameter": [
+      {"nama": "iterable", "deskripsi": "Iterable yang berisi item numerik.", "tipeData": "iterable", "opsional": false, "nilaiDefault": null},
+      {"nama": "start", "deskripsi": "Nilai awal untuk penjumlahan (opsional).", "tipeData": "number", "opsional": true, "nilaiDefault": "0"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "number",
+      "deskripsi": "Hasil penjumlahan item dalam iterable ditambah nilai start."
+    },
+    "contohPenggunaan": "angka = [10, 20, 30, 40]\nprint(sum(angka)) # Output: 100\n\nprint(sum(angka, 5)) # Output: 105 (100 + 5)\n\n# print(sum(['a', 'b'])) # Akan menghasilkan TypeError karena item bukan numerik",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika item dalam iterable bukan numerik atau `start` bukan numerik."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `sum([1, 2, 3], 10)`?",
+        "pilihan": ["6", "16", "12310", "Error"],
+        "jawabanBenar": 1,
+        "penjelasan": "Fungsi `sum()` akan menjumlahkan semua item dalam iterable (1+2+3 = 6) dan kemudian menambahkan nilai `start` (10). Jadi, 6 + 10 = 16."
+    }
+  },
+  {
+    "namaFungsi": "min()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan item terkecil dari sebuah iterable atau argumen.",
+    "parameter": [
+      {"nama": "iterable_atau_arg1", "deskripsi": "Sebuah iterable, atau argumen pertama jika beberapa argumen diberikan.", "tipeData": "iterable atau any", "opsional": false, "nilaiDefault": null},
+      {"nama": "arg2_dst", "deskripsi": "Argumen berikutnya jika beberapa argumen diberikan.", "tipeData": "any", "opsional": true, "nilaiDefault": null},
+      {"nama": "key", "deskripsi": "Fungsi satu argumen yang digunakan untuk mengekstrak kunci perbandingan dari setiap elemen.", "tipeData": "function", "opsional": true, "nilaiDefault": "None"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "any",
+      "deskripsi": "Item terkecil."
+    },
+    "contohPenggunaan": "angka = [5, 1, 9, 3]\nprint(min(angka)) # Output: 1\nprint(min(10, 2, 7)) # Output: 2\n\n# Menggunakan key\nkata_kunci = [('apel', 3), ('pisang', 1), ('mangga', 2)]\nprint(min(kata_kunci, key=lambda x: x[1])) # Output: ('pisang', 1)",
+    "catatanPenting": "Jika iterable kosong atau tidak ada argumen yang diberikan, akan muncul `ValueError`.",
+    "potensiError": ["ValueError: jika iterable kosong atau tidak ada argumen.", "TypeError: jika item tidak dapat dibandingkan (misalnya campuran string dan angka tanpa `key`)."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `min(\"python\")`?",
+        "pilihan": ["`p`", "`h`", "`n`", "`o`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Ketika `min()` digunakan pada string, ia akan mengembalikan karakter terkecil berdasarkan urutan leksikografis (nilai Unicode). Dalam \"python\", 'n' adalah karakter terkecil."
+    }
+  },
+  {
+    "namaFungsi": "max()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan item terbesar dari sebuah iterable atau argumen.",
+    "parameter": [
+      {"nama": "iterable_atau_arg1", "deskripsi": "Sebuah iterable, atau argumen pertama jika beberapa argumen diberikan.", "tipeData": "iterable atau any", "opsional": false, "nilaiDefault": null},
+      {"nama": "arg2_dst", "deskripsi": "Argumen berikutnya jika beberapa argumen diberikan.", "tipeData": "any", "opsional": true, "nilaiDefault": null},
+      {"nama": "key", "deskripsi": "Fungsi satu argumen yang digunakan untuk mengekstrak kunci perbandingan dari setiap elemen.", "tipeData": "function", "opsional": true, "nilaiDefault": "None"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "any",
+      "deskripsi": "Item terbesar."
+    },
+    "contohPenggunaan": "angka = [5, 1, 9, 3]\nprint(max(angka)) # Output: 9\nprint(max(10, 2, 7)) # Output: 10\n\n# Menggunakan key\nkata_kunci = [('apel', 3), ('pisang', 1), ('mangga', 2)]\nprint(max(kata_kunci, key=lambda x: x[1])) # Output: ('apel', 3)",
+    "catatanPenting": "Jika iterable kosong atau tidak ada argumen yang diberikan, akan muncul `ValueError`.",
+    "potensiError": ["ValueError: jika iterable kosong atau tidak ada argumen.", "TypeError: jika item tidak dapat dibandingkan (misalnya campuran string dan angka tanpa `key`)."],
+    "quiz": {
+        "pertanyaan": "Jika `data = [{'nama':'Adi', 'umur':20}, {'nama':'Budi', 'umur':25}]`, bagaimana cara mendapatkan dictionary orang tertua menggunakan `max()`?",
+        "pilihan": ["`max(data)`", "`max(data, key='umur')`", "`max(data, key=lambda x: x['umur'])`", "`max(data['umur'])`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Untuk mencari dictionary dengan nilai 'umur' terbesar, Anda perlu menggunakan argumen `key` dengan fungsi lambda yang mengekstrak nilai 'umur' dari setiap dictionary: `max(data, key=lambda x: x['umur'])`."
+    }
+  },
+  {
+    "namaFungsi": "abs()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan nilai absolut dari sebuah angka.",
+    "parameter": [
+      {"nama": "x", "deskripsi": "Angka (integer, float, atau complex).", "tipeData": "number", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "number (integer atau float, atau magnitude untuk complex)",
+      "deskripsi": "Nilai absolut dari x."
+    },
+    "contohPenggunaan": "print(abs(-7)) # Output: 7\nprint(abs(7))  # Output: 7\nprint(abs(-3.14)) # Output: 3.14\nprint(abs(3+4j)) # Output: 5.0 (magnitude dari bilangan kompleks)",
+    "catatanPenting": "",
+    "potensiError": ["TypeError: jika argumen bukan numerik."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `abs(-15.5)`?",
+        "pilihan": ["-15.5", "15.5", "15", "16"],
+        "jawabanBenar": 1,
+        "penjelasan": "Fungsi `abs()` mengembalikan nilai absolut (non-negatif) dari sebuah angka. Jadi, `abs(-15.5)` adalah `15.5`."
+    }
+  },
+  {
+    "namaFungsi": "round()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Membulatkan angka ke jumlah desimal tertentu (default 0 desimal).",
+    "parameter": [
+      {"nama": "number", "deskripsi": "Angka yang akan dibulatkan.", "tipeData": "float", "opsional": false, "nilaiDefault": null},
+      {"nama": "ndigits", "deskripsi": "Jumlah digit desimal untuk pembulatan (opsional). Jika tidak ada, dibulatkan ke integer terdekat.", "tipeData": "integer", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "integer atau float",
+      "deskripsi": "Angka yang telah dibulatkan. Mengembalikan integer jika ndigits tidak ditentukan atau None, selain itu float."
+    },
+    "contohPenggunaan": "print(round(3.14159))    # Output: 3\nprint(round(3.14159, 2)) # Output: 3.14\nprint(round(3.7))        # Output: 4\nprint(round(2.5))        # Output: 2 (pembulatan ke integer genap terdekat untuk .5)\nprint(round(3.5))        # Output: 4 (pembulatan ke integer genap terdekat untuk .5)",
+    "catatanPenting": "Perilaku pembulatan untuk angka yang tepat di tengah (seperti 2.5) adalah 'round half to even' (bulatkan ke integer genap terdekat).",
+    "potensiError": ["TypeError: jika argumen bukan numerik."],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `round(7.5)` di Python 3?",
+        "pilihan": ["7", "8", "7.0", "8.0"],
+        "jawabanBenar": 1,
+        "penjelasan": "Python 3 menggunakan strategi pembulatan 'round half to even'. Karena 8 adalah angka genap terdekat, `round(7.5)` menghasilkan `8`."
+    }
+  },
+  {
+    "namaFungsi": "range()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Menghasilkan urutan angka, sering digunakan dalam loop `for`.",
+    "parameter": [
+      {"nama": "stop", "deskripsi": "Angka batas atas (tidak termasuk). Jika ini satu-satunya argumen, start default ke 0.", "tipeData": "integer", "opsional": false, "nilaiDefault": null},
+      {"nama": "start", "deskripsi": "Angka awal urutan (opsional, default 0).", "tipeData": "integer", "opsional": true, "nilaiDefault": "0"},
+      {"nama": "step", "deskripsi": "Selisih antar angka dalam urutan (opsional, default 1).", "tipeData": "integer", "opsional": true, "nilaiDefault": "1"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "range object (iterable)",
+      "deskripsi": "Objek range yang menghasilkan urutan angka."
+    },
+    "contohPenggunaan": "# range(stop)\nfor i in range(3):\n    print(i) # Output: 0, 1, 2\n\n# range(start, stop)\nfor j in range(1, 4):\n    print(j) # Output: 1, 2, 3\n\n# range(start, stop, step)\nfor k in range(0, 10, 2):\n    print(k) # Output: 0, 2, 4, 6, 8",
+    "catatanPenting": "Objek `range` tidak menyimpan semua angka dalam memori, melainkan menghasilkannya saat diperlukan, sehingga efisien untuk urutan yang besar.",
+    "potensiError": ["TypeError: jika argumen bukan integer."],
+    "quiz": {
+        "pertanyaan": "Angka terakhir yang dihasilkan oleh `range(1, 10, 3)` adalah?",
+        "pilihan": ["9", "10", "7", "6"],
+        "jawabanBenar": 2,
+        "penjelasan": "`range(1, 10, 3)` menghasilkan angka mulai dari 1, dengan langkah 3, dan berhenti sebelum 10. Jadi, angka yang dihasilkan adalah 1, 4, 7. Angka terakhir adalah 7."
+    }
+  },
+  {
+    "namaFungsi": "sorted()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan list baru yang berisi semua item dari iterable dalam urutan terurut.",
+    "parameter": [
+      {"nama": "iterable", "deskripsi": "Objek iterable yang akan diurutkan.", "tipeData": "iterable", "opsional": false, "nilaiDefault": null},
+      {"nama": "key", "deskripsi": "Fungsi yang dipanggil pada setiap elemen sebelum melakukan perbandingan.", "tipeData": "function", "opsional": true, "nilaiDefault": "None"},
+      {"nama": "reverse", "deskripsi": "Jika True, urutan akan dibalik (menurun).", "tipeData": "boolean", "opsional": true, "nilaiDefault": "False"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "list",
+      "deskripsi": "List baru yang berisi item terurut."
+    },
+    "contohPenggunaan": "angka = [5, 1, 9, 3]\nangka_terurut = sorted(angka)\nprint(angka_terurut) # Output: [1, 3, 5, 9]\nprint(angka)         # Output: [5, 1, 9, 3] (list asli tidak berubah)\n\nkata = \"python\"\nkata_terurut = sorted(kata)\nprint(kata_terurut) # Output: ['h', 'n', 'o', 'p', 't', 'y']\n\nkata_terurut_mundur = sorted(kata, reverse=True)\nprint(kata_terurut_mundur) # Output: ['y', 't', 'p', 'o', 'n', 'h']",
+    "catatanPenting": "`sorted()` mengembalikan list baru dan tidak mengubah iterable asli. Untuk mengurutkan list secara in-place, gunakan metode `list.sort()`.",
+    "potensiError": ["TypeError: jika item dalam iterable tidak dapat dibandingkan (misalnya campuran string dan angka tanpa `key`)."],
+    "quiz": {
+        "pertanyaan": "Apa perbedaan utama antara `sorted(my_list)` dan `my_list.sort()`?",
+        "pilihan": ["Tidak ada perbedaan, keduanya identik", "`sorted()` mengurutkan menurun, `sort()` mengurutkan menaik", "`sorted()` mengembalikan list baru, `sort()` memodifikasi list asli (in-place)", "`sorted()` hanya untuk string, `sort()` hanya untuk angka"],
+        "jawabanBenar": 2,
+        "penjelasan": "`sorted(my_list)` mengembalikan list baru yang terurut tanpa mengubah `my_list` asli. Sebaliknya, `my_list.sort()` mengurutkan `my_list` secara langsung (in-place) dan mengembalikan `None`."
+    }
+  },
+  {
+    "namaFungsi": "open()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Menengah",
+    "pengertian": "Membuka file dan mengembalikan objek file.",
+     "parameter": [
+      {"nama": "file", "deskripsi": "Path ke file atau deskriptor file.", "tipeData": "string atau integer", "opsional": false, "nilaiDefault": null},
+      {"nama": "mode", "deskripsi": "Mode pembukaan file (misalnya 'r' untuk baca, 'w' untuk tulis, 'a' untuk tambah, 'b' untuk biner).", "tipeData": "string", "opsional": true, "nilaiDefault": "'r'"},
+      {"nama": "encoding", "deskripsi": "Encoding yang digunakan untuk decode atau encode file.", "tipeData": "string", "opsional": true, "nilaiDefault": "None (tergantung sistem)"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "file object",
+      "deskripsi": "Objek file yang dapat digunakan untuk operasi baca/tulis."
+    },
+    "contohPenggunaan": "# Menulis ke file (hati-hati, 'w' akan menimpa file jika sudah ada)\n# try:\n#     with open(\"data.txt\", \"w\", encoding=\"utf-8\") as f:\n#         f.write(\"Ini baris pertama.\\n\")\n#         f.write(\"Ini baris kedua.\\n\")\n# except IOError as e:\n#     print(f\"Gagal menulis ke file: {e}\")\n\n# Membaca dari file\n# try:\n#     with open(\"data.txt\", \"r\", encoding=\"utf-8\") as f:\n#         konten = f.read()\n#         print(konten)\n# except FileNotFoundError:\n#     print(\"File data.txt tidak ditemukan.\")\n# except IOError as e:\n#     print(f\"Gagal membaca file: {e}\")\n",
+    "catatanPenting": "Selalu disarankan menggunakan `with open(...)` karena ia menangani penutupan file secara otomatis, bahkan jika terjadi error. Tentukan `encoding` saat bekerja dengan file teks untuk menghindari masalah kompatibilitas antar platform.",
+    "potensiError": ["FileNotFoundError: jika file tidak ditemukan dalam mode baca.", "IOError/OSError: untuk berbagai masalah terkait I/O file.", "UnicodeDecodeError: jika encoding salah saat membaca file teks."],
+    "quiz": {
+        "pertanyaan": "Mode file apa yang digunakan untuk membuka file untuk dibaca dan ditulis (file harus sudah ada)?",
+        "pilihan": ["`'w+'`", "`'r'`", "`'r+'`", "`'a+'`"],
+        "jawabanBenar": 2,
+        "penjelasan": "Mode `'r+'` digunakan untuk membuka file untuk membaca dan menulis. Pointer file berada di awal. File harus sudah ada."
+    }
+  },
+  {
+    "namaFungsi": "bool()",
+    "kategori": "Fungsi Bawaan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengkonversi nilai ke boolean (`True` atau `False`).",
+    "parameter": [
+      {"nama": "x", "deskripsi": "Nilai yang akan dikonversi ke boolean.", "tipeData": "any", "opsional": true, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "boolean",
+      "deskripsi": "`False` jika x adalah false (misalnya `False`, `None`, 0 numerik, sequence kosong, mapping kosong). Selain itu, `True`."
+    },
+    "contohPenggunaan": "print(bool(0))      # Output: False\nprint(bool(1))      # Output: True\nprint(bool(\"\"))     # Output: False (string kosong)\nprint(bool(\"halo\")) # Output: True\nprint(bool([]))     # Output: False (list kosong)\nprint(bool([1]))    # Output: True\nprint(bool(None))   # Output: False",
+    "catatanPenting": "",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Manakah dari berikut ini yang akan dievaluasi menjadi `False` oleh `bool()`?",
+        "pilihan": ["`bool(\"False\")`", "`bool([0])`", "`bool({})`", "`bool(-1)`"],
+        "jawabanBenar": 2,
+        "penjelasan": "`bool({})` akan menghasilkan `False` karena dictionary kosong dianggap 'falsy'. String non-kosong, list dengan elemen (bahkan jika elemennya 0), dan angka non-nol dianggap 'truthy'."
+    }
+  },
+  {
+    "namaFungsi": "list.append()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Menambahkan sebuah item ke akhir list. Metode ini mengubah list asli (in-place).",
+    "parameter": [
+      {"nama": "item", "deskripsi": "Item yang akan ditambahkan ke list.", "tipeData": "any", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "buah = [\"apel\", \"pisang\"]\nprint(\"List awal:\", buah)\nbuah.append(\"mangga\")\nprint(\"List setelah append:\", buah)\n# Output:\n# List awal: ['apel', 'pisang']\n# List setelah append: ['apel', 'pisang', 'mangga']\n\nangka = [1, 2, 3]\nhasil_append = angka.append(4)\nprint(\"List angka:\", angka)\nprint(\"Hasil append (None):\", hasil_append)\n# Output:\n# List angka: [1, 2, 3, 4]\n# Hasil append (None): None",
+    "catatanPenting": "Metode `append()` hanya menerima satu argumen. Untuk menambahkan semua item dari iterable lain ke list, gunakan metode `list.extend()` atau operator `+`.",
+    "potensiError": [],
+     "quiz": {
+        "pertanyaan": "Jika `my_list = [1, 2]`, apa isi `my_list` setelah `my_list.append([3, 4])`?",
+        "pilihan": ["[1, 2, 3, 4]", "[1, 2, [3, 4]]", "[[1, 2], [3, 4]]", "Error"],
+        "jawabanBenar": 1,
+        "penjelasan": "`list.append()` menambahkan argumennya sebagai satu elemen tunggal. Jadi, list `[3, 4]` ditambahkan sebagai elemen ketiga ke `my_list`."
+    }
+  },
+  {
+    "namaFungsi": "list.pop()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Menghapus dan mengembalikan item pada indeks yang ditentukan (defaultnya adalah item terakhir). Metode ini mengubah list asli (in-place).",
+    "parameter": [
+      {"nama": "index", "deskripsi": "Indeks dari item yang akan dihapus. Jika tidak disertakan, item terakhir akan dihapus dan dikembalikan.", "tipeData": "int", "opsional": true, "nilaiDefault": "-1 (elemen terakhir)"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "any",
+      "deskripsi": "Item yang dihapus dari list."
+    },
+    "contohPenggunaan": "buah = [\"apel\", \"pisang\", \"mangga\", \"jeruk\"]\nprint(\"List awal:\", buah)\nitem_terakhir = buah.pop()\nprint(\"Item yang di-pop (terakhir):\", item_terakhir)\nprint(\"List setelah pop terakhir:\", buah)\n\nitem_indeks_1 = buah.pop(1)\nprint(\"Item yang di-pop (indeks 1):\", item_indeks_1)\nprint(\"List setelah pop indeks 1:\", buah)\n# Output:\n# List awal: ['apel', 'pisang', 'mangga', 'jeruk']\n# Item yang di-pop (terakhir): jeruk\n# List setelah pop terakhir: ['apel', 'pisang', 'mangga']\n# Item yang di-pop (indeks 1): pisang\n# List setelah pop indeks 1: ['apel', 'mangga']",
+    "catatanPenting": "Jika indeks yang diberikan di luar jangkauan (misalnya, list memiliki 3 item dan Anda mencoba pop indeks 5), akan menimbulkan error `IndexError`.",
+    "potensiError": ["IndexError jika indeks di luar jangkauan."],
+    "quiz": {
+        "pertanyaan": "Jika `my_list = ['a', 'b', 'c']`, apa yang dikembalikan oleh `my_list.pop(0)`?",
+        "pilihan": ["`'a'`", "`'b'`", "`'c'`", "`None`"],
+        "jawabanBenar": 0,
+        "penjelasan": "`list.pop(0)` menghapus elemen pada indeks 0 (yaitu 'a') dari list dan mengembalikan elemen yang dihapus tersebut."
+    }
+  },
+  {
+    "namaFungsi": "list.clear()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Menghapus semua item dari list. Metode ini mengubah list asli (in-place) menjadi list kosong.",
+    "parameter": [],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "angka = [1, 2, 3, 4, 5]\nprint(\"List awal:\", angka)\nangka.clear()\nprint(\"List setelah clear:\", angka)\n# Output:\n# List awal: [1, 2, 3, 4, 5]\n# List setelah clear: []",
+    "catatanPenting": "Setelah `clear()`, list menjadi kosong.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa isi `my_list` setelah `my_list = [1, 2, 3]; my_list.clear()`?",
+        "pilihan": ["`[1, 2, 3]`", "`None`", "`[]`", "Error"],
+        "jawabanBenar": 2,
+        "penjelasan": "`list.clear()` menghapus semua elemen dari list, menjadikannya list kosong `[]`. Metode ini memodifikasi list asli dan mengembalikan `None`."
+    }
+  },
+  {
+    "namaFungsi": "list.copy()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan salinan dangkal (shallow copy) dari list. Perubahan pada list asli tidak akan memengaruhi salinannya, dan sebaliknya (untuk item-item yang immutable).",
+    "parameter": [],
+    "nilaiKembali": {
+      "tipeData": "list",
+      "deskripsi": "Sebuah list baru yang merupakan salinan dari list asli."
+    },
+    "contohPenggunaan": "list_asli = [1, 2, [\"a\", \"b\"]]\nlist_salinan = list_asli.copy()\n\nprint(\"List Asli:\", list_asli)\nprint(\"List Salinan:\", list_salinan)\n\nlist_salinan.append(3)\nlist_asli[2].append(\"c\") # Perubahan pada nested list akan terlihat di kedua list\n\nprint(\"List Asli setelah modifikasi salinan dan nested list:\", list_asli)\nprint(\"List Salinan setelah modifikasi dan nested list asli:\", list_salinan)\n# Output:\n# List Asli: [1, 2, ['a', 'b']]\n# List Salinan: [1, 2, ['a', 'b']]\n# List Asli setelah modifikasi salinan dan nested list: [1, 2, ['a', 'b', 'c']]\n# List Salinan setelah modifikasi dan nested list asli: [1, 2, ['a', 'b', 'c'], 3]",
+    "catatanPenting": "`copy()` membuat salinan dangkal. Jika list mengandung objek mutable (seperti list lain), perubahan pada objek mutable tersebut akan terefleksikan di kedua list (asli dan salinan). Untuk salinan dalam (deep copy), gunakan modul `copy` dan fungsi `copy.deepcopy()`.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Jika `a = [1, [2, 3]]` dan `b = a.copy()`, apa yang terjadi jika kita menjalankan `b[1].append(4)`?",
+        "pilihan": ["Hanya `b` yang berubah menjadi `[1, [2, 3, 4]]`", "Hanya `a` yang berubah menjadi `[1, [2, 3, 4]]`", "Baik `a` maupun `b` berubah menjadi `[1, [2, 3, 4]]`", "`b` menjadi `[1, [2, 3], 4]`"],
+        "jawabanBenar": 2,
+        "penjelasan": "`list.copy()` membuat salinan dangkal (shallow copy). Ini berarti elemen list dalam (`[2,3]`) adalah referensi yang sama di `a` dan `b`. Jadi, memodifikasi list dalam melalui `b` juga akan mempengaruhinya di `a`."
+    }
+  },
+  {
+    "namaFungsi": "list.count()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan jumlah kemunculan sebuah item tertentu di dalam list.",
+    "parameter": [
+      {"nama": "item", "deskripsi": "Item yang akan dihitung kemunculannya.", "tipeData": "any", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "int",
+      "deskripsi": "Jumlah berapa kali item muncul dalam list."
+    },
+    "contohPenggunaan": "angka = [1, 2, 3, 2, 4, 2, 5]\nprint(\"List angka:\", angka)\njumlah_angka_2 = angka.count(2)\nprint(\"Jumlah angka 2 dalam list:\", jumlah_angka_2)\n\njumlah_angka_7 = angka.count(7)\nprint(\"Jumlah angka 7 dalam list:\", jumlah_angka_7)\n# Output:\n# List angka: [1, 2, 3, 2, 4, 2, 5]\n# Jumlah angka 2 dalam list: 3\n# Jumlah angka 7 dalam list: 0",
+    "catatanPenting": "Jika item tidak ditemukan dalam list, metode ini akan mengembalikan 0.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apa hasil dari `['a', 'b', 'a', 'c', 'a'].count('a')`?",
+        "pilihan": ["1", "2", "3", "0"],
+        "jawabanBenar": 2,
+        "penjelasan": "`list.count('a')` akan menghitung berapa kali elemen 'a' muncul dalam list, yaitu sebanyak 3 kali."
+    }
+  },
+  {
+    "namaFungsi": "list.extend()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Menambahkan semua item dari sebuah iterable (seperti list, tuple, atau string) ke akhir list. Metode ini mengubah list asli (in-place).",
+    "parameter": [
+      {"nama": "iterable", "deskripsi": "Sebuah iterable yang item-itemnya akan ditambahkan ke list.", "tipeData": "iterable", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "list1 = [1, 2, 3]\nlist2 = [4, 5, 6]\nprint(\"List1 awal:\", list1)\nlist1.extend(list2)\nprint(\"List1 setelah extend dengan list2:\", list1)\n\nlist_huruf = ['a', 'b']\ntuple_huruf = ('c', 'd')\nlist_huruf.extend(tuple_huruf)\nprint(\"List huruf setelah extend dengan tuple:\", list_huruf)\n# Output:\n# List1 awal: [1, 2, 3]\n# List1 setelah extend dengan list2: [1, 2, 3, 4, 5, 6]\n# List huruf setelah extend dengan tuple: ['a', 'b', 'c', 'd']",
+    "catatanPenting": "Berbeda dengan `append()` yang menambahkan argumen sebagai satu item tunggal, `extend()` menambahkan setiap elemen dari iterable secara individual.",
+    "potensiError": ["TypeError jika argumen bukan iterable."],
+    "quiz": {
+        "pertanyaan": "Jika `list_a = [1, 2]` dan `list_b = [3, 4]`, apa isi `list_a` setelah `list_a.extend(list_b)`?",
+        "pilihan": ["`[1, 2, [3, 4]]`", "`[[1, 2], [3, 4]]`", "`[1, 2, 3, 4]`", "`[1, 2]`"],
+        "jawabanBenar": 2,
+        "penjelasan": "`list.extend()` menambahkan setiap elemen dari iterable argumen ke list asli. Jadi, elemen 3 dan 4 dari `list_b` ditambahkan ke `list_a`."
+    }
+  },
+  {
+    "namaFungsi": "list.index()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan indeks dari kemunculan pertama item yang ditentukan dalam list. Dapat juga menyertakan batasan awal dan akhir pencarian.",
+    "parameter": [
+      {"nama": "item", "deskripsi": "Item yang akan dicari indeksnya.", "tipeData": "any", "opsional": false, "nilaiDefault": null},
+      {"nama": "start", "deskripsi": "Indeks awal (inklusif) untuk memulai pencarian.", "tipeData": "int", "opsional": true, "nilaiDefault": "0"},
+      {"nama": "end", "deskripsi": "Indeks akhir (eksklusif) untuk mengakhiri pencarian.", "tipeData": "int", "opsional": true, "nilaiDefault": "len(list)"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "int",
+      "deskripsi": "Indeks dari kemunculan pertama item dalam list."
+    },
+    "contohPenggunaan": "huruf = ['a', 'b', 'c', 'd', 'b', 'e']\nprint(\"List huruf:\", huruf)\nindeks_b_pertama = huruf.index('b')\nprint(\"Indeks 'b' pertama:\", indeks_b_pertama)\n\nindeks_b_setelah_indeks_2 = huruf.index('b', 2) # Cari 'b' mulai dari indeks ke-2\nprint(\"Indeks 'b' setelah indeks ke-2:\", indeks_b_setelah_indeks_2)\n# Output:\n# List huruf: ['a', 'b', 'c', 'd', 'b', 'e']\n# Indeks 'b' pertama: 1\n# Indeks 'b' setelah indeks ke-2: 4",
+    "catatanPenting": "Jika item tidak ditemukan dalam list (atau dalam rentang yang ditentukan), akan menimbulkan error `ValueError`.",
+    "potensiError": ["ValueError jika item tidak ditemukan."],
+    "quiz": {
+        "pertanyaan": "Apa yang terjadi jika `list.index(item)` dipanggil pada list yang tidak mengandung `item`?",
+        "pilihan": ["Mengembalikan -1", "Mengembalikan `None`", "Menimbulkan `IndexError`", "Menimbulkan `ValueError`"],
+        "jawabanBenar": 3,
+        "penjelasan": "Jika `list.index(item)` dipanggil dan `item` tidak ditemukan dalam list, Python akan menimbulkan `ValueError`."
+    }
+  },
+  {
+    "namaFungsi": "list.insert()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Menyisipkan sebuah item pada posisi indeks yang ditentukan. Metode ini mengubah list asli (in-place).",
+    "parameter": [
+      {"nama": "index", "deskripsi": "Indeks di mana item akan disisipkan.", "tipeData": "int", "opsional": false, "nilaiDefault": null},
+      {"nama": "item", "deskripsi": "Item yang akan disisipkan ke dalam list.", "tipeData": "any", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "buah = [\"apel\", \"mangga\"]\nprint(\"List awal:\", buah)\nbuah.insert(1, \"pisang\") # Sisipkan \"pisang\" di indeks 1\nprint(\"List setelah insert:\", buah)\n\nbuah.insert(0, \"jeruk\") # Sisipkan \"jeruk\" di awal list\nprint(\"List setelah insert di awal:\", buah)\n\nbuah.insert(len(buah), \"semangka\") # Sama seperti append(\"semangka\")\nprint(\"List setelah insert di akhir:\", buah)\n# Output:\n# List awal: ['apel', 'mangga']\n# List setelah insert: ['apel', 'pisang', 'mangga']\n# List setelah insert di awal: ['jeruk', 'apel', 'pisang', 'mangga']\n# List setelah insert di akhir: ['jeruk', 'apel', 'pisang', 'mangga', 'semangka']",
+    "catatanPenting": "Jika indeks yang diberikan lebih besar dari panjang list, item akan ditambahkan di akhir list. Jika indeks negatif dan di luar jangkauan, item akan disisipkan di awal list.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Jika `my_list = ['a', 'c']`, apa isi `my_list` setelah `my_list.insert(1, 'b')`?",
+        "pilihan": ["`['a', 'b', 'c']`", "`['a', 'c', 'b']`", "`['b', 'a', 'c']`", "Error"],
+        "jawabanBenar": 0,
+        "penjelasan": "`list.insert(index, item)` menyisipkan `item` pada `index` yang ditentukan. Jadi, 'b' disisipkan pada indeks 1, menghasilkan `['a', 'b', 'c']`."
+    }
+  },
+  {
+    "namaFungsi": "list.remove()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Menghapus kemunculan pertama dari item yang ditentukan dalam list. Metode ini mengubah list asli (in-place).",
+    "parameter": [
+      {"nama": "item", "deskripsi": "Item yang akan dihapus dari list.", "tipeData": "any", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "angka = [1, 2, 3, 2, 4, 2, 5]\nprint(\"List angka awal:\", angka)\nangka.remove(2) # Hapus angka 2 yang pertama kali muncul\nprint(\"List setelah remove 2 (pertama):\", angka)\n\nangka.remove(2) # Hapus angka 2 yang pertama kali muncul lagi\nprint(\"List setelah remove 2 (kedua):\", angka)\n# Output:\n# List angka awal: [1, 2, 3, 2, 4, 2, 5]\n# List setelah remove 2 (pertama): [1, 3, 2, 4, 2, 5]\n# List setelah remove 2 (kedua): [1, 3, 4, 2, 5]",
+    "catatanPenting": "Jika item yang akan dihapus tidak ditemukan dalam list, akan menimbulkan error `ValueError`.",
+    "potensiError": ["ValueError jika item tidak ditemukan."],
+    "quiz": {
+        "pertanyaan": "Jika `my_list = ['x', 'y', 'x', 'z']`, apa isi `my_list` setelah `my_list.remove('x')`?",
+        "pilihan": ["`['y', 'x', 'z']`", "`['y', 'z']`", "`['x', 'y', 'z']`", "Error"],
+        "jawabanBenar": 0,
+        "penjelasan": "`list.remove(item)` menghapus kemunculan pertama dari `item` dalam list. Jadi, 'x' pertama dihapus, menghasilkan `['y', 'x', 'z']`."
+    }
+  },
+  {
+    "namaFungsi": "list.reverse()",
+    "kategori": "Operasi List",
+    "tingkat": "Pemula",
+    "pengertian": "Membalik urutan elemen dalam list. Metode ini mengubah list asli (in-place).",
+    "parameter": [],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "angka = [1, 2, 3, 4, 5]\nprint(\"List awal:\", angka)\nangka.reverse()\nprint(\"List setelah reverse:\", angka)\n\nkata = ['s', 'a', 'y', 'a']\nkata.reverse()\nprint(\"Kata terbalik:\", kata)\n# Output:\n# List awal: [1, 2, 3, 4, 5]\n# List setelah reverse: [5, 4, 3, 2, 1]\n# Kata terbalik: ['a', 'y', 'a', 's']",
+    "catatanPenting": "Metode ini memodifikasi list secara langsung dan tidak membuat list baru.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Apakah `list.reverse()` mengembalikan list yang sudah dibalik?",
+        "pilihan": ["Ya, mengembalikan list baru yang terbalik", "Ya, mengembalikan list asli yang sudah terbalik", "Tidak, metode ini mengembalikan `None` dan memodifikasi list asli", "Tidak, metode ini hanya untuk string"],
+        "jawabanBenar": 2,
+        "penjelasan": "`list.reverse()` memodifikasi list asli secara in-place (langsung) dan mengembalikan `None`, bukan list yang sudah dibalik."
+    }
+  },
+  {
+    "namaFungsi": "list.sort()",
+    "kategori": "Operasi List",
+    "tingkat": "Menengah",
+    "pengertian": "Mengurutkan item dalam list (in-place). Secara default mengurutkan secara menaik (ascending).",
+    "parameter": [
+      {"nama": "key", "deskripsi": "Fungsi yang akan dipanggil pada setiap elemen sebelum melakukan perbandingan (misalnya `key=str.lower`).", "tipeData": "function", "opsional": true, "nilaiDefault": "None"},
+      {"nama": "reverse", "deskripsi": "Jika `True`, list akan diurutkan secara menurun (descending).", "tipeData": "bool", "opsional": true, "nilaiDefault": "False"}
+    ],
+    "nilaiKembali": {
+      "tipeData": "None",
+      "deskripsi": "Metode ini tidak mengembalikan nilai (mengembalikan None)."
+    },
+    "contohPenggunaan": "angka = [3, 1, 4, 1, 5, 9, 2, 6]\nprint(\"List angka awal:\", angka)\nangka.sort()\nprint(\"List setelah sort (ascending):\", angka)\n\nangka.sort(reverse=True)\nprint(\"List setelah sort (descending):\", angka)\n\nkata = [\"Pisang\", \"apel\", \"Mangga\"]\nkata.sort() # Case-sensitive sort\nprint(\"Kata setelah sort (case-sensitive):\", kata)\n\nkata.sort(key=str.lower) # Case-insensitive sort\nprint(\"Kata setelah sort (case-insensitive):\", kata)\n# Output:\n# List angka awal: [3, 1, 4, 1, 5, 9, 2, 6]\n# List setelah sort (ascending): [1, 1, 2, 3, 4, 5, 6, 9]\n# List setelah sort (descending): [9, 6, 5, 4, 3, 2, 1, 1]\n# Kata setelah sort (case-sensitive): ['Mangga', 'Pisang', 'apel']\n# Kata setelah sort (case-insensitive): ['apel', 'Mangga', 'Pisang']",
+    "catatanPenting": "Metode `sort()` memodifikasi list asli. Untuk mendapatkan list baru yang terurut tanpa mengubah list asli, gunakan fungsi `sorted()`.",
+    "potensiError": ["TypeError jika item dalam list tidak dapat dibandingkan (misalnya, mencampur string dan angka tanpa fungsi `key` yang sesuai)."],
+    "quiz": {
+        "pertanyaan": "Untuk mengurutkan list string secara case-insensitive menggunakan `my_list.sort()`, parameter apa yang digunakan?",
+        "pilihan": ["`insensitive=True`", "`key=str.lower`", "`case=False`", "`ignore_case=True`"],
+        "jawabanBenar": 1,
+        "penjelasan": "Untuk pengurutan case-insensitive, gunakan parameter `key=str.lower`. Ini akan mengubah setiap string menjadi huruf kecil sebelum perbandingan, tanpa mengubah string aslinya di list."
+    }
+  },
+  {
+    "namaFungsi": "math.sqrt()",
+    "kategori": "Fitur Tambahan",
+    "tingkat": "Pemula",
+    "pengertian": "Mengembalikan akar kuadrat non-negatif dari sebuah angka. Memerlukan `import math` untuk digunakan.",
+    "parameter": [
+      {"nama": "x", "deskripsi": "Angka (harus non-negatif) yang akan dihitung akar kuadratnya.", "tipeData": "integer atau float", "opsional": false, "nilaiDefault": null}
+    ],
+    "nilaiKembali": {
+      "tipeData": "float",
+      "deskripsi": "Akar kuadrat dari x."
+    },
+    "contohPenggunaan": "import math\n\nangka1 = 16\nhasil1 = math.sqrt(angka1)\nprint(\"Akar kuadrat dari {} adalah {}\".format(angka1, hasil1)) # Output: Akar kuadrat dari 16 adalah 4.0\n\nangka2 = 2\nhasil2 = math.sqrt(angka2)\nprint(\"Akar kuadrat dari {} adalah {}\".format(angka2, hasil2)) # Output: Akar kuadrat dari 2 adalah 1.4142135623730951\n\n# mencoba dengan angka negatif akan menghasilkan error:\n# hasil_error = math.sqrt(-1) # Ini akan memunculkan ValueError",
+    "catatanPenting": "Pastikan untuk mengimpor modul `math` terlebih dahulu (`import math`) sebelum menggunakan fungsi ini. Jika Anda memerlukan akar kuadrat dari bilangan kompleks, gunakan `cmath.sqrt()`.",
+    "potensiError": ["ValueError: Jika x adalah angka negatif.", "TypeError: jika x bukan numerik."],
+    "quiz": {
+        "pertanyaan": "Modul apa yang perlu diimpor untuk menggunakan fungsi `sqrt()`?",
+        "pilihan": ["`numbers`", "`sqrt`", "`mathematics`", "`math`"],
+        "jawabanBenar": 3,
+        "penjelasan": "Fungsi `sqrt()` adalah bagian dari modul `math`, jadi Anda perlu melakukan `import math` sebelum menggunakannya."
+    }
+  },
+  {
+    "namaFungsi": "List Comprehensions",
+    "kategori": "Fitur Tambahan",
+    "tingkat": "Menengah",
+    "pengertian": "Cara yang ringkas dan elegan untuk membuat list. List comprehension terdiri dari ekspresi yang diikuti oleh klausa `for` dan kemudian nol atau lebih klausa `for` atau `if`.",
+    "contohPenggunaan": "# Membuat list kuadrat dari 0 hingga 4\nkuadrat = [x**2 for x in range(5)]\nprint(kuadrat) # Output: [0, 1, 4, 9, 16]\n\n# Membuat list angka genap dari list yang ada\nangka = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nangka_genap = [x for x in angka if x % 2 == 0]\nprint(angka_genap) # Output: [2, 4, 6, 8, 10]\n\n# Mengubah semua string dalam list menjadi huruf besar\nkata_kata = [\"apel\", \"pisang\", \"mangga\"]\nkata_besar = [kata.upper() for kata in kata_kata]\nprint(kata_besar) # Output: ['APEL', 'PISANG', 'MANGGA']\n\n# Membuat list pasangan (tuple) dari dua list\nlist1 = [1, 2, 3]\nlist2 = ['a', 'b', 'c']\npasangan = [(x, y) for x in list1 for y in list2]\nprint(pasangan) # Output: [(1, 'a'), (1, 'b'), (1, 'c'), (2, 'a'), (2, 'b'), (2, 'c'), (3, 'a'), (3, 'b'), (3, 'c')]",
+    "parameter": [],
+    "nilaiKembali": {
+      "tipeData": "list",
+      "deskripsi": "List baru yang dihasilkan oleh ekspresi list comprehension."
+    },
+    "catatanPenting": "Meskipun list comprehension sangat kuat dan ringkas, hindari menggunakannya untuk logika yang terlalu kompleks karena dapat mengurangi keterbacaan kode. Untuk kasus yang sangat rumit, loop `for` biasa mungkin lebih baik.",
+    "potensiError": [],
+    "quiz": {
+        "pertanyaan": "Manakah list comprehension yang benar untuk membuat list berisi angka ganjil dari 0 hingga 9?",
+        "pilihan": [
+            "`[x for x in range(10) if x % 2 != 0]`",
+            "`[x if x % 2 != 0 for x in range(10)]`",
+            "`[x for x in range(10) if x % 2 == 1]`",
+            "Keduanya a dan c benar"
+        ],
+        "jawabanBenar": 3,
+        "penjelasan": "Kedua list comprehension `[x for x in range(10) if x % 2 != 0]` dan `[x for x in range(10) if x % 2 == 1]` akan menghasilkan list angka ganjil dari 0 hingga 9. Keduanya valid."
+    }
+  }
+]

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Py.Edia Kamus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
+    <script src="https://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .modal { display: none; }
+        .modal.flex { display: flex; }
+        
+        /* Custom scrollbar styles */
+        #liveCodeEditor::-webkit-scrollbar, #liveCodeOutput::-webkit-scrollbar, textarea::-webkit-scrollbar, pre::-webkit-scrollbar {
+            width: 8px;
+        }
+        #liveCodeEditor::-webkit-scrollbar-track, #liveCodeOutput::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track, pre::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        #liveCodeEditor::-webkit-scrollbar-thumb, #liveCodeOutput::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        #liveCodeEditor::-webkit-scrollbar-thumb:hover, #liveCodeOutput::-webkit-scrollbar-thumb:hover, textarea::-webkit-scrollbar-thumb:hover, pre::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0, -8px, 0); }
+            70% { transform: translate3d(0, -4px, 0); }
+            90% { transform: translate3d(0, -2px, 0); }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .animate-slideInDown {
+            animation: slideInDown 0.4s ease-out;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .animate-scaleIn {
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .animate-bounce-custom {
+            animation: bounce 1s ease-in-out;
+        }
+
+        .animate-pulse-custom {
+            animation: pulse 2s infinite;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Enhanced hover effects */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .button-hover {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .button-hover:hover::before {
+            left: 100%;
+        }
+
+        /* Quiz specific animations */
+        .quiz-option {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quiz-option:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .quiz-option.correct {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        .quiz-option.incorrect {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+
+        /* Progress bar animation */
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Gradient backgrounds */
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .gradient-card {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+
+        .gradient-accent {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .gradient-quiz {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+
+        /* Search bar enhancements */
+        .search-container {
+            position: relative;
+        }
+
+        .search-container::before {
+            content: '🔍';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            opacity: 0.6;
+        }
+
+        .search-input {
+            padding-left: 40px;
+        }
+
+        /* Loading skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 0.5rem;
+        }
+
+        /* Enhanced modal backdrop */
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Enhanced logo container */
+        .logo-container {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .logo-container:hover::before {
+            left: 100%;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .logo-svg {
+            color: white;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-container:hover .logo-svg {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Enhanced brand text hover effect */
+        .brand-text {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .brand-text:hover {
+            transform: translateY(-1px);
+            text-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Enhanced fun fact cards */
+        .fun-fact-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .fun-fact-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Improved code blocks */
+        .code-block {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 1px solid #374151;
+        }
+
+        /* Enhanced navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Floating action button style for live code */
+        .fab-button {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .fab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Quiz button style */
+        .quiz-button {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .quiz-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Bookmark button style */
+        .bookmark-button {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-button:hover {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+        }
+
+        /* Improved tags */
+        .tag {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .tag-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Quiz modal specific styles */
+        .quiz-modal {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .quiz-progress {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+
+        .quiz-score {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        /* Feature button styles */
+        .feature-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .feature-button:hover::before {
+            left: 100%;
+        }
+
+        /* Bookmark animations */
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .bookmark-star:hover {
+            animation: starPulse 0.6s ease-in-out;
+        }
+
+        @keyframes badgeBounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0) scale(1); }
+            40%, 43% { transform: translate3d(0, -8px, 0) scale(1.1); }
+            70% { transform: translate3d(0, -4px, 0) scale(1.05); }
+            90% { transform: translate3d(0, -2px, 0) scale(1.02); }
+        }
+
+        .bookmark-badge-update {
+            animation: badgeBounce 0.8s ease-in-out;
+        }
+
+        /* Template selection */
+        .template-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .template-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+        }
+
+        .template-item.selected {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Learning path */
+        .learning-step {
+            position: relative;
+        }
+
+        .learning-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid currentColor;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            transform: translateY(-50%);
+        }
+
+        .learning-step:last-child::after {
+            display: none;
+        }
+
+        /* Notifications */
+        .notification-enter {
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .notification-exit {
+            animation: slideOutRight 0.3s ease-in;
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg font-sans text-gray-200 min-h-screen">
+
+    <nav class="bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50 shadow-xl border-b border-gray-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center flex-shrink-0">
+                    <div class="logo-container">
+                        <svg width="28" height="24" viewBox="0 0 38 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <path d="M17.5457 3.59675L18.9058 3.60252M15.4974 5.51187L15.511 2.30558C15.514 1.59727 16.1254 1.02565 16.8766 1.02884L22.3169 1.0519C23.0681 1.05509 23.6745 1.63187 23.6715 2.34019L23.6443 8.75276C23.6413 9.46107 23.03 10.0327 22.2788 10.0295L16.8385 10.0064C16.0873 10.0033 15.476 10.5749 15.473 11.2832L15.4458 17.6958C15.4428 18.4041 16.0493 18.9809 16.8004 18.984L22.2408 19.0071C22.9919 19.0103 23.6033 18.4387 23.6063 17.7304L23.6199 14.5241M20.255 6.17331L11.4145 6.13583C10.6633 6.13264 10.052 6.70427 10.049 7.41258L10.0218 13.8252C10.0188 14.5335 10.6253 15.1102 11.3764 15.1134L15.4567 15.1307M18.8623 13.8626L27.7028 13.9001C28.454 13.9033 29.0654 13.3317 29.0684 12.6234L29.0955 6.2108C29.0986 5.50249 28.4921 4.9257 27.7409 4.92252L23.6607 4.90522M20.2115 16.4334L21.5716 16.4392" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M37.0547 7.99512C37.559 8.04627 37.9521 8.47243 37.9521 8.99023V28.1738C37.9518 28.7259 37.5042 29.1738 36.9521 29.1738H26.3584C25.3704 29.1739 24.4489 29.5065 23.793 30.0605C23.1423 30.6105 22.8175 31.3172 22.8174 32.0098L22.8125 32.1123C22.7612 32.6165 22.3351 33.0098 21.8174 33.0098C21.2999 33.0095 20.8735 32.6164 20.8223 32.1123L20.8174 32.0098V20.8711H22.8174V28.2881C23.8199 27.5619 25.0765 27.1739 26.3584 27.1738H35.9521V9.99023H30.0732V7.99023H36.9521L37.0547 7.99512Z" fill="currentColor"/>
+                            <path d="M1.71484 7.99512C1.21053 8.04627 0.817383 8.47243 0.817383 8.99023V28.1738C0.817686 28.7259 1.26529 29.1738 1.81738 29.1738H12.4111C13.3991 29.1739 14.3207 29.5065 14.9766 30.0605C15.6272 30.6105 15.9521 31.3172 15.9521 32.0098L15.957 32.1123C16.0083 32.6165 16.4344 33.0098 16.9521 33.0098C17.4697 33.0095 17.896 32.6164 17.9473 32.1123L17.9521 32.0098V20.8711H15.9521V28.2881C14.9497 27.5619 13.693 27.1739 12.4111 27.1738H2.81738V9.99023H8.69629V7.99023H1.81738L1.71484 7.99512Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <a href="#" class="brand-text font-bold text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-300 hover:to-blue-500 transition-all duration-300">Py.Edia</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-sm">
+                    <a href="#" id="aboutLink" class="nav-link text-white hover:text-blue-400 flex flex-col items-center space-y-1 px-3 py-2">
+                        <span>About Us</span>
+                    </a>
+                    <a href="#" id="tutorialLink" class="nav-link text-white hover:text-blue-400 flex flex-col items-center space-y-1 px-3 py-2">
+                        <span>Tutorial</span>
+                    </a>
+                    <a href="#" id="bookmarkLink" class="nav-link text-white hover:text-blue-400 flex flex-col items-center space-y-1 px-3 py-2 relative">
+                        <span>📚 Bookmark</span>
+                        <span id="bookmarkCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="mb-12 text-center animate-slideInDown">
+            <h1 class="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 mb-4">Py.Edia</h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">Kamus Python Interaktif untuk Pembelajaran yang Lebih Efektif</p>
+        </header>
+
+        <div class="mb-8 max-w-6xl mx-auto">
+             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 feature-grid"> 
+                <button id="randomFunctionBtn" class="feature-button bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 hover:border-purple-400 p-4 rounded-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="text-2xl mb-2 group-hover:animate-bounce">🎲</div>
+                    <div class="text-sm font-medium text-purple-300">Random Function</div>
+                </button>
+                
+                <button id="codeGeneratorBtn" class="feature-button bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 hover:border-green-400 p-4 rounded-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="text-2xl mb-2 group-hover:animate-bounce">⚡</div>
+                    <div class="text-sm font-medium text-green-300">Code Generator</div>
+                </button>
+                
+                <button id="learningPathBtn" class="feature-button bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 hover:border-blue-400 p-4 rounded-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="text-2xl mb-2 group-hover:animate-bounce">🗺️</div>
+                    <div class="text-sm font-medium text-blue-300">Learning Path</div>
+                </button>
+                
+                </div>
+        </div>
+
+        <div class="mb-12 p-6 sm:p-8 gradient-card rounded-2xl shadow-2xl max-w-4xl mx-auto border border-gray-600/50 animate-fadeInUp">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <div class="flex-grow">
+                    <label for="searchBar" class="block text-sm font-semibold text-gray-300 mb-3">Cari Istilah Python:</label>
+                    <div class="search-container">
+                        <input type="text" id="searchBar" placeholder="Ketik istilah, pengertian, atau contoh..."
+                               class="search-input w-full px-4 py-4 border border-gray-600 bg-gray-800/80 text-gray-100 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 placeholder-gray-500 backdrop-blur-sm">
+                    </div>
+                </div>
+                <div class="lg:w-1/3">
+                    <label for="categoryFilter" class="block text-sm font-semibold text-gray-300 mb-3">Filter Kategori:</label>
+                    <select id="categoryFilter"
+                            class="w-full px-4 py-4 border border-gray-600 bg-gray-800/80 text-gray-100 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 backdrop-blur-sm">
+                        <option selected value="" class="bg-gray-800 text-gray-200">Pilih Kategori...</option>
+                        <option value="all" class="bg-gray-800 text-gray-200">Semua Kategori</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
+            <div class="fun-fact-card p-6 sm:p-8 rounded-2xl shadow-xl card-hover animate-fadeInUp" style="animation-delay: 0.1s">
+                <div class="flex items-center mb-4">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                    <h2 id="funfact-title-1" class="text-lg sm:text-xl font-bold text-white">Fun Fact 1</h2>
+                </div>
+                <p id="funfact-content-1" class="text-sm text-gray-300 leading-relaxed">Loading fun fact...</p>
+            </div>
+            <div class="fun-fact-card p-6 sm:p-8 rounded-2xl shadow-xl card-hover animate-fadeInUp" style="animation-delay: 0.2s">
+                <div class="flex items-center mb-4">
+                    <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                    <h2 id="funfact-title-2" class="text-lg sm:text-xl font-bold text-white">Fun Fact 2</h2>
+                </div>
+                <p id="funfact-content-2" class="text-sm text-gray-300 leading-relaxed">Loading fun fact...</p>
+            </div>
+            <div class="fun-fact-card p-6 sm:p-8 rounded-2xl shadow-xl card-hover animate-fadeInUp" style="animation-delay: 0.3s">
+                <div class="flex items-center mb-4">
+                    <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                    <h2 id="funfact-title-3" class="text-lg sm:text-xl font-bold text-white">Fun Fact 3</h2>
+                </div>
+                <p id="funfact-content-3" class="text-sm text-gray-300 leading-relaxed">Loading fun fact...</p>
+            </div>
+        </div>
+
+        <main id="hasilPencarianDiv" class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div class="col-span-full flex flex-col items-center justify-center py-16">
+                <div class="animate-pulse-custom mb-4">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-center">Memuat data kamus...</p>
+            </div>
+        </main>
+
+        <footer class="mt-16 text-center text-gray-500 text-sm border-t border-gray-700/50 pt-8">
+            <p>&copy; <span id="currentYear"></span> Py.Edia. Didukung oleh Tailwind CSS & Skulpt.</p>
+        </footer>
+    </div>
+
+    <template id="kamusItemTemplate">
+        <div class="kamus-item-card gradient-card p-6 rounded-2xl shadow-xl card-hover flex flex-col border border-gray-600/50 animate-fadeInUp">
+            <div class="flex items-start justify-between mb-4">
+                <h3 data-field="namaFungsi" class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 flex-grow">Nama Fungsi Placeholder</h3>
+                <div class="w-2 h-2 bg-blue-500 rounded-full ml-3 mt-2"></div>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3 text-xs mb-6">
+                <span data-field="kategori" class="tag text-white px-3 py-1.5 rounded-full font-medium">Kategori</span>
+                <span data-field="tingkat" class="tag-success text-white px-3 py-1.5 rounded-full font-medium">Tingkat</span>
+            </div>
+            
+            <div class="mb-4">
+                <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                    <span class="w-1 h-4 bg-blue-500 rounded mr-2"></span>
+                    Pengertian
+                </h4>
+                <p data-field="pengertian" class="text-gray-200 text-sm leading-relaxed flex-grow">Pengertian placeholder...</p>
+            </div>
+
+            <div class="more-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <div data-section="contohPenggunaan" class="mt-4" style="display: none;">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                        <span class="w-1 h-4 bg-green-500 rounded mr-2"></span>
+                        Contoh Penggunaan
+                    </h4>
+                    <pre data-field="contohPenggunaan" class="code-block text-gray-100 text-xs p-4 rounded-xl overflow-x-auto whitespace-pre-wrap max-h-60 custom-scrollbar">Contoh penggunaan...</pre>
+                </div>
+
+                <div data-section="parameter" class="mt-4" style="display: none;">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                        <span class="w-1 h-4 bg-yellow-500 rounded mr-2"></span>
+                        Parameter
+                    </h4>
+                    <ul data-field="parameter" class="list-disc list-inside text-sm text-gray-300 pl-4 space-y-2">Parameter...</ul>
+                    <p data-message="parameter-empty" class="text-sm italic text-gray-500 mt-2" style="display: none;">Tidak ada parameter khusus.</p>
+                </div>
+
+                <div data-section="nilaiKembali" class="mt-4" style="display: none;">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                        <span class="w-1 h-4 bg-purple-500 rounded mr-2"></span>
+                        Nilai Kembali
+                    </h4>
+                    <p data-field="nilaiKembali" class="text-sm text-gray-200 bg-gray-800/50 p-3 rounded-lg">Nilai kembali...</p>
+                </div>
+
+                <div data-section="catatanPenting" class="mt-4" style="display: none;">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                        <span class="w-1 h-4 bg-orange-500 rounded mr-2"></span>
+                        Catatan Penting
+                    </h4>
+                    <p data-field="catatanPenting" class="text-sm text-gray-300 italic bg-orange-500/10 p-3 rounded-lg border-l-4 border-orange-500">Catatan penting...</p>
+                </div>
+
+                <div data-section="potensiError" class="mt-4" style="display: none;">
+                    <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+                        <span class="w-1 h-4 bg-red-500 rounded mr-2"></span>
+                        Potensi Error
+                    </h4>
+                    <ul data-field="potensiError" class="list-disc list-inside text-sm text-gray-300 pl-4 space-y-2 bg-red-500/10 p-3 rounded-lg border-l-4 border-red-500">Error...</ul>
+                    <p data-message="potensiError-empty" class="text-sm italic text-gray-500 mt-2" style="display: none;">Tidak ada potensi error yang spesifik dicatat.</p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-gray-600/50 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <button data-action="openLiveCode" class="fab-button w-full text-white font-bold py-3 px-6 rounded-xl button-hover transition-all duration-300">
+                        <span class="flex items-center justify-center">
+                            <span class="mr-2">▶</span>
+                            Live Code
+                        </span>
+                    </button>
+                    <button data-action="openQuiz" class="quiz-button w-full text-white font-bold py-3 px-6 rounded-xl button-hover transition-all duration-300">
+                        <span class="flex items-center justify-center">
+                            <span class="mr-2">🧠</span>
+                            Quiz
+                        </span>
+                    </button>
+                    <button data-action="bookmark" class="bookmark-button w-full text-white font-bold py-3 px-6 rounded-xl button-hover transition-all duration-300">
+                        <span class="flex items-center justify-center">
+                            <span class="mr-2 bookmark-star">☆</span>
+                            Bookmark
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-auto pt-6">
+                <button data-action="toggleMore" class="button-hover w-full text-sm text-blue-400 hover:text-blue-300 focus:outline-none py-3 border border-blue-500/50 hover:border-blue-400 rounded-xl hover:bg-blue-500/10 transition-all duration-300 font-medium">
+                    Tampilkan Lebih Banyak
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <div id="liveCodingModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
+        <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-6xl flex flex-col border border-gray-600/50 animate-fadeIn" style="max-height: 95vh; overflow-y: auto;">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="liveCodingModalTitle" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">Live Coding</h2>
+                <button id="closeLiveCodingModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
+            </div>
+            
+            <div class="flex-grow flex flex-col lg:flex-row gap-6 overflow-y-auto">
+                <div class="w-full lg:w-1/2 flex flex-col">
+                    <label for="liveCodeEditor" class="mb-3 text-sm font-bold text-gray-300 flex items-center">
+                        <span class="w-1 h-4 bg-blue-500 rounded mr-2"></span>
+                        Kode Python (bisa diedit)
+                    </label>
+                    <textarea id="liveCodeEditor" class="w-full h-80 lg:flex-grow p-4 rounded-xl bg-gray-900/80 text-white border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono text-sm backdrop-blur-sm transition-all duration-300" spellcheck="false"></textarea>
+                </div>
+
+                <div class="w-full lg:w-1/2 flex flex-col">
+                    <label for="liveCodeOutput" class="mb-3 text-sm font-bold text-gray-300 flex items-center">
+                        <span class="w-1 h-4 bg-green-500 rounded mr-2"></span>
+                        Output
+                    </label>
+                    <pre id="liveCodeOutput" class="w-full h-80 lg:flex-grow p-4 rounded-xl bg-gray-900/80 text-gray-300 border border-gray-700 whitespace-pre-wrap break-words overflow-y-auto font-mono text-sm min-h-[200px] backdrop-blur-sm"></pre>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex justify-end">
+                <button id="runLiveCodeBtn" class="fab-button text-white font-bold py-3 px-8 rounded-xl button-hover transition-all duration-300">
+                    <span class="flex items-center">
+                        <span class="mr-2">🚀</span>
+                        Jalankan Kode
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="quizModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
+        <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-4xl quiz-modal border border-gray-600/50 animate-scaleIn">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="quizModalTitle" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Quiz Python</h2>
+                <button id="closeQuizModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
+            </div>
+
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-sm font-medium text-gray-300">Progress Quiz</span>
+                    <span id="quizProgress" class="text-sm font-medium text-purple-400">1/1</span>
+                </div>
+                <div class="quiz-progress w-full h-3 rounded-full overflow-hidden">
+                    <div id="quizProgressBar" class="progress-bar h-full gradient-quiz rounded-full" style="width: 100%"></div>
+                </div>
+            </div>
+
+            <div id="quizContent" class="space-y-6">
+                <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                    <h3 class="text-xl font-semibold text-white mb-4" id="quizQuestion">Pertanyaan akan muncul di sini...</h3>
+                </div>
+
+                <div id="quizOptions" class="space-y-3">
+                    </div>
+
+                <div id="quizExplanation" class="bg-blue-500/10 border border-blue-500/30 p-4 rounded-xl" style="display: none;">
+                    <h4 class="font-semibold text-blue-300 mb-2">💡 Penjelasan:</h4>
+                    <p class="text-gray-300" id="quizExplanationText">Penjelasan akan muncul di sini...</p>
+                </div>
+
+                <div class="flex justify-between items-center pt-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="quiz-score px-4 py-2 rounded-lg">
+                            <span class="text-white font-medium">Skor: <span id="quizScore">0</span></span>
+                        </div>
+                    </div>
+                    <button id="nextQuizBtn" class="quiz-button px-6 py-3 rounded-xl font-medium text-white transition-all duration-300" style="display: none;">
+                        Lanjut
+                    </button>
+                </div>
+            </div>
+
+            <div id="quizResults" class="text-center space-y-6" style="display: none;">
+                <div class="bg-gradient-to-r from-green-500/20 to-blue-500/20 p-8 rounded-2xl border border-green-500/30">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Quiz Selesai!</h3>
+                    <p class="text-gray-300 mb-4">Selamat! Anda telah menyelesaikan quiz ini.</p>
+                    <div class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                        Skor Akhir: <span id="finalScore">0</span>/1
+                    </div>
+                    <div class="mt-4">
+                        <div id="scoreMessage" class="text-lg text-gray-300"></div>
+                    </div>
+                </div>
+                <button id="restartQuizBtn" class="quiz-button px-8 py-3 rounded-xl font-medium text-white transition-all duration-300">
+                    Ulangi Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="bookmarkModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
+        <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-4xl border border-gray-600/50 animate-fadeIn" style="max-height: 85vh; overflow-y: auto;">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">📚 My Bookmarks</h2>
+                <button id="closeBookmarkModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
+            </div>
+            <div id="bookmarkList" class="space-y-4">
+                </div>
+            <div id="emptyBookmarks" class="text-center py-12" style="display: none;">
+                <div class="text-6xl mb-4">📖</div>
+                <h3 class="text-xl font-semibold text-gray-300 mb-2">No Bookmarks Yet</h3>
+                <p class="text-gray-400">Start bookmarking your favorite Python functions!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="codeGeneratorModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
+        <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-5xl border border-gray-600/50 animate-fadeIn" style="max-height: 90vh; overflow-y: auto;">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">⚡ Python Code Generator</h2>
+                <button id="closeCodeGeneratorModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-green-300">Select Code Template:</h3>
+                    <div class="space-y-3" id="codeTemplates">
+                        </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-green-300">Generated Code:</h3>
+                    <textarea id="generatedCode" class="w-full h-80 p-4 rounded-xl bg-gray-900/80 text-white border border-gray-700 font-mono text-sm code-preview" readonly></textarea>
+                    <button id="copyGeneratedCode" class="mt-3 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors duration-200">
+                        📋 Copy Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="learningPathModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-4">
+        <div class="modal-content gradient-card text-gray-200 p-8 rounded-2xl shadow-2xl w-full max-w-6xl border border-gray-600/50 animate-fadeIn" style="max-height: 90vh; overflow-y: auto;">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">🗺️ Python Learning Path</h2>
+                <button id="closeLearningPathModal" class="text-gray-400 hover:text-gray-200 text-3xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
+            </div>
+            
+            <div class="space-y-6" id="learningPathContent">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Add staggered animation to cards when they appear
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards when they're added to the DOM
+        const observeNewCards = () => {
+            document.querySelectorAll('.kamus-item-card').forEach(card => {
+                if (!card.hasAttribute('data-observed')) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.setAttribute('data-observed', 'true');
+                    observer.observe(card);
+                }
+            });
+        };
+
+        // Enhanced search input with real-time feedback
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchBar = document.getElementById('searchBar');
+            if (searchBar) {
+                searchBar.addEventListener('focus', () => {
+                    searchBar.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                searchBar.addEventListener('blur', () => {
+                    searchBar.parentElement.style.transform = 'scale(1)';
+                });
+            }
+        });
+    </script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
