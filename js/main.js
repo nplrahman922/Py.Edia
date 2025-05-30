@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Show initial loading state
   showLoadingState()
 
-  fetch("dictionary.json")
+  fetch("json/dictionary.json")
     .then((response) => {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
       return response.json()
@@ -712,7 +712,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-  fetch("funfact.json")
+  fetch("json/funfact.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
