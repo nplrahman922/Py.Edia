@@ -1,0 +1,59 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+.nav-link-custom {
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+.nav-link-custom::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #38bdf8; /* sky-500 */
+    transition: width 0.3s ease-in-out;
+}
+.nav-link-custom:hover::after,
+.nav-link-custom.active::after { /* Tambahkan kelas .active jika ingin menandai link aktif */
+    width: 70%;
+}
+.nav-link-custom:hover,
+.nav-link-custom.active {
+    color: #e5e7eb; /* gray-200 atau warna lain yang lebih terang */
+}
+/* Kelas untuk menyembunyikan/menampilkan menu mobile, mirip x-show */
+.menu-hidden {
+    display: none;
+}
+.menu-visible {
+    display: block; /* atau flex, tergantung layout yang diinginkan */
+}
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-bg-shift {
+    background-size: 200% 200%;
+    background-image: linear-gradient(to right, #000000, #2f2f2f, #000000); /* Hitam ke abu gelap */
+    animation: gradient-shift 6s ease infinite;
+}
+ .fade-out-bottom {
+     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+     -webkit-mask-repeat: no-repeat;
+     mask-repeat: no-repeat;
+ }
+
+
+
+
+
