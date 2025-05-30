@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const aboutLink = getEl("aboutLink")
   const mobileTutorialLink = getEl("mobileTutorialLink")
   const mobileAboutLink = getEl("mobileAboutLink")
+  const mobileBookmarkLink = getEl("mobileBookmarkLink")
 
   const hasilPencarianDiv = getEl("hasilPencarianDiv")
   const categoryFilter = getEl("categoryFilter")
@@ -23,6 +24,535 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mobile menu elements
   const mobileMenu = getEl("mobileMenu")
   const mobileMenuOverlay = getEl("mobileMenuOverlay")
+
+  // Quiz Modal Elements
+  const quizModal = getEl("quizModal")
+  const closeQuizModalBtn = getEl("closeQuizModal")
+  const quizModalTitle = getEl("quizModalTitle")
+  const quizQuestion = getEl("quizQuestion")
+  const quizOptions = getEl("quizOptions")
+  const quizExplanation = getEl("quizExplanation")
+  const quizExplanationText = getEl("quizExplanationText")
+  const quizProgress = getEl("quizProgress")
+  const quizProgressBar = getEl("quizProgressBar")
+  const quizScore = getEl("quizScore")
+  const nextQuizBtn = getEl("nextQuizBtn")
+  const quizContent = getEl("quizContent")
+  const quizResults = getEl("quizResults")
+  const finalScore = getEl("finalScore")
+  const scoreMessage = getEl("scoreMessage")
+  const restartQuizBtn = getEl("restartQuizBtn")
+
+  // Quiz state
+  let currentQuizData = null
+  let currentScore = 0
+  let hasAnswered = false
+
+// Bookmark System
+  let bookmarks = JSON.parse(localStorage.getItem("pyedia-bookmarks") || "[]")
+
+  function updateBookmarkCount() {
+     const bookmarkCountDesktop = getEl("bookmarkCount");
+     const bookmarkCountMobile = getEl("mobileBookmarkCount"); // Get the new mobile count element
+
+     const updateCountElement = (element) => {
+       if (element) {
+         if (bookmarks.length > 0) {
+           element.textContent = bookmarks.length;
+           element.style.display = "flex";
+           element.classList.add("bookmark-badge-update");
+           setTimeout(() => element.classList.remove("bookmark-badge-update"), 800);
+         } else {
+           element.style.display = "none";
+         }
+       }
+     };
+
+     updateCountElement(bookmarkCountDesktop);
+     updateCountElement(bookmarkCountMobile); // Update mobile count as well
+   }
+
+  function saveBookmarks() {
+    localStorage.setItem("pyedia-bookmarks", JSON.stringify(bookmarks))
+    updateBookmarkCount()
+  }
+
+  function addBookmark(item) {
+    const exists = bookmarks.find((b) => b.namaFungsi === item.namaFungsi)
+    if (!exists) {
+      bookmarks.push({
+        namaFungsi: item.namaFungsi,
+        kategori: item.kategori,
+        tingkat: item.tingkat,
+        pengertian: item.pengertian,
+        timestamp: new Date().toISOString(),
+      })
+      saveBookmarks()
+      showNotification("📚 Bookmark added!", "success")
+      return true
+    } else {
+      showNotification("📚 Already bookmarked!", "info")
+      return false
+    }
+  }
+
+  function removeBookmark(namaFungsi) {
+    bookmarks = bookmarks.filter((b) => b.namaFungsi !== namaFungsi)
+    saveBookmarks()
+    showNotification("🗑️ Bookmark removed!", "success")
+    displayBookmarks() // Refresh bookmark modal if open
+    return true
+  }
+
+  function isBookmarked(namaFungsi) {
+    return bookmarks.some((b) => b.namaFungsi === namaFungsi)
+  }
+
+  function displayBookmarks() {
+    const bookmarkList = getEl("bookmarkList")
+    const emptyBookmarks = getEl("emptyBookmarks")
+
+    if (!bookmarkList || !emptyBookmarks) return
+
+    if (bookmarks.length === 0) {
+      bookmarkList.style.display = "none"
+      emptyBookmarks.style.display = "block"
+      return
+    }
+
+    bookmarkList.style.display = "block"
+    emptyBookmarks.style.display = "none"
+
+    setElementHTML(bookmarkList, "")
+
+    bookmarks.forEach((bookmark) => {
+      const bookmarkItem = document.createElement("div")
+      bookmarkItem.className =
+        "bg-gray-800/50 p-4 rounded-xl border border-gray-600/50 hover:border-yellow-500/50 transition-all duration-300"
+      bookmarkItem.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div class="flex-grow">
+              <h4 class="text-lg font-semibold text-yellow-400 mb-2">${bookmark.namaFungsi}</h4>
+              <div class="flex gap-2 mb-2">
+                <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded">${bookmark.kategori}</span>
+                <span class="text-xs bg-green-500/20 text-green-300 px-2 py-1 rounded">${bookmark.tingkat}</span>
+              </div>
+              <p class="text-gray-300 text-sm">${bookmark.pengertian.substring(0, 150)}...</p>
+              <p class="text-xs text-gray-500 mt-2">Saved: ${new Date(bookmark.timestamp).toLocaleDateString()}</p>
+            </div>
+            <div class="flex gap-2 ml-4">
+              <button onclick="searchAndShow('${bookmark.namaFungsi}')" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200">
+                View
+              </button>
+              <button onclick="removeBookmark('${bookmark.namaFungsi}')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200">
+                Remove
+              </button>
+            </div>
+          </div>
+        `
+      bookmarkList.appendChild(bookmarkItem)
+    })
+  }
+
+  // Make functions global for onclick handlers
+  window.removeBookmark = removeBookmark
+  window.searchAndShow = (namaFungsi) => {
+    if (searchBar) {
+      searchBar.value = namaFungsi
+      filterAndDisplay()
+      toggleModal(getEl("bookmarkModal"), false)
+    }
+  }
+
+  // Notification System
+  function showNotification(message, type = "info") {
+    const notification = document.createElement("div")
+    const colors = {
+      success: "bg-green-500",
+      error: "bg-red-500",
+      info: "bg-blue-500",
+      warning: "bg-yellow-500",
+    }
+
+    notification.className = `fixed top-4 right-4 ${colors[type]} text-white px-6 py-3 rounded-lg shadow-lg z-[70] transform translate-x-full transition-transform duration-300 notification-enter`
+    notification.textContent = message
+
+    document.body.appendChild(notification)
+
+    setTimeout(() => {
+      notification.style.transform = "translateX(0)"
+    }, 100)
+
+    setTimeout(() => {
+      notification.classList.add("notification-exit")
+      notification.style.transform = "translateX(100%)"
+      setTimeout(() => notification.remove(), 300)
+    }, 3000)
+  }
+
+  // Random Function Feature
+  function showRandomFunction() {
+    if (kamusData.length === 0) {
+      showNotification("⚠️ No data available!", "warning")
+      return
+    }
+
+    const randomItem = kamusData[Math.floor(Math.random() * kamusData.length)]
+    if (searchBar) {
+      searchBar.value = randomItem.namaFungsi
+      filterAndDisplay()
+      showNotification(`🎲 Random function: ${randomItem.namaFungsi}`, "info")
+    }
+  }
+
+  // Code Generator Templates
+  const codeTemplates = [
+    {
+      name: "Basic Function",
+      description: "Create a simple function template",
+      code: `def my_function(parameter1, parameter2):
+      """
+      Description of what this function does.
+      
+      Args:
+          parameter1: Description of parameter1
+          parameter2: Description of parameter2
+      
+      Returns:
+          Description of return value
+      """
+      # Your code here
+      result = parameter1 + parameter2
+      return result
+
+  # Example usage
+  result = my_function(5, 3)
+  print(f"Result: {result}")`,
+    },
+    {
+      name: "Class Template",
+      description: "Create a basic class structure",
+      code: `class MyClass:
+      """A sample class template."""
+      
+      def __init__(self, name):
+          """Initialize the class."""
+          self.name = name
+          self.data = []
+      
+      def add_item(self, item):
+          """Add an item to the data list."""
+          self.data.append(item)
+          print(f"Added {item} to {self.name}")
+      
+      def get_items(self):
+          """Return all items."""
+          return self.data
+      
+      def __str__(self):
+          """String representation of the class."""
+          return f"MyClass(name='{self.name}', items={len(self.data)})"
+
+  # Example usage
+  my_object = MyClass("Example")
+  my_object.add_item("item1")
+  my_object.add_item("item2")
+  print(my_object)`,
+    },
+    {
+      name: "File Handler",
+      description: "Template for file operations",
+      code: `def read_file(filename):
+      """Read content from a file."""
+      try:
+          with open(filename, 'r', encoding='utf-8') as file:
+              content = file.read()
+          return content
+      except FileNotFoundError:
+          print(f"File {filename} not found!")
+          return None
+      except Exception as e:
+          print(f"Error reading file: {e}")
+          return None
+
+  def write_file(filename, content):
+      """Write content to a file."""
+      try:
+          with open(filename, 'w', encoding='utf-8') as file:
+              file.write(content)
+          print(f"Successfully wrote to {filename}")
+          return True
+      except Exception as e:
+          print(f"Error writing file: {e}")
+          return False
+
+  # Example usage
+  content = "Hello, Python!"
+  write_file("example.txt", content)
+  read_content = read_file("example.txt")
+  print(read_content)`,
+    },
+    {
+      name: "API Request",
+      description: "Template for making API requests",
+      code: `import requests
+  import json
+
+  def make_api_request(url, method='GET', data=None, headers=None):
+      """
+      Make an API request.
+      
+      Args:
+          url: The API endpoint URL
+          method: HTTP method (GET, POST, PUT, DELETE)
+          data: Data to send with the request
+          headers: HTTP headers
+      
+      Returns:
+          Response data or None if error
+      """
+      try:
+          if headers is None:
+              headers = {'Content-Type': 'application/json'}
+          
+          if method.upper() == 'GET':
+              response = requests.get(url, headers=headers)
+          elif method.upper() == 'POST':
+              response = requests.post(url, json=data, headers=headers)
+          elif method.upper() == 'PUT':
+              response = requests.put(url, json=data, headers=headers)
+          elif method.upper() == 'DELETE':
+              response = requests.delete(url, headers=headers)
+          
+          response.raise_for_status()
+          return response.json()
+          
+      except requests.exceptions.RequestException as e:
+          print(f"API request failed: {e}")
+          return None
+
+  # Example usage
+  # data = make_api_request('https://api.example.com/data')
+  # print(data)`,
+    },
+    {
+      name: "Data Processing",
+      description: "Template for data analysis",
+      code: `def analyze_data(data_list):
+      """
+      Analyze a list of numbers.
+      
+      Args:
+          data_list: List of numbers
+      
+      Returns:
+          Dictionary with analysis results
+      """
+      if not data_list:
+          return {"error": "Empty data list"}
+      
+      analysis = {
+          "count": len(data_list),
+          "sum": sum(data_list),
+          "average": sum(data_list) / len(data_list),
+          "min": min(data_list),
+          "max": max(data_list),
+          "range": max(data_list) - min(data_list)
+      }
+      
+      # Calculate median
+      sorted_data = sorted(data_list)
+      n = len(sorted_data)
+      if n % 2 == 0:
+          analysis["median"] = (sorted_data[n//2-1] + sorted_data[n//2]) / 2
+      else:
+          analysis["median"] = sorted_data[n//2]
+      
+      return analysis
+
+  # Example usage
+  numbers = [1, 5, 3, 9, 2, 7, 4, 6, 8]
+  result = analyze_data(numbers)
+  for key, value in result.items():
+      print(f"{key}: {value}")`,
+    },
+  ]
+
+  function displayCodeTemplates() {
+    const templatesContainer = getEl("codeTemplates")
+    if (!templatesContainer) return
+
+    setElementHTML(templatesContainer, "")
+
+    codeTemplates.forEach((template, index) => {
+      const templateItem = document.createElement("div")
+      templateItem.className =
+        "template-item bg-gray-800/50 p-4 rounded-lg border border-gray-600/50 hover:border-green-500/50 cursor-pointer transition-all duration-300"
+      templateItem.innerHTML = `
+          <h4 class="font-semibold text-green-300 mb-2">${template.name}</h4>
+          <p class="text-gray-400 text-sm">${template.description}</p>
+        `
+
+      templateItem.addEventListener("click", () => {
+        const generatedCode = getEl("generatedCode")
+        if (generatedCode) {
+          generatedCode.value = template.code
+        }
+
+        // Highlight selected template
+        templatesContainer.querySelectorAll(".template-item").forEach((item) => {
+          item.classList.remove("border-green-500", "bg-green-500/10", "selected")
+          item.classList.add("border-gray-600/50")
+        })
+        templateItem.classList.add("border-green-500", "bg-green-500/10", "selected")
+      })
+
+      templatesContainer.appendChild(templateItem)
+    })
+  }
+
+  // Learning Path Data
+  const learningPath = [
+    {
+      level: "Beginner",
+      color: "green",
+      topics: [
+        { name: "Python Syntax", functions: ["print()", "input()", "Python Comments"] },
+        { name: "Variables & Data Types", functions: ["Python Variables", "Python Data Types", "Python Numbers"] },
+        { name: "Basic Operations", functions: ["Python Operators", "Python Casting"] },
+        { name: "Strings", functions: ["Python Strings", "Python String Formatting"] },
+      ],
+    },
+    {
+      level: "Intermediate",
+      color: "blue",
+      topics: [
+        { name: "Data Structures", functions: ["Python Lists", "Python Tuples", "Python Sets", "Python Dictionaries"] },
+        { name: "Control Flow", functions: ["Python If...Else", "Python While Loops", "Python For Loops"] },
+        { name: "Functions", functions: ["Python Functions", "Python Lambda", "Python Scope"] },
+        { name: "Built-in Functions", functions: ["len()", "type()", "range()", "sorted()"] },
+      ],
+    },
+    {
+      level: "Advanced",
+      color: "purple",
+      topics: [
+        { name: "Object-Oriented Programming", functions: ["class", "def", "__init__"] },
+        { name: "Error Handling", functions: ["try", "except", "finally", "raise"] },
+        { name: "Advanced Features", functions: ["Python Match", "async", "await", "yield"] },
+        { name: "File Operations", functions: ["open()", "with", "File Handling"] },
+      ],
+    },
+  ]
+
+  function displayLearningPath() {
+    const pathContent = getEl("learningPathContent")
+    if (!pathContent) return
+
+    setElementHTML(pathContent, "")
+
+    learningPath.forEach((level, levelIndex) => {
+      const levelDiv = document.createElement("div")
+      levelDiv.className = `learning-step bg-${level.color}-500/10 border border-${level.color}-500/30 rounded-xl p-6`
+
+      let topicsHTML = ""
+      level.topics.forEach((topic, topicIndex) => {
+        const functionsHTML = topic.functions
+          .map(
+            (func) =>
+              `<span class="bg-gray-700/50 text-gray-300 px-2 py-1 rounded text-xs cursor-pointer hover:bg-${level.color}-500/20 transition-colors duration-200" onclick="searchAndShow('${func}')">${func}</span>`,
+          )
+          .join(" ")
+
+        topicsHTML += `
+            <div class="mb-4">
+              <h4 class="font-semibold text-${level.color}-300 mb-2">${topic.name}</h4>
+              <div class="flex flex-wrap gap-2">${functionsHTML}</div>
+            </div>
+          `
+      })
+
+      levelDiv.innerHTML = `
+          <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-${level.color}-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
+              ${levelIndex + 1}
+            </div>
+            <h3 class="text-xl font-bold text-${level.color}-400">${level.level}</h3>
+          </div>
+          ${topicsHTML}
+        `
+
+      pathContent.appendChild(levelDiv)
+    })
+  }
+
+  // Event Listeners for New Features
+  const bookmarkLink = getEl("bookmarkLink")
+  const randomFunctionBtn = getEl("randomFunctionBtn")
+  const codeGeneratorBtn = getEl("codeGeneratorBtn")
+  const learningPathBtn = getEl("learningPathBtn")
+
+  if (bookmarkLink) {
+    bookmarkLink.addEventListener("click", (e) => {
+      e.preventDefault()
+      displayBookmarks()
+      toggleModal(getEl("bookmarkModal"), true)
+    })
+  }
+
+  if (randomFunctionBtn) {
+    randomFunctionBtn.addEventListener("click", showRandomFunction)
+  }
+
+  if (codeGeneratorBtn) {
+    codeGeneratorBtn.addEventListener("click", () => {
+      displayCodeTemplates()
+      toggleModal(getEl("codeGeneratorModal"), true)
+    })
+  }
+
+  if (learningPathBtn) {
+    learningPathBtn.addEventListener("click", () => {
+      displayLearningPath()
+      toggleModal(getEl("learningPathModal"), true)
+    })
+  }
+
+  // Copy code functionality
+  const copyGeneratedCode = getEl("copyGeneratedCode")
+  if (copyGeneratedCode) {
+    copyGeneratedCode.addEventListener("click", () => {
+      const generatedCode = getEl("generatedCode")
+      if (generatedCode && generatedCode.value) {
+        navigator.clipboard
+          .writeText(generatedCode.value)
+          .then(() => {
+            showNotification("📋 Code copied to clipboard!", "success")
+          })
+          .catch(() => {
+            showNotification("❌ Failed to copy code!", "error")
+          })
+      }
+    })
+  }
+
+  // Close modal event listeners
+  const closeBookmarkModal = getEl("closeBookmarkModal")
+  const closeCodeGeneratorModal = getEl("closeCodeGeneratorModal")
+  const closeLearningPathModal = getEl("closeLearningPathModal")
+
+  if (closeBookmarkModal) {
+    closeBookmarkModal.addEventListener("click", () => toggleModal(getEl("bookmarkModal"), false))
+  }
+
+  if (closeCodeGeneratorModal) {
+    closeCodeGeneratorModal.addEventListener("click", () => toggleModal(getEl("codeGeneratorModal"), false))
+  }
+
+  if (closeLearningPathModal) {
+    closeLearningPathModal.addEventListener("click", () => toggleModal(getEl("learningPathModal"), false))
+  }
+
 
   // Function to close mobile menu
   function closeMobileMenu() {
@@ -89,8 +619,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <ul class="space-y-2 text-sm">
                     <li>🔍 Pencarian cerdas dan filter kategori</li>
                     <li>💻 Live coding dengan Skulpt</li>
-                    <li>📚 Database lengkap fungsi Python</li>
-                    <li>🎯 Contoh penggunaan yang praktis</li>
+                    <li>🧠 Quiz interaktif untuk setiap topik</li>
+                    <li>📚 Sistem bookmark untuk fungsi favorit</li>
+                    <li>⚡ Code generator dengan template siap pakai</li>
+                    <li>🗺️ Learning path terstruktur</li>
+                    <li>🎲 Random function explorer</li>
                 </ul>
             </div>
         </div>
@@ -133,25 +666,51 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             
             <div class="bg-gradient-to-r from-orange-500/20 to-red-500/20 p-6 rounded-xl border border-orange-500/30">
-                <h3 class="text-xl font-bold text-orange-400 mb-4">📖 Memahami Konten</h3>
+                <h3 class="text-xl font-bold text-orange-400 mb-4">🧠 Quiz Interaktif</h3>
+                <div class="space-y-3">
+                    <p><strong class="text-orange-300">Fitur Baru:</strong> Uji pemahaman Anda dengan quiz!</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-300 pl-4">
+                        <li>Klik tombol "Quiz" untuk memulai</li>
+                        <li>Jawab pertanyaan multiple choice</li>
+                        <li>Dapatkan penjelasan untuk setiap jawaban</li>
+                        <li>Lihat skor dan tingkatkan pemahaman</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 p-6 rounded-xl border border-yellow-500/30">
+                <h3 class="text-xl font-bold text-yellow-400 mb-4">📚 Bookmark System</h3>
+                <div class="space-y-3">
+                    <p><strong class="text-yellow-300">Fitur Terbaru:</strong> Simpan fungsi favorit Anda!</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-300 pl-4">
+                        <li>Klik tombol "Bookmark" pada fungsi yang ingin disimpan</li>
+                        <li>Akses bookmark melalui menu navigasi</li>
+                        <li>Kelola dan hapus bookmark sesuai kebutuhan</li>
+                        <li>Data tersimpan secara lokal di browser</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-500/30">
+                <h3 class="text-xl font-bold text-cyan-400 mb-4">📖 Memahami Konten</h3>
                 <div class="grid md:grid-cols-3 gap-4 text-sm">
                     <div>
-                        <h4 class="font-semibold text-orange-300 mb-2">📝 Pengertian</h4>
+                        <h4 class="font-semibold text-cyan-300 mb-2">📝 Pengertian</h4>
                         <p class="text-gray-300">Penjelasan lengkap tentang fungsi atau konsep</p>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-orange-300 mb-2">⚙️ Parameter</h4>
+                        <h4 class="font-semibold text-cyan-300 mb-2">⚙️ Parameter</h4>
                         <p class="text-gray-300">Detail parameter yang diperlukan</p>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-orange-300 mb-2">⚠️ Error</h4>
+                        <h4 class="font-semibold text-cyan-300 mb-2">⚠️ Error</h4>
                         <p class="text-gray-300">Potensi kesalahan yang mungkin terjadi</p>
                     </div>
                 </div>
             </div>
             
             <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-blue-500">
-                <p class="text-center"><strong class="text-blue-400">💡 Tips:</strong> Gunakan kombinasi pencarian dan filter untuk hasil yang lebih spesifik. Jangan ragu untuk bereksperimen dengan Live Coding!</p>
+                <p class="text-center"><strong class="text-blue-400">💡 Tips:</strong> Gunakan kombinasi pencarian, filter, live coding, quiz, dan bookmark untuk pembelajaran yang maksimal!</p>
             </div>
         </div>
     `
@@ -169,12 +728,22 @@ document.addEventListener("DOMContentLoaded", () => {
     createModal("tutorialModal", "Tutorial Penggunaan", tutorialContent)
   }
 
+  function handleBookmarkClick(e) {
+    e.preventDefault();
+    closeMobileMenu();
+    displayBookmarks();
+    toggleModal(getEl("bookmarkModal"), true);
+}
+
   // Attach event listeners to both desktop and mobile links
   if (aboutLink) {
     aboutLink.addEventListener("click", handleAboutClick)
   }
   if (mobileAboutLink) {
     mobileAboutLink.addEventListener("click", handleAboutClick)
+  }
+  if (mobileBookmarkLink) {
+    mobileBookmarkLink.addEventListener("click", handleBookmarkClick)
   }
   if (tutorialLink) {
     tutorialLink.addEventListener("click", handleTutorialClick)
@@ -194,6 +763,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (liveCodingModal) {
     toggleModal(liveCodingModal, false)
+  }
+
+  if (quizModal) {
+    toggleModal(quizModal, false)
   }
 
   function setElementText(element, text, defaultValue = "N/A") {
@@ -334,8 +907,7 @@ document.addEventListener("DOMContentLoaded", () => {
           !searchTerm ||
           (item.namaFungsi && item.namaFungsi.toLowerCase().includes(searchTerm)) ||
           (item.kategori && item.kategori.toLowerCase().includes(searchTerm)) ||
-          (item.tingkat && item.tingkat.toLowerCase().includes(searchTerm)) ||
-          (item.pengertian && item.pengertian.toLowerCase().includes(searchTerm))
+          (item.tingkat && item.tingkat.toLowerCase().includes(searchTerm))
         if (!termMatch) return false
         return (
           selectedCategoryValue === "" || selectedCategoryValue === "all" || item.kategori === selectedCategoryValue
@@ -505,10 +1077,183 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
+      const quizButton = queryEl(cardClone, '[data-action="openQuiz"]')
+      if (quizButton) {
+        const hasQuiz = item.quiz && item.quiz.pertanyaan
+        toggleElementDisplay(quizButton, hasQuiz)
+        if (hasQuiz) {
+          quizButton.addEventListener("click", () => {
+            openQuizModal(item.namaFungsi, item.quiz)
+          })
+        }
+      }
+
+      const bookmarkButton = queryEl(cardClone, '[data-action="bookmark"]');
+      if (bookmarkButton) {
+        const bookmarkStar = queryEl(bookmarkButton, ".bookmark-star");
+        const bookmarkText = queryEl(bookmarkButton, ".bookmark-text");
+
+        function updateButtonAppearance(isBookmarkedState) {
+          if (isBookmarkedState) {
+            bookmarkButton.classList.remove("bg-gray-600", "hover:bg-gray-500");
+            bookmarkButton.classList.remove("bg-gradient-to-r", "from-gray-600", "to-gray-700");
+            bookmarkButton.classList.add("bg-yellow-500", "hover:bg-yellow-600");
+
+            if (bookmarkStar) bookmarkStar.textContent = "⭐";
+            if (bookmarkText) bookmarkText.textContent = "Bookmarked";
+          } else {
+            bookmarkButton.classList.remove("bg-yellow-500", "hover:bg-yellow-600");
+            bookmarkButton.classList.add("bg-gray-600", "hover:bg-gray-500");
+            if (bookmarkStar) bookmarkStar.textContent = "☆";
+            if (bookmarkText) bookmarkText.textContent = "Bookmark";
+          }
+        }
+
+        updateButtonAppearance(isBookmarked(item.namaFungsi));
+
+        bookmarkButton.addEventListener("click", () => {
+          const currentlyBookmarked = isBookmarked(item.namaFungsi);
+          
+          if (currentlyBookmarked) {
+            removeBookmark(item.namaFungsi);
+            updateButtonAppearance(false);
+          } else {
+            addBookmark(item);
+            updateButtonAppearance(true);
+          }
+        });
+      }
+
+
       containerDiv.appendChild(cardClone)
     })
 
     hasilPencarianDiv.appendChild(containerDiv)
+  }
+
+  function openQuizModal(namaFungsi, quizData) {
+    if (!quizModal || !quizData) return
+
+    currentQuizData = quizData
+    currentScore = 0
+    hasAnswered = false
+
+    setElementText(quizModalTitle, `Quiz: ${namaFungsi}`)
+    setElementText(quizProgress, "1/1")
+    setElementText(quizScore, "0")
+
+    if (quizProgressBar) {
+      quizProgressBar.style.width = "100%"
+    }
+
+    toggleElementDisplay(quizContent, true)
+    toggleElementDisplay(quizResults, false)
+    loadQuizQuestion(quizData)
+    toggleModal(quizModal, true)
+  }
+
+  function loadQuizQuestion(quizData) {
+    if (!quizData || !quizQuestion || !quizOptions) return
+
+    setElementText(quizQuestion, quizData.pertanyaan)
+    setElementHTML(quizOptions, "")
+
+    quizData.pilihan.forEach((pilihan, index) => {
+      const optionDiv = document.createElement("div")
+      optionDiv.className =
+        "quiz-option bg-gray-800/50 hover:bg-gray-700/50 border border-gray-600/50 hover:border-blue-500/50 p-4 rounded-xl cursor-pointer transition-all duration-300"
+      optionDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-full border-2 border-gray-500 flex items-center justify-center text-sm font-bold">
+            ${String.fromCharCode(65 + index)}
+          </div>
+          <span class="text-gray-200">${pilihan}</span>
+        </div>
+      `
+      optionDiv.addEventListener("click", () => {
+        if (!hasAnswered) {
+          selectQuizOption(index, optionDiv)
+        }
+      })
+      quizOptions.appendChild(optionDiv)
+    })
+
+    toggleElementDisplay(quizExplanation, false)
+    toggleElementDisplay(nextQuizBtn, false)
+    hasAnswered = false
+  }
+
+  function selectQuizOption(selectedIndex, selectedElement) {
+    if (hasAnswered) return
+    hasAnswered = true
+    const isCorrect = selectedIndex === currentQuizData.jawabanBenar
+
+    if (isCorrect) {
+      currentScore = 1
+      setElementText(quizScore, currentScore.toString())
+    }
+
+    const allOptions = quizOptions.querySelectorAll(".quiz-option")
+    allOptions.forEach((option, index) => {
+      option.classList.add("disabled")
+      if (index === currentQuizData.jawabanBenar) {
+        option.classList.add("correct")
+        option.style.background = "linear-gradient(135deg, #10b981 0%, #059669 100%)"
+        option.style.borderColor = "#10b981"
+      } else if (index === selectedIndex && !isCorrect) {
+        option.classList.add("incorrect")
+        option.style.background = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)"
+        option.style.borderColor = "#ef4444"
+      }
+    })
+
+    if (currentQuizData.penjelasan) {
+      setElementText(quizExplanationText, currentQuizData.penjelasan)
+      toggleElementDisplay(quizExplanation, true)
+    }
+
+    setTimeout(() => {
+      showQuizResults()
+    }, 2000)
+  }
+
+  function showQuizResults() {
+    toggleElementDisplay(quizContent, false)
+    toggleElementDisplay(quizResults, true)
+    setElementText(finalScore, `${currentScore}`)
+    let message = ""
+    if (currentScore === 1) {
+      message = "🎉 Sempurna! Anda benar-benar memahami konsep ini!"
+    } else {
+      message = "💪 Jangan menyerah! Coba pelajari lagi dan ulangi quiz."
+    }
+    setElementText(scoreMessage, message)
+  }
+
+  function closeQuizModal() {
+    if (quizModal) {
+      toggleModal(quizModal, false)
+      currentQuizData = null
+      currentScore = 0
+      hasAnswered = false
+    }
+  }
+
+  if (closeQuizModalBtn) {
+    closeQuizModalBtn.addEventListener("click", closeQuizModal)
+  }
+
+  if (restartQuizBtn) {
+    restartQuizBtn.addEventListener("click", () => {
+      if (currentQuizData) {
+        currentScore = 0
+        hasAnswered = false
+        setElementText(quizScore, "0")
+        toggleElementDisplay(quizContent, true)
+        toggleElementDisplay(quizResults, false)
+        loadQuizQuestion(currentQuizData)
+      }
+    })
   }
 
   function typePythonOutputChunkAnimated(textChunk, outputDivElement, onFinishedCallback) {

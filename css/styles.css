@@ -82,12 +82,27 @@
     100% { background-position: calc(200px + 100%) 0; }
 }
 
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 .animate-fadeInUp {
     animation: fadeInUp 0.6s ease-out;
 }
 
 .animate-fadeIn {
     animation: fadeIn 0.4s ease-out;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.3s ease-out;
 }
 
 .animate-slideInDown {
@@ -429,6 +444,200 @@
 .fab-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+}
+
+.modal-enter {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal-exit {
+  animation: modalFadeOut 0.3s ease-in;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Quiz button style */
+.quiz-button {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s ease;
+}
+.quiz-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+}
+
+/* Bookmark button style */
+.bookmark-button {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    transition: all 0.3s ease;
+}
+.bookmark-button:hover {
+    background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+}
+
+/* Feature button styles */
+ .feature-button {
+     position: relative;
+     overflow: hidden;
+     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+ .feature-button::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: -100%;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+     transition: left 0.5s;
+}
+ .feature-button:hover::before {
+     left: 100%;
+}
+ /* Bookmark animations */
+ @keyframes starPulse {
+     0%, 100% { transform: scale(1); }
+     50% { transform: scale(1.2); }
+}
+ .bookmark-star:hover {
+     animation: starPulse 0.6s ease-in-out;
+}
+ @keyframes badgeBounce {
+     0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0) scale(1); }
+     40%, 43% { transform: translate3d(0, -8px, 0) scale(1.1); }
+     70% { transform: translate3d(0, -4px, 0) scale(1.05); }
+     90% { transform: translate3d(0, -2px, 0) scale(1.02); }
+}
+ .bookmark-badge-update {
+     animation: badgeBounce 0.8s ease-in-out;
+}
+ /* Template selection */
+ .template-item {
+     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+ .template-item:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+ .template-item.selected {
+     transform: scale(1.02);
+     box-shadow: 0 12px 30px rgba(16, 185, 129, 0.25);
+}
+ Learning path
+ .learning-step {
+     position: relative;
+}
+ .learning-step::after {
+     content: '';
+     position: absolute;
+     top: 50%;
+     right: -20px;
+     width: 0;
+     height: 0;
+     border-left: 10px solid currentColor;
+     border-top: 8px solid transparent;
+     border-bottom: 8px solid transparent;
+     transform: translateY(-50%);
+}
+ .learning-step:last-child::after {
+     display: none;
+}
+ /* Notifications */
+ .notification-enter {
+     animation: slideInRight 0.3s ease-out;
+}
+ .notification-exit {
+     animation: slideOutRight 0.3s ease-in;
+}
+ @keyframes slideOutRight {
+     from {
+         opacity: 1;
+         transform: translateX(0);
+     }
+     to {
+         opacity: 0;
+         transform: translateX(100%);
+     }
+ }
+
+/* Quiz specific animations */
+
+.quiz-modal {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.quiz-progress {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+.quiz-score {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.quiz-option {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quiz-option:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+}
+
+.quiz-option.correct {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  animation: bounce 0.6s ease-in-out;
+}
+
+.quiz-option.incorrect {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  animation: shake 0.5s ease-in-out;
+}
+
+.quiz-option.disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
 }
 
 /* Improved tags */
