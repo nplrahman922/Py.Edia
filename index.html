@@ -137,23 +137,29 @@
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
         }
 
-        /* Search bar enhancements */
+        /* Enhanced search bar */
         .search-container {
             position: relative;
         }
 
-        .search-container::before {
-            content: '🔍';
+        .search-icon {
             position: absolute;
-            left: 12px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
-            opacity: 0.6;
+            color: #9ca3af;
+            font-size: 18px;
+            pointer-events: none;
+            transition: color 0.3s ease;
         }
 
         .search-input {
-            padding-left: 40px;
+            padding-left: 48px !important;
+        }
+
+        .search-container:focus-within .search-icon {
+            color: #3b82f6;
         }
 
         /* Loading skeleton */
@@ -289,6 +295,53 @@
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
+
+        /* Enhanced expand/collapse animations */
+        .more-content {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .more-content.expanded {
+            max-height: 2000px !important;
+            opacity: 1 !important;
+        }
+
+        .more-content.collapsed {
+            max-height: 0 !important;
+            opacity: 0 !important;
+        }
+
+        /* Toggle button icon rotation */
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Single column layout for enhanced readability */
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 4xl;
+            margin: 0 auto;
+        }
+
+        .kamus-item-card {
+            width: 100%;
+            max-width: none;
+        }
+
+        /* Remove the old grid styles */
+        .results-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 4xl;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body class="gradient-bg font-sans text-gray-200 min-h-screen">
@@ -297,15 +350,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center flex-shrink-0">
-    <div class="logo-container">
-        <svg width="28" height="24" viewBox="0 0 38 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
-            <path d="M17.5457 3.59675L18.9058 3.60252M15.4974 5.51187L15.511 2.30558C15.514 1.59727 16.1254 1.02565 16.8766 1.02884L22.3169 1.0519C23.0681 1.05509 23.6745 1.63187 23.6715 2.34019L23.6443 8.75276C23.6413 9.46107 23.03 10.0327 22.2788 10.0295L16.8385 10.0064C16.0873 10.0033 15.476 10.5749 15.473 11.2832L15.4458 17.6958C15.4428 18.4041 16.0493 18.9809 16.8004 18.984L22.2408 19.0071C22.9919 19.0103 23.6033 18.4387 23.6063 17.7304L23.6199 14.5241M20.255 6.17331L11.4145 6.13583C10.6633 6.13264 10.052 6.70427 10.049 7.41258L10.0218 13.8252C10.0188 14.5335 10.6253 15.1102 11.3764 15.1134L15.4567 15.1307M18.8623 13.8626L27.7028 13.9001C28.454 13.9033 29.0654 13.3317 29.0684 12.6234L29.0955 6.2108C29.0986 5.50249 28.4921 4.9257 27.7409 4.92252L23.6607 4.90522M20.2115 16.4334L21.5716 16.4392" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M37.0547 7.99512C37.559 8.04627 37.9521 8.47243 37.9521 8.99023V28.1738C37.9518 28.7259 37.5042 29.1738 36.9521 29.1738H26.3584C25.3704 29.1739 24.4489 29.5065 23.793 30.0605C23.1423 30.6105 22.8175 31.3172 22.8174 32.0098L22.8125 32.1123C22.7612 32.6165 22.3351 33.0098 21.8174 33.0098C21.2999 33.0095 20.8735 32.6164 20.8223 32.1123L20.8174 32.0098V20.8711H22.8174V28.2881C23.8199 27.5619 25.0765 27.1739 26.3584 27.1738H35.9521V9.99023H30.0732V7.99023H36.9521L37.0547 7.99512Z" fill="currentColor"/>
-            <path d="M1.71484 7.99512C1.21053 8.04627 0.817383 8.47243 0.817383 8.99023V28.1738C0.817686 28.7259 1.26529 29.1738 1.81738 29.1738H12.4111C13.3991 29.1739 14.3207 29.5065 14.9766 30.0605C15.6272 30.6105 15.9521 31.3172 15.9521 32.0098L15.957 32.1123C16.0083 32.6165 16.4344 33.0098 16.9521 33.0098C17.4697 33.0095 17.896 32.6164 17.9473 32.1123L17.9521 32.0098V20.8711H15.9521V28.2881C14.9497 27.5619 13.693 27.1739 12.4111 27.1738H2.81738V9.99023H8.69629V7.99023H1.81738L1.71484 7.99512Z" fill="currentColor"/>
-        </svg>
-    </div>
-    <a href="#" class="font-bold text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-300 hover:to-blue-500 transition-all duration-300">Py.Edia</a>
-</div>
+                    <div class="logo-container">
+                        <svg width="28" height="24" viewBox="0 0 38 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <path d="M17.5457 3.59675L18.9058 3.60252M15.4974 5.51187L15.511 2.30558C15.514 1.59727 16.1254 1.02565 16.8766 1.02884L22.3169 1.0519C23.0681 1.05509 23.6745 1.63187 23.6715 2.34019L23.6443 8.75276C23.6413 9.46107 23.03 10.0327 22.2788 10.0295L16.8385 10.0064C16.0873 10.0033 15.476 10.5749 15.473 11.2832L15.4458 17.6958C15.4428 18.4041 16.0493 18.9809 16.8004 18.984L22.2408 19.0071C22.9919 19.0103 23.6033 18.4387 23.6063 17.7304L23.6199 14.5241M20.255 6.17331L11.4145 6.13583C10.6633 6.13264 10.052 6.70427 10.049 7.41258L10.0218 13.8252C10.0188 14.5335 10.6253 15.1102 11.3764 15.1134L15.4567 15.1307M18.8623 13.8626L27.7028 13.9001C28.454 13.9033 29.0654 13.3317 29.0684 12.6234L29.0955 6.2108C29.0986 5.50249 28.4921 4.9257 27.7409 4.92252L23.6607 4.90522M20.2115 16.4334L21.5716 16.4392" stroke="currentColor" stroke-width="1.2"/>
+                            <path d="M37.0547 7.99512C37.559 8.04627 37.9521 8.47243 37.9521 8.99023V28.1738C37.9518 28.7259 37.5042 29.1738 36.9521 29.1738H26.3584C25.3704 29.1739 24.4489 29.5065 23.793 30.0605C23.1423 30.6105 22.8175 31.3172 22.8174 32.0098L22.8125 32.1123C22.7612 32.6165 22.3351 33.0098 21.8174 33.0098C21.2999 33.0095 20.8735 32.6164 20.8223 32.1123L20.8174 32.0098V20.8711H22.8174V28.2881C23.8199 27.5619 25.0765 27.1739 26.3584 27.1738H35.9521V9.99023H30.0732V7.99023H36.9521L37.0547 7.99512Z" fill="currentColor"/>
+                            <path d="M1.71484 7.99512C1.21053 8.04627 0.817383 8.47243 0.817383 8.99023V28.1738C0.817686 28.7259 1.26529 29.1738 1.81738 29.1738H12.4111C13.3991 29.1739 14.3207 29.5065 14.9766 30.0605C15.6272 30.6105 15.9521 31.3172 15.9521 32.0098L15.957 32.1123C16.0083 32.6165 16.4344 33.0098 16.9521 33.0098C17.4697 33.0095 17.896 32.6164 17.9473 32.1123L17.9521 32.0098V20.8711H15.9521V28.2881C14.9497 27.5619 13.693 27.1739 12.4111 27.1738H2.81738V9.99023H8.69629V7.99023H1.81738L1.71484 7.99512Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <a href="#" class="font-bold text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-300 hover:to-blue-500 transition-all duration-300">Py.Edia</a>
+                </div>
                 <div class="hidden md:flex items-center space-x-8 text-sm">
                     <a href="#" id="aboutLink" class="nav-link text-white hover:text-blue-400 flex flex-col items-center space-y-1 px-3 py-2">
                         <span>About Us</span>
@@ -329,6 +382,7 @@
                 <div class="flex-grow">
                     <label for="searchBar" class="block text-sm font-semibold text-gray-300 mb-3">Cari Istilah Python:</label>
                     <div class="search-container">
+                        <div class="search-icon">🔍</div>
                         <input type="text" id="searchBar" placeholder="Ketik istilah, pengertian, atau contoh..."
                                class="search-input w-full px-4 py-4 border border-gray-600 bg-gray-800/80 text-gray-100 rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 placeholder-gray-500 backdrop-blur-sm">
                     </div>
@@ -368,7 +422,7 @@
             </div>
         </div>
 
-        <main id="hasilPencarianDiv" class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <main id="hasilPencarianDiv" class="w-full max-w-4xl mx-auto">
             <div class="col-span-full flex flex-col items-center justify-center py-16">
                 <div class="animate-pulse-custom mb-4">
                     <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center">
@@ -404,7 +458,7 @@
                 <p data-field="pengertian" class="text-gray-200 text-sm leading-relaxed flex-grow">Pengertian placeholder...</p>
             </div>
 
-            <div class="more-content mt-4 max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out">
+            <div class="more-content collapsed mt-4 overflow-hidden">
                 <div data-section="contohPenggunaan" class="mt-4" style="display: none;">
                     <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
                         <span class="w-1 h-4 bg-green-500 rounded mr-2"></span>
@@ -458,8 +512,8 @@
             </div>
 
             <div class="mt-auto pt-6">
-                <button data-action="toggleMore" class="button-hover w-full text-sm text-blue-400 hover:text-blue-300 focus:outline-none py-3 border border-blue-500/50 hover:border-blue-400 rounded-xl hover:bg-blue-500/10 transition-all duration-300 font-medium">
-                    Tampilkan Lebih Banyak
+                <button data-action="toggleMore" class="button-hover w-full text-sm text-blue-400 hover:text-blue-300 focus:outline-none py-3 border border-blue-500/50 hover:border-blue-400 rounded-xl hover:bg-blue-500/10 transition-all duration-300 font-medium flex items-center justify-center">
+                    <span class="mr-2">Tampilkan Lebih Banyak</span>
                 </button>
             </div>
         </div>
@@ -535,9 +589,6 @@
             });
         };
 
-        // Call this function whenever new cards are added
-        const originalTampilkanHasil = window.tampilkanHasil;
-        
         // Enhanced search input with real-time feedback
         document.addEventListener('DOMContentLoaded', () => {
             const searchBar = document.getElementById('searchBar');

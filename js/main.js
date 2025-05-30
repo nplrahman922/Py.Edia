@@ -195,15 +195,15 @@ document.addEventListener("DOMContentLoaded", () => {
       setElementHTML(
         hasilPencarianDiv,
         `
-                <div class="col-span-full flex flex-col items-center justify-center py-20">
-                    <div class="relative">
-                        <div class="w-20 h-20 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
-                        <div class="absolute inset-0 w-20 h-20 border-4 border-transparent border-t-purple-500 rounded-full animate-spin" style="animation-delay: -0.5s; animation-duration: 1.5s;"></div>
-                    </div>
-                    <p class="text-gray-400 mt-6 text-lg">Memuat kamus Python...</p>
-                    <p class="text-gray-500 mt-2 text-sm">Mohon tunggu sebentar</p>
-                </div>
-            `,
+              <div class="w-full flex flex-col items-center justify-center py-20">
+                  <div class="relative">
+                      <div class="w-20 h-20 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+                      <div class="absolute inset-0 w-20 h-20 border-4 border-transparent border-t-purple-500 rounded-full animate-spin" style="animation-delay: -0.5s; animation-duration: 1.5s;"></div>
+                  </div>
+                  <p class="text-gray-400 mt-6 text-lg">Memuat kamus Python...</p>
+                  <p class="text-gray-500 mt-2 text-sm">Mohon tunggu sebentar</p>
+              </div>
+          `,
       )
     }
   }
@@ -215,22 +215,22 @@ document.addEventListener("DOMContentLoaded", () => {
         setElementHTML(
           hasilPencarianDiv,
           `
-                    <div class="col-span-full text-center py-20">
-                        <div class="max-w-md mx-auto">
-                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <span class="text-2xl">🔍</span>
-                            </div>
-                            <h3 class="text-xl font-semibold text-gray-300 mb-3">Siap untuk Eksplorasi!</h3>
-                            <p class="text-gray-400 mb-6">Pilih kategori atau gunakan pencarian untuk menemukan fungsi Python yang Anda butuhkan.</p>
-                            <div class="flex flex-wrap justify-center gap-2 text-sm">
-                                <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full">print()</span>
-                                <span class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full">for loops</span>
-                                <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">functions</span>
-                                <span class="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full">lists</span>
-                            </div>
-                        </div>
-                    </div>
-                `,
+                  <div class="w-full text-center py-20">
+                      <div class="max-w-md mx-auto">
+                          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                              <span class="text-2xl">🔍</span>
+                          </div>
+                          <h3 class="text-xl font-semibold text-gray-300 mb-3">Siap untuk Eksplorasi!</h3>
+                          <p class="text-gray-400 mb-6">Pilih kategori atau gunakan pencarian untuk menemukan fungsi Python yang Anda butuhkan.</p>
+                          <div class="flex flex-wrap justify-center gap-2 text-sm">
+                              <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full">print()</span>
+                              <span class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full">for loops</span>
+                              <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">functions</span>
+                              <span class="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full">lists</span>
+                          </div>
+                      </div>
+                  </div>
+              `,
         )
       }
     } else {
@@ -239,14 +239,14 @@ document.addEventListener("DOMContentLoaded", () => {
         setElementHTML(
           hasilPencarianDiv,
           `
-                    <div class="col-span-full text-center text-orange-400 p-8 bg-orange-500/10 border border-orange-500/30 rounded-xl">
-                        <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-xl">⚠️</span>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Data Tidak Tersedia</h3>
-                        <p>Data kamus tidak dapat diproses saat ini. Silakan refresh halaman.</p>
-                    </div>
-                `,
+                  <div class="w-full text-center text-orange-400 p-8 bg-orange-500/10 border border-orange-500/30 rounded-xl">
+                      <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span class="text-xl">⚠️</span>
+                      </div>
+                      <h3 class="text-lg font-semibold mb-2">Data Tidak Tersedia</h3>
+                      <p>Data kamus tidak dapat diproses saat ini. Silakan refresh halaman.</p>
+                  </div>
+              `,
         )
       }
     }
@@ -284,13 +284,13 @@ document.addEventListener("DOMContentLoaded", () => {
       setElementHTML(
         hasilPencarianDiv,
         `
-                <div class="col-span-full flex items-center justify-center py-12">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-6 h-6 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
-                        <span class="text-gray-400">Mencari...</span>
-                    </div>
+            <div class="w-full flex items-center justify-center py-12">
+                <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+                    <span class="text-gray-400">Mencari...</span>
                 </div>
-            `,
+            </div>
+        `,
       )
     }
 
@@ -301,8 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
           !searchTerm ||
           (item.namaFungsi && item.namaFungsi.toLowerCase().includes(searchTerm)) ||
           (item.kategori && item.kategori.toLowerCase().includes(searchTerm)) ||
-          (item.tingkat && item.tingkat.toLowerCase().includes(searchTerm)) ||
-          (item.pengertian && item.pengertian.toLowerCase().includes(searchTerm))
+          (item.tingkat && item.tingkat.toLowerCase().includes(searchTerm))
         if (!termMatch) return false
         return (
           selectedCategoryValue === "" || selectedCategoryValue === "all" || item.kategori === selectedCategoryValue
@@ -358,31 +357,36 @@ document.addEventListener("DOMContentLoaded", () => {
       setElementHTML(
         hasilPencarianDiv,
         `
-                <div class="col-span-full text-center py-20">
-                    <div class="max-w-md mx-auto">
-                        <div class="w-16 h-16 bg-gray-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl">🔍</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-300 mb-3">Tidak Ada Hasil</h3>
-                        <p class="text-gray-400 mb-6">Tidak ada istilah yang cocok dengan pencarian Anda. Coba kata kunci yang berbeda atau pilih kategori lain.</p>
-                        <div class="text-sm text-gray-500">
-                            <p>💡 Tips: Coba pencarian yang lebih umum atau periksa ejaan</p>
-                        </div>
-                    </div>
-                </div>
-            `,
+              <div class="w-full text-center py-20">
+                  <div class="max-w-md mx-auto">
+                      <div class="w-16 h-16 bg-gray-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <span class="text-2xl">🔍</span>
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-300 mb-3">Tidak Ada Hasil</h3>
+                      <p class="text-gray-400 mb-6">Tidak ada istilah yang cocok dengan pencarian Anda. Coba kata kunci yang berbeda atau pilih kategori lain.</p>
+                      <div class="text-sm text-gray-500">
+                          <p>💡 Tips: Coba pencarian yang lebih umum atau periksa ejaan</p>
+                      </div>
+                  </div>
+              </div>
+          `,
       )
       return
     }
 
-    const fragment = document.createDocumentFragment()
+    // Create container for single-column layout
+    const containerDiv = document.createElement("div")
+    containerDiv.className = "flex flex-col gap-8 w-full max-w-4xl mx-auto"
+
     hasil.forEach((item, index) => {
       const cardClone = kamusItemTemplate.content.cloneNode(true)
 
       // Add staggered animation delay
       const card = cardClone.querySelector(".kamus-item-card")
       if (card) {
-        card.style.animationDelay = `${index * 0.1}s`
+        card.style.animationDelay = `${index * 0.15}s`
+        // Ensure full width for single column
+        card.classList.add("w-full", "max-w-none")
       }
 
       setElementText(queryEl(cardClone, '[data-field="namaFungsi"]'), item.namaFungsi)
@@ -432,19 +436,25 @@ document.addEventListener("DOMContentLoaded", () => {
         )
 
         toggleElementDisplay(toggleMoreButton, hasActualDataInMoreContent)
+
         if (hasActualDataInMoreContent) {
           toggleMoreButton.addEventListener("click", () => {
-            const isHidden = moreContentDiv.classList.contains("max-h-0")
-            moreContentDiv.classList.toggle("max-h-0", !isHidden)
-            moreContentDiv.classList.toggle("opacity-0", !isHidden)
-            moreContentDiv.classList.toggle("max-h-[1000px]", isHidden)
-            moreContentDiv.classList.toggle("opacity-100", isHidden)
-            setElementText(toggleMoreButton, isHidden ? "Tampilkan Lebih Sedikit" : "Tampilkan Lebih Banyak", "")
+            const isCollapsed = moreContentDiv.classList.contains("collapsed")
+            const toggleIcon = toggleMoreButton.querySelector(".toggle-icon")
+            const buttonText = toggleMoreButton.querySelector("span")
 
-            // Add icon rotation
-            const icon = toggleMoreButton.querySelector(".toggle-icon")
-            if (icon) {
-              icon.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)"
+            if (isCollapsed) {
+              // Expand
+              moreContentDiv.classList.remove("collapsed")
+              moreContentDiv.classList.add("expanded")
+              if (buttonText) buttonText.textContent = "Tampilkan Lebih Sedikit"
+              if (toggleIcon) toggleIcon.classList.add("rotated")
+            } else {
+              // Collapse
+              moreContentDiv.classList.remove("expanded")
+              moreContentDiv.classList.add("collapsed")
+              if (buttonText) buttonText.textContent = "Tampilkan Lebih Banyak"
+              if (toggleIcon) toggleIcon.classList.remove("rotated")
             }
           })
         }
@@ -460,9 +470,11 @@ document.addEventListener("DOMContentLoaded", () => {
           })
         }
       }
-      fragment.appendChild(cardClone)
+
+      containerDiv.appendChild(cardClone)
     })
-    hasilPencarianDiv.appendChild(fragment)
+
+    hasilPencarianDiv.appendChild(containerDiv)
   }
 
   function typePythonOutputChunkAnimated(textChunk, outputDivElement, onFinishedCallback) {
@@ -519,6 +531,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (closeLiveCodingModalBtn) {
     closeLiveCodingModalBtn.addEventListener("click", closeLiveCodingModal)
+
+    closeLiveCodingModalBtn.addEventListener("click", closeLiveCodingModal)
   }
 
   if (runLiveCodeBtn && liveCodeEditor) {
@@ -557,6 +571,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const placeholderTextColorClass = "text-gray-500"
     const errorTextColorClass = "text-red-400"
     let outputProcessingPromise = Promise.resolve()
+
+    // Declare Sk before using it
+    const Sk = window.Sk
 
     Sk.configure({
       output: (text) => {
@@ -648,17 +665,17 @@ document.addEventListener("DOMContentLoaded", () => {
         setElementHTML(
           hasilPencarianDiv,
           `
-                    <div class="col-span-full text-center text-red-400 p-8 bg-red-500/10 border border-red-500/30 rounded-xl">
-                        <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl">❌</span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">Gagal Memuat Data</h3>
-                        <p class="mb-4">Tidak dapat memuat data kamus: ${error.message}</p>
-                        <button onclick="location.reload()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
-                            Coba Lagi
-                        </button>
-                    </div>
-                `,
+                  <div class="w-full text-center text-red-400 p-8 bg-red-500/10 border border-red-500/30 rounded-xl">
+                      <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <span class="text-2xl">❌</span>
+                      </div>
+                      <h3 class="text-xl font-semibold mb-3">Gagal Memuat Data</h3>
+                      <p class="mb-4">Tidak dapat memuat data kamus: ${error.message}</p>
+                      <button onclick="location.reload()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
+                          Coba Lagi
+                      </button>
+                  </div>
+              `,
         )
       }
     })
