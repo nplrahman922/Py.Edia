@@ -200,3 +200,73 @@ button:focus {
     color: black !important;
   }
 }
+
+/* Logo animation on page load */
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.logo-container {
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+/* Logo pulse effect on hover */
+@keyframes logoPulse {
+  0% {
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.8), 0 0 0 8px rgba(59, 130, 246, 0.1);
+  }
+  100% {
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  }
+}
+
+.logo-container:hover {
+  animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive logo adjustments */
+@media (max-width: 768px) {
+  .logo-container {
+    width: 44px;
+    height: 44px;
+    margin-right: 12px;
+  }
+
+  .logo-svg {
+    width: 24px;
+    height: 20px;
+  }
+}
+
+/* Logo accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .logo-container {
+    animation: none !important;
+  }
+
+  .logo-container:hover {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* High contrast mode for logo */
+@media (prefers-contrast: high) {
+  .logo-container {
+    border: 2px solid #ffffff;
+    background: #000000;
+  }
+
+  .logo-svg {
+    color: #ffffff;
+  }
+}

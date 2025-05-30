@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -171,23 +170,62 @@
             background: rgba(0, 0, 0, 0.8);
         }
 
-        /* Logo container */
+        /* Enhanced logo container */
         .logo-container {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            margin-right: 16px;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .logo-text {
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .logo-container:hover::before {
+            left: 100%;
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .logo-svg {
             color: white;
-            font-weight: 700;
-            font-size: 18px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-container:hover .logo-svg {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Enhanced brand text hover effect */
+        .brand-text {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .brand-text:hover {
+            transform: translateY(-1px);
+            text-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
 
         /* Enhanced fun fact cards */
@@ -259,11 +297,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center flex-shrink-0">
-                    <div class="logo-container">
-                        <span class="logo-text">Py</span>
-                    </div>
-                    <a href="#" class="font-bold text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Py.Edia</a>
-                </div>
+    <div class="logo-container">
+        <svg width="28" height="24" viewBox="0 0 38 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+            <path d="M17.5457 3.59675L18.9058 3.60252M15.4974 5.51187L15.511 2.30558C15.514 1.59727 16.1254 1.02565 16.8766 1.02884L22.3169 1.0519C23.0681 1.05509 23.6745 1.63187 23.6715 2.34019L23.6443 8.75276C23.6413 9.46107 23.03 10.0327 22.2788 10.0295L16.8385 10.0064C16.0873 10.0033 15.476 10.5749 15.473 11.2832L15.4458 17.6958C15.4428 18.4041 16.0493 18.9809 16.8004 18.984L22.2408 19.0071C22.9919 19.0103 23.6033 18.4387 23.6063 17.7304L23.6199 14.5241M20.255 6.17331L11.4145 6.13583C10.6633 6.13264 10.052 6.70427 10.049 7.41258L10.0218 13.8252C10.0188 14.5335 10.6253 15.1102 11.3764 15.1134L15.4567 15.1307M18.8623 13.8626L27.7028 13.9001C28.454 13.9033 29.0654 13.3317 29.0684 12.6234L29.0955 6.2108C29.0986 5.50249 28.4921 4.9257 27.7409 4.92252L23.6607 4.90522M20.2115 16.4334L21.5716 16.4392" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M37.0547 7.99512C37.559 8.04627 37.9521 8.47243 37.9521 8.99023V28.1738C37.9518 28.7259 37.5042 29.1738 36.9521 29.1738H26.3584C25.3704 29.1739 24.4489 29.5065 23.793 30.0605C23.1423 30.6105 22.8175 31.3172 22.8174 32.0098L22.8125 32.1123C22.7612 32.6165 22.3351 33.0098 21.8174 33.0098C21.2999 33.0095 20.8735 32.6164 20.8223 32.1123L20.8174 32.0098V20.8711H22.8174V28.2881C23.8199 27.5619 25.0765 27.1739 26.3584 27.1738H35.9521V9.99023H30.0732V7.99023H36.9521L37.0547 7.99512Z" fill="currentColor"/>
+            <path d="M1.71484 7.99512C1.21053 8.04627 0.817383 8.47243 0.817383 8.99023V28.1738C0.817686 28.7259 1.26529 29.1738 1.81738 29.1738H12.4111C13.3991 29.1739 14.3207 29.5065 14.9766 30.0605C15.6272 30.6105 15.9521 31.3172 15.9521 32.0098L15.957 32.1123C16.0083 32.6165 16.4344 33.0098 16.9521 33.0098C17.4697 33.0095 17.896 32.6164 17.9473 32.1123L17.9521 32.0098V20.8711H15.9521V28.2881C14.9497 27.5619 13.693 27.1739 12.4111 27.1738H2.81738V9.99023H8.69629V7.99023H1.81738L1.71484 7.99512Z" fill="currentColor"/>
+        </svg>
+    </div>
+    <a href="#" class="font-bold text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-300 hover:to-blue-500 transition-all duration-300">Py.Edia</a>
+</div>
                 <div class="hidden md:flex items-center space-x-8 text-sm">
                     <a href="#" id="aboutLink" class="nav-link text-white hover:text-blue-400 flex flex-col items-center space-y-1 px-3 py-2">
                         <span>About Us</span>
