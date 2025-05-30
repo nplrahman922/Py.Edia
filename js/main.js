@@ -78,23 +78,31 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function addBookmark(item) {
-    const exists = bookmarks.find((b) => b.namaFungsi === item.namaFungsi)
-    if (!exists) {
-      bookmarks.push({
-        namaFungsi: item.namaFungsi,
-        kategori: item.kategori,
-        tingkat: item.tingkat,
-        pengertian: item.pengertian,
-        timestamp: new Date().toISOString(),
-      })
-      saveBookmarks()
-      showNotification("📚 Bookmark added!", "success")
-      return true
-    } else {
-      showNotification("📚 Already bookmarked!", "info")
-      return false
+    // Basic validation
+    if (!item || typeof item.namaFungsi !== 'string' || item.namaFungsi.trim() === '' ||
+        typeof item.kategori !== 'string' || typeof item.tingkat !== 'string' ||
+        typeof item.pengertian !== 'string') {
+        showNotification("⚠️ Invalid data for bookmark.", "error");
+        return false;
     }
-  }
+
+    const exists = bookmarks.find((b) => b.namaFungsi === item.namaFungsi);
+    if (!exists) {
+        bookmarks.push({
+            namaFungsi: String(item.namaFungsi).slice(0, 200), // Sanitize/truncate
+            kategori: String(item.kategori).slice(0, 100),
+            tingkat: String(item.tingkat).slice(0, 50),
+            pengertian: String(item.pengertian).slice(0, 500), // Keep a reasonable length
+            timestamp: new Date().toISOString(),
+        });
+        saveBookmarks();
+        showNotification("📚 Bookmark added!", "success");
+        return true;
+    } else {
+        showNotification("📚 Already bookmarked!", "info");
+        return false;
+    }
+}
 
   function removeBookmark(namaFungsi) {
     bookmarks = bookmarks.filter((b) => b.namaFungsi !== namaFungsi)
@@ -777,7 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setElementHTML(element, htmlContent) {
     if (element) {
-      element.innerHTML = htmlContent
+      element.innerHTML = DOMPurify.sanitize(htmlContent);
     }
   }
 
@@ -1000,13 +1008,14 @@ document.addEventListener("DOMContentLoaded", () => {
       setElementText(queryEl(cardClone, '[data-field="tingkat"]'), item.tingkat)
       setElementText(queryEl(cardClone, '[data-field="pengertian"]'), item.pengertian)
 
+      const contohPenggunaanHTML = item.contohPenggunaan ? item.contohPenggunaan.replace(/\n/g, "<br>") : null;
       setDataOrHide(
         cardClone,
         "contohPenggunaan",
         "contohPenggunaan",
-        item.contohPenggunaan ? item.contohPenggunaan.replace(/\n/g, "<br>") : null,
-        true,
-      )
+        DOMPurify.sanitize(contohPenggunaanHTML),
+        true
+      );
 
       populateListOrHide(cardClone, "parameter", item.parameter, (p) => {
         const li = document.createElement("li")
