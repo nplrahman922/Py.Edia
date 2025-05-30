@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const tutorialLink = getEl("tutorialLink")
   const aboutLink = getEl("aboutLink")
+  const mobileTutorialLink = getEl("mobileTutorialLink")
+  const mobileAboutLink = getEl("mobileAboutLink")
 
   const hasilPencarianDiv = getEl("hasilPencarianDiv")
   const categoryFilter = getEl("categoryFilter")
@@ -17,6 +19,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const liveCodeOutput = getEl("liveCodeOutput")
   const runLiveCodeBtn = getEl("runLiveCodeBtn")
   const liveCodingModalTitle = getEl("liveCodingModalTitle")
+
+  // Mobile menu elements
+  const mobileMenu = getEl("mobileMenu")
+  const mobileMenuOverlay = getEl("mobileMenuOverlay")
+
+  // Function to close mobile menu
+  function closeMobileMenu() {
+    if (mobileMenu && mobileMenuOverlay) {
+      mobileMenu.classList.remove("open")
+      mobileMenuOverlay.classList.remove("open")
+      document.querySelector(".hamburger")?.classList.remove("open")
+      document.body.classList.remove("menu-open")
+    }
+  }
 
   // Enhanced modal creation with improved animations
   function createModal(id, title, content) {
@@ -61,93 +77,110 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (aboutLink) {
-    aboutLink.addEventListener("click", (e) => {
-      e.preventDefault()
-      const aboutContent = `
-                <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+  // About modal content
+  const aboutContent = `
+        <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+            <div>
+                <h3 class="text-2xl font-bold text-blue-400 mb-4">🐍 Selamat datang di Py.Edia!</h3>
+                <p class="text-lg">Kamus Python Interaktif yang dirancang khusus untuk membantu Anda menguasai bahasa pemrograman Python dengan cara yang menyenangkan dan efektif.</p>
+            </div>
+            <div class="bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-6 rounded-xl border border-blue-500/30">
+                <h4 class="font-bold text-blue-300 mb-3">✨ Fitur Unggulan</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>🔍 Pencarian cerdas dan filter kategori</li>
+                    <li>💻 Live coding dengan Skulpt</li>
+                    <li>📚 Database lengkap fungsi Python</li>
+                    <li>🎯 Contoh penggunaan yang praktis</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-blue-500">
+            <p><strong class="text-blue-400">Misi Kami:</strong> Membuat pembelajaran Python menjadi lebih mudah, interaktif, dan menyenangkan untuk semua tingkat keahlian.</p>
+        </div>
+        <div class="mt-6 text-center">
+            <p class="text-gray-400">Proyek ini menggunakan teknologi modern seperti HTML5, CSS3, JavaScript ES6+, dan Tailwind CSS untuk memberikan pengalaman pengguna yang optimal.</p>
+        </div>
+    `
+
+  // Tutorial modal content
+  const tutorialContent = `
+        <div class="grid gap-6">
+            <div class="bg-gradient-to-r from-green-500/20 to-blue-500/20 p-6 rounded-xl border border-green-500/30">
+                <h3 class="text-xl font-bold text-green-400 mb-4">🚀 Panduan Cepat</h3>
+                <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <h3 class="text-2xl font-bold text-blue-400 mb-4">🐍 Selamat datang di Py.Edia!</h3>
-                        <p class="text-lg">Kamus Python Interaktif yang dirancang khusus untuk membantu Anda menguasai bahasa pemrograman Python dengan cara yang menyenangkan dan efektif.</p>
+                        <h4 class="font-semibold text-blue-300 mb-2">1. 🔍 Mencari Istilah</h4>
+                        <p class="text-sm text-gray-300">Gunakan bilah pencarian untuk menemukan fungsi, kata kunci, atau konsep Python yang Anda butuhkan.</p>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-500/20 to-purple-500/20 p-6 rounded-xl border border-blue-500/30">
-                        <h4 class="font-bold text-blue-300 mb-3">✨ Fitur Unggulan</h4>
-                        <ul class="space-y-2 text-sm">
-                            <li>🔍 Pencarian cerdas dan filter kategori</li>
-                            <li>💻 Live coding dengan Skulpt</li>
-                            <li>📚 Database lengkap fungsi Python</li>
-                            <li>🎯 Contoh penggunaan yang praktis</li>
-                        </ul>
+                    <div>
+                        <h4 class="font-semibold text-blue-300 mb-2">2. 🏷️ Filter Kategori</h4>
+                        <p class="text-sm text-gray-300">Gunakan dropdown kategori untuk mempersempit pencarian berdasarkan topik tertentu.</p>
                     </div>
                 </div>
-                <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-blue-500">
-                    <p><strong class="text-blue-400">Misi Kami:</strong> Membuat pembelajaran Python menjadi lebih mudah, interaktif, dan menyenangkan untuk semua tingkat keahlian.</p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-6 rounded-xl border border-purple-500/30">
+                <h3 class="text-xl font-bold text-purple-400 mb-4">💻 Live Coding</h3>
+                <div class="space-y-3">
+                    <p><strong class="text-purple-300">Fitur Unggulan:</strong> Jalankan kode Python langsung di browser Anda!</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-300 pl-4">
+                        <li>Klik tombol "Live Code" pada setiap contoh</li>
+                        <li>Edit kode sesuai kebutuhan Anda</li>
+                        <li>Lihat hasil eksekusi secara real-time</li>
+                        <li>Belajar dari error dan perbaiki kode</li>
+                    </ul>
                 </div>
-                <div class="mt-6 text-center">
-                    <p class="text-gray-400">Proyek ini menggunakan teknologi modern seperti HTML5, CSS3, JavaScript ES6+, dan Tailwind CSS untuk memberikan pengalaman pengguna yang optimal.</p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-orange-500/20 to-red-500/20 p-6 rounded-xl border border-orange-500/30">
+                <h3 class="text-xl font-bold text-orange-400 mb-4">📖 Memahami Konten</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                        <h4 class="font-semibold text-orange-300 mb-2">📝 Pengertian</h4>
+                        <p class="text-gray-300">Penjelasan lengkap tentang fungsi atau konsep</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-orange-300 mb-2">⚙️ Parameter</h4>
+                        <p class="text-gray-300">Detail parameter yang diperlukan</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-orange-300 mb-2">⚠️ Error</h4>
+                        <p class="text-gray-300">Potensi kesalahan yang mungkin terjadi</p>
+                    </div>
                 </div>
-            `
-      createModal("aboutModal", "Tentang Py.Edia", aboutContent)
-    })
+            </div>
+            
+            <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-blue-500">
+                <p class="text-center"><strong class="text-blue-400">💡 Tips:</strong> Gunakan kombinasi pencarian dan filter untuk hasil yang lebih spesifik. Jangan ragu untuk bereksperimen dengan Live Coding!</p>
+            </div>
+        </div>
+    `
+
+  // Event handlers for both desktop and mobile about links
+  function handleAboutClick(e) {
+    e.preventDefault()
+    closeMobileMenu() // Close mobile menu if open
+    createModal("aboutModal", "Tentang Py.Edia", aboutContent)
   }
 
+  function handleTutorialClick(e) {
+    e.preventDefault()
+    closeMobileMenu() // Close mobile menu if open
+    createModal("tutorialModal", "Tutorial Penggunaan", tutorialContent)
+  }
+
+  // Attach event listeners to both desktop and mobile links
+  if (aboutLink) {
+    aboutLink.addEventListener("click", handleAboutClick)
+  }
+  if (mobileAboutLink) {
+    mobileAboutLink.addEventListener("click", handleAboutClick)
+  }
   if (tutorialLink) {
-    tutorialLink.addEventListener("click", (e) => {
-      e.preventDefault()
-      const tutorialContent = `
-                <div class="grid gap-6">
-                    <div class="bg-gradient-to-r from-green-500/20 to-blue-500/20 p-6 rounded-xl border border-green-500/30">
-                        <h3 class="text-xl font-bold text-green-400 mb-4">🚀 Panduan Cepat</h3>
-                        <div class="grid md:grid-cols-2 gap-4">
-                            <div>
-                                <h4 class="font-semibold text-blue-300 mb-2">1. 🔍 Mencari Istilah</h4>
-                                <p class="text-sm text-gray-300">Gunakan bilah pencarian untuk menemukan fungsi, kata kunci, atau konsep Python yang Anda butuhkan.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-blue-300 mb-2">2. 🏷️ Filter Kategori</h4>
-                                <p class="text-sm text-gray-300">Gunakan dropdown kategori untuk mempersempit pencarian berdasarkan topik tertentu.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-6 rounded-xl border border-purple-500/30">
-                        <h3 class="text-xl font-bold text-purple-400 mb-4">💻 Live Coding</h3>
-                        <div class="space-y-3">
-                            <p><strong class="text-purple-300">Fitur Unggulan:</strong> Jalankan kode Python langsung di browser Anda!</p>
-                            <ul class="list-disc list-inside space-y-1 text-sm text-gray-300 pl-4">
-                                <li>Klik tombol "Live Code" pada setiap contoh</li>
-                                <li>Edit kode sesuai kebutuhan Anda</li>
-                                <li>Lihat hasil eksekusi secara real-time</li>
-                                <li>Belajar dari error dan perbaiki kode</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gradient-to-r from-orange-500/20 to-red-500/20 p-6 rounded-xl border border-orange-500/30">
-                        <h3 class="text-xl font-bold text-orange-400 mb-4">📖 Memahami Konten</h3>
-                        <div class="grid md:grid-cols-3 gap-4 text-sm">
-                            <div>
-                                <h4 class="font-semibold text-orange-300 mb-2">📝 Pengertian</h4>
-                                <p class="text-gray-300">Penjelasan lengkap tentang fungsi atau konsep</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-orange-300 mb-2">⚙️ Parameter</h4>
-                                <p class="text-gray-300">Detail parameter yang diperlukan</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-orange-300 mb-2">⚠️ Error</h4>
-                                <p class="text-gray-300">Potensi kesalahan yang mungkin terjadi</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-800/50 p-6 rounded-xl border-l-4 border-blue-500">
-                        <p class="text-center"><strong class="text-blue-400">💡 Tips:</strong> Gunakan kombinasi pencarian dan filter untuk hasil yang lebih spesifik. Jangan ragu untuk bereksperimen dengan Live Coding!</p>
-                    </div>
-                </div>
-            `
-      createModal("tutorialModal", "Tutorial Penggunaan", tutorialContent)
-    })
+    tutorialLink.addEventListener("click", handleTutorialClick)
+  }
+  if (mobileTutorialLink) {
+    mobileTutorialLink.addEventListener("click", handleTutorialClick)
   }
 
   let kamusData = []
@@ -301,7 +334,8 @@ document.addEventListener("DOMContentLoaded", () => {
           !searchTerm ||
           (item.namaFungsi && item.namaFungsi.toLowerCase().includes(searchTerm)) ||
           (item.kategori && item.kategori.toLowerCase().includes(searchTerm)) ||
-          (item.tingkat && item.tingkat.toLowerCase().includes(searchTerm))
+          (item.tingkat && item.tingkat.toLowerCase().includes(searchTerm)) ||
+          (item.pengertian && item.pengertian.toLowerCase().includes(searchTerm))
         if (!termMatch) return false
         return (
           selectedCategoryValue === "" || selectedCategoryValue === "all" || item.kategori === selectedCategoryValue
@@ -530,8 +564,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (closeLiveCodingModalBtn) {
-    closeLiveCodingModalBtn.addEventListener("click", closeLiveCodingModal)
-
     closeLiveCodingModalBtn.addEventListener("click", closeLiveCodingModal)
   }
 
@@ -768,11 +800,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Escape to close modals
+    // Escape to close modals and mobile menu
     if (e.key === "Escape") {
       const openModal = document.querySelector(".modal.flex")
       if (openModal) {
         closeLiveCodingModal()
+      }
+      // Also close mobile menu if open
+      if (mobileMenu && mobileMenu.classList.contains("open")) {
+        closeMobileMenu()
       }
     }
   })

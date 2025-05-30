@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -61,6 +62,28 @@
             }
         }
 
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.7; }
@@ -81,6 +104,14 @@
 
         .animate-slideInDown {
             animation: slideInDown 0.4s ease-out;
+        }
+
+        .animate-slideInRight {
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .animate-slideOutRight {
+            animation: slideOutRight 0.3s ease-in;
         }
 
         .animate-pulse-custom {
@@ -273,6 +304,135 @@
             width: 100%;
         }
 
+        /* Mobile navigation styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(59, 130, 246, 0.2);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            padding: 2rem;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hamburger menu animation */
+        .hamburger {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: white;
+            border-radius: 1px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: all 0.25s ease-in-out;
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 4px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 11px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 18px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            top: 11px;
+            transform: rotate(135deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            top: 11px;
+            transform: rotate(-135deg);
+        }
+
+        /* Mobile menu items */
+        .mobile-nav-item {
+            display: block;
+            padding: 1rem 0;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .mobile-nav-item:hover {
+            color: #3b82f6;
+            padding-left: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 0.5rem;
+        }
+
+        .mobile-nav-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive logo adjustments */
+        @media (max-width: 768px) {
+            .logo-container {
+                width: 44px;
+                height: 44px;
+                margin-right: 12px;
+            }
+
+            .logo-svg {
+                width: 24px;
+                height: 20px;
+            }
+
+            .brand-text {
+                font-size: 1.75rem;
+            }
+        }
+
         /* Floating action button style for live code */
         .fab-button {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -342,13 +502,56 @@
             max-width: 4xl;
             margin: 0 auto;
         }
+
+        /* Prevent body scroll when mobile menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="gradient-bg font-sans text-gray-200 min-h-screen">
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Menu</h3>
+            <button id="closeMobileMenu" class="text-gray-400 hover:text-white transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-2">
+            <a href="#" id="mobileAboutLink" class="mobile-nav-item">
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    About Us
+                </span>
+            </a>
+            <a href="#" id="mobileTutorialLink" class="mobile-nav-item">
+                <span class="flex items-center">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Tutorial
+                </span>
+            </a>
+        </nav>
+        <div class="mt-8 pt-8 border-t border-gray-600/50">
+            <p class="text-sm text-gray-400 text-center">Py.Edia v1.0</p>
+            <p class="text-xs text-gray-500 text-center mt-2">Kamus Python Interaktif</p>
+        </div>
+    </div>
+
     <nav class="bg-gray-900/95 backdrop-blur-sm sticky top-0 z-50 shadow-xl border-b border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <!-- Logo and Brand -->
                 <div class="flex items-center flex-shrink-0">
                     <div class="logo-container">
                         <svg width="28" height="24" viewBox="0 0 38 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
@@ -357,8 +560,10 @@
                             <path d="M1.71484 7.99512C1.21053 8.04627 0.817383 8.47243 0.817383 8.99023V28.1738C0.817686 28.7259 1.26529 29.1738 1.81738 29.1738H12.4111C13.3991 29.1739 14.3207 29.5065 14.9766 30.0605C15.6272 30.6105 15.9521 31.3172 15.9521 32.0098L15.957 32.1123C16.0083 32.6165 16.4344 33.0098 16.9521 33.0098C17.4697 33.0095 17.896 32.6164 17.9473 32.1123L17.9521 32.0098V20.8711H15.9521V28.2881C14.9497 27.5619 13.693 27.1739 12.4111 27.1738H2.81738V9.99023H8.69629V7.99023H1.81738L1.71484 7.99512Z" fill="currentColor"/>
                         </svg>
                     </div>
-                    <a href="#" class="font-bold text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-300 hover:to-blue-500 transition-all duration-300">Py.Edia</a>
+                    <a href="#" class="brand-text font-bold text-2xl sm:text-4xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-300 hover:to-blue-500 transition-all duration-300">Py.Edia</a>
                 </div>
+
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8 text-sm">
                     <a href="#" id="aboutLink" class="nav-link text-white hover:text-blue-400 flex flex-col items-center space-y-1 px-3 py-2">
                         <span>About Us</span>
@@ -367,14 +572,23 @@
                         <span>Tutorial</span>
                     </a>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="hamburger p-2 rounded-lg hover:bg-gray-700/50 transition-colors duration-200" aria-label="Toggle mobile menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
         <header class="mb-12 text-center animate-slideInDown">
-            <h1 class="text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 mb-4">Py.Edia</h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">Kamus Python Interaktif untuk Pembelajaran yang Lebih Efektif</p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 mb-4">Py.Edia</h1>
+            <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">Kamus Python Interaktif untuk Pembelajaran yang Lebih Efektif</p>
         </header>
 
         <div class="mb-12 p-6 sm:p-8 gradient-card rounded-2xl shadow-2xl max-w-4xl mx-auto border border-gray-600/50 animate-fadeInUp">
@@ -559,6 +773,46 @@
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const hamburger = document.querySelector('.hamburger');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.add('open');
+            hamburger.classList.add('open');
+            document.body.classList.add('menu-open');
+        }
+
+        function closeMobileMenuFunc() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        }
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+        }
+
+        if (closeMobileMenu) {
+            closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenuFunc);
+        }
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                closeMobileMenuFunc();
+            }
+        });
+
         // Add staggered animation to cards when they appear
         const observerOptions = {
             threshold: 0.1,
