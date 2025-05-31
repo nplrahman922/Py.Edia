@@ -518,11 +518,13 @@ pre::-webkit-scrollbar-thumb:hover {
 
 /* Bookmark button style */
 .bookmark-button {
-  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  background: linear-gradient(135deg, #fde616 0%, #059669 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
   transition: all 0.3s ease;
 }
 .bookmark-button:hover {
-  background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
 }
 
 /* Feature button styles */
