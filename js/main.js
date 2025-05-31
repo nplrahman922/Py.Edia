@@ -48,29 +48,29 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentScore = 0
   let hasAnswered = false
 
-// Bookmark System
+  // Bookmark System
   let bookmarks = JSON.parse(localStorage.getItem("pyedia-bookmarks") || "[]")
 
   function updateBookmarkCount() {
-     const bookmarkCountDesktop = getEl("bookmarkCount");
-     const bookmarkCountMobile = getEl("mobileBookmarkCount"); // Get the new mobile count element
+    const bookmarkCountDesktop = getEl("bookmarkCount")
+    const bookmarkCountMobile = getEl("mobileBookmarkCount") // Get the new mobile count element
 
-     const updateCountElement = (element) => {
-       if (element) {
-         if (bookmarks.length > 0) {
-           element.textContent = bookmarks.length;
-           element.style.display = "flex";
-           element.classList.add("bookmark-badge-update");
-           setTimeout(() => element.classList.remove("bookmark-badge-update"), 800);
-         } else {
-           element.style.display = "none";
-         }
-       }
-     };
+    const updateCountElement = (element) => {
+      if (element) {
+        if (bookmarks.length > 0) {
+          element.textContent = bookmarks.length
+          element.style.display = "flex"
+          element.classList.add("bookmark-badge-update")
+          setTimeout(() => element.classList.remove("bookmark-badge-update"), 800)
+        } else {
+          element.style.display = "none"
+        }
+      }
+    }
 
-     updateCountElement(bookmarkCountDesktop);
-     updateCountElement(bookmarkCountMobile); // Update mobile count as well
-   }
+    updateCountElement(bookmarkCountDesktop)
+    updateCountElement(bookmarkCountMobile) // Update mobile count as well
+  }
 
   function saveBookmarks() {
     localStorage.setItem("pyedia-bookmarks", JSON.stringify(bookmarks))
@@ -79,30 +79,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function addBookmark(item) {
     // Basic validation
-    if (!item || typeof item.namaFungsi !== 'string' || item.namaFungsi.trim() === '' ||
-        typeof item.kategori !== 'string' || typeof item.tingkat !== 'string' ||
-        typeof item.pengertian !== 'string') {
-        showNotification("⚠️ Invalid data for bookmark.", "error");
-        return false;
+    if (
+      !item ||
+      typeof item.namaFungsi !== "string" ||
+      item.namaFungsi.trim() === "" ||
+      typeof item.kategori !== "string" ||
+      typeof item.tingkat !== "string" ||
+      typeof item.pengertian !== "string"
+    ) {
+      showNotification("⚠️ Invalid data for bookmark.", "error")
+      return false
     }
 
-    const exists = bookmarks.find((b) => b.namaFungsi === item.namaFungsi);
+    const exists = bookmarks.find((b) => b.namaFungsi === item.namaFungsi)
     if (!exists) {
-        bookmarks.push({
-            namaFungsi: String(item.namaFungsi).slice(0, 200), // Sanitize/truncate
-            kategori: String(item.kategori).slice(0, 100),
-            tingkat: String(item.tingkat).slice(0, 50),
-            pengertian: String(item.pengertian).slice(0, 500), // Keep a reasonable length
-            timestamp: new Date().toISOString(),
-        });
-        saveBookmarks();
-        showNotification("📚 Bookmark added!", "success");
-        return true;
+      bookmarks.push({
+        namaFungsi: String(item.namaFungsi).slice(0, 200), // Sanitize/truncate
+        kategori: String(item.kategori).slice(0, 100),
+        tingkat: String(item.tingkat).slice(0, 50),
+        pengertian: String(item.pengertian).slice(0, 500), // Keep a reasonable length
+        timestamp: new Date().toISOString(),
+      })
+      saveBookmarks()
+      showNotification("📚 Bookmark added!", "success")
+      return true
     } else {
-        showNotification("📚 Already bookmarked!", "info");
-        return false;
+      showNotification("📚 Already bookmarked!", "info")
+      return false
     }
-}
+  }
 
   function removeBookmark(namaFungsi) {
     bookmarks = bookmarks.filter((b) => b.namaFungsi !== namaFungsi)
@@ -371,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       # Calculate median
       sorted_data = sorted(data_list)
       n = len(sorted_data)
-      if n % 2 == 0:
+      if (n % 2 == 0):
           analysis["median"] = (sorted_data[n//2-1] + sorted_data[n//2]) / 2
       else:
           analysis["median"] = sorted_data[n//2]
@@ -561,7 +566,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeLearningPathModal.addEventListener("click", () => toggleModal(getEl("learningPathModal"), false))
   }
 
-
   // Function to close mobile menu
   function closeMobileMenu() {
     if (mobileMenu && mobileMenuOverlay) {
@@ -737,11 +741,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function handleBookmarkClick(e) {
-    e.preventDefault();
-    closeMobileMenu();
-    displayBookmarks();
-    toggleModal(getEl("bookmarkModal"), true);
-}
+    e.preventDefault()
+    closeMobileMenu()
+    displayBookmarks()
+    toggleModal(getEl("bookmarkModal"), true)
+  }
 
   // Attach event listeners to both desktop and mobile links
   if (aboutLink) {
@@ -783,9 +787,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const purify = DOMPurify
+
   function setElementHTML(element, htmlContent) {
     if (element) {
-      element.innerHTML = DOMPurify.sanitize(htmlContent);
+      element.innerHTML = purify.sanitize(htmlContent)
     }
   }
 
@@ -1008,14 +1014,8 @@ document.addEventListener("DOMContentLoaded", () => {
       setElementText(queryEl(cardClone, '[data-field="tingkat"]'), item.tingkat)
       setElementText(queryEl(cardClone, '[data-field="pengertian"]'), item.pengertian)
 
-      const contohPenggunaanHTML = item.contohPenggunaan ? item.contohPenggunaan.replace(/\n/g, "<br>") : null;
-      setDataOrHide(
-        cardClone,
-        "contohPenggunaan",
-        "contohPenggunaan",
-        DOMPurify.sanitize(contohPenggunaanHTML),
-        true
-      );
+      const contohPenggunaanHTML = item.contohPenggunaan ? item.contohPenggunaan.replace(/\n/g, "<br>") : null
+      setDataOrHide(cardClone, "contohPenggunaan", "contohPenggunaan", DOMPurify.sanitize(contohPenggunaanHTML), true)
 
       populateListOrHide(cardClone, "parameter", item.parameter, (p) => {
         const li = document.createElement("li")
@@ -1097,42 +1097,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      const bookmarkButton = queryEl(cardClone, '[data-action="bookmark"]');
+      const bookmarkButton = queryEl(cardClone, '[data-action="bookmark"]')
       if (bookmarkButton) {
-        const bookmarkStar = queryEl(bookmarkButton, ".bookmark-star");
-        const bookmarkText = queryEl(bookmarkButton, ".bookmark-text");
+        const bookmarkStar = queryEl(bookmarkButton, ".bookmark-star")
+        const bookmarkText = queryEl(bookmarkButton, ".bookmark-text")
 
         function updateButtonAppearance(isBookmarkedState) {
           if (isBookmarkedState) {
-            bookmarkButton.classList.remove("bg-gray-600", "hover:bg-gray-500");
-            bookmarkButton.classList.remove("bg-gradient-to-r", "from-gray-600", "to-gray-700");
-            bookmarkButton.classList.add("bg-yellow-500", "hover:bg-yellow-600");
+            bookmarkButton.classList.remove("bg-gray-600", "hover:bg-gray-500")
+            bookmarkButton.classList.remove("bg-gradient-to-r", "from-gray-600", "to-gray-700")
+            bookmarkButton.classList.add("bg-yellow-500", "hover:bg-yellow-600")
 
-            if (bookmarkStar) bookmarkStar.textContent = "⭐";
-            if (bookmarkText) bookmarkText.textContent = "Bookmarked";
+            if (bookmarkStar) bookmarkStar.textContent = "⭐"
+            if (bookmarkText) bookmarkText.textContent = "Bookmarked"
           } else {
-            bookmarkButton.classList.remove("bg-yellow-500", "hover:bg-yellow-600");
-            bookmarkButton.classList.add("bg-gray-600", "hover:bg-gray-500");
-            if (bookmarkStar) bookmarkStar.textContent = "☆";
-            if (bookmarkText) bookmarkText.textContent = "Bookmark";
+            bookmarkButton.classList.remove("bg-yellow-500", "hover:bg-yellow-600")
+            bookmarkButton.classList.add("bg-gray-600", "hover:bg-gray-500")
+            if (bookmarkStar) bookmarkStar.textContent = "☆"
+            if (bookmarkText) bookmarkText.textContent = "Bookmark"
           }
         }
 
-        updateButtonAppearance(isBookmarked(item.namaFungsi));
+        updateButtonAppearance(isBookmarked(item.namaFungsi))
 
         bookmarkButton.addEventListener("click", () => {
-          const currentlyBookmarked = isBookmarked(item.namaFungsi);
-          
-          if (currentlyBookmarked) {
-            removeBookmark(item.namaFungsi);
-            updateButtonAppearance(false);
-          } else {
-            addBookmark(item);
-            updateButtonAppearance(true);
-          }
-        });
-      }
+          const currentlyBookmarked = isBookmarked(item.namaFungsi)
 
+          if (currentlyBookmarked) {
+            removeBookmark(item.namaFungsi)
+            updateButtonAppearance(false)
+          } else {
+            addBookmark(item)
+            updateButtonAppearance(true)
+          }
+        })
+      }
 
       containerDiv.appendChild(cardClone)
     })
@@ -1489,8 +1488,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
         for (let i = factsToDisplay.length; i < 3; i++) {
-          const titleElement = document.getElementById(`funfact-title-${i + 1}`)
-          const contentElement = document.getElementById(`funfact-content-${i + 1}`)
+          const titleElement = document.getElementById(`funfact-title-${i}`)
+          const contentElement = document.getElementById(`funfact-content-${i}`)
           if (titleElement && contentElement) {
             titleElement.textContent = `Fun Fact ${i + 1}`
             contentElement.textContent = "Tidak ada fakta tambahan."
@@ -1569,4 +1568,912 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Add smooth scroll behavior for better UX
   document.documentElement.style.scrollBehavior = "smooth"
+
+  // Python IDE Implementation
+  class PythonIDE {
+    constructor() {
+      this.files = new Map()
+      this.currentFile = "main.py"
+      this.tabs = new Set()
+      this.autocompleteData = []
+      this.isInitialized = false
+
+      // Initialize with a default file
+      this.files.set("main.py", {
+        content: '# Welcome to Python IDE\n# Start coding here...\n\nprint("Hello, Python IDE!")',
+        type: "file",
+        modified: false,
+      })
+      this.tabs.add("main.py")
+
+      this.initializeAutocomplete()
+    }
+
+    initialize() {
+      if (this.isInitialized) return
+
+      this.bindEvents()
+      this.renderFileExplorer()
+      this.renderTabs()
+      this.loadFile("main.py")
+      this.setupSyntaxHighlighting()
+      this.setupAutocompletion()
+      this.isInitialized = true
+      this.setupResizablePanel()
+    }
+
+    bindEvents() {
+      // IDE Controls
+      getEl("ideRunBtn")?.addEventListener("click", () => this.runCode())
+      getEl("ideSaveBtn")?.addEventListener("click", () => this.saveCurrentFile())
+      getEl("ideNewFileBtn")?.addEventListener("click", () => this.createNewFile())
+      getEl("ideCreateFolderBtn")?.addEventListener("click", () => this.createFolder())
+      getEl("ideDeleteFileBtn")?.addEventListener("click", () => this.deleteCurrentFile())
+      getEl("ideClearOutputBtn")?.addEventListener("click", () => this.clearOutput())
+
+      // Output tabs
+      getEl("ideOutputTab")?.addEventListener("click", () => this.switchOutputTab("output"))
+      getEl("ideProblemsTab")?.addEventListener("click", () => this.switchOutputTab("problems"))
+
+      // Mobile file explorer toggle
+      getEl("toggleFilesBtn")?.addEventListener("click", () => this.toggleMobileFiles())
+
+      // Editor events
+      const editor = getEl("ideCodeEditor")
+      if (editor) {
+        editor.addEventListener("input", () => this.onEditorChange())
+        editor.addEventListener("keydown", (e) => this.onEditorKeyDown(e))
+        editor.addEventListener("scroll", () => this.updateLineNumbers())
+        editor.addEventListener("click", () => this.updateCursorPosition())
+        editor.addEventListener("keyup", () => this.updateCursorPosition())
+      }
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if (getEl("pythonIDEModal")?.classList.contains("flex")) {
+          this.handleKeyboardShortcuts(e)
+        }
+      })
+    }
+
+    initializeAutocomplete() {
+      this.autocompleteData = [
+        // Python keywords
+        { text: "def", type: "keyword", description: "Define a function" },
+        { text: "class", type: "keyword", description: "Define a class" },
+        { text: "if", type: "keyword", description: "Conditional statement" },
+        { text: "elif", type: "keyword", description: "Else if condition" },
+        { text: "else", type: "keyword", description: "Else condition" },
+        { text: "for", type: "keyword", description: "For loop" },
+        { text: "while", type: "keyword", description: "While loop" },
+        { text: "try", type: "keyword", description: "Try block" },
+        { text: "except", type: "keyword", description: "Exception handler" },
+        { text: "finally", type: "keyword", description: "Finally block" },
+        { text: "import", type: "keyword", description: "Import module" },
+        { text: "from", type: "keyword", description: "Import from module" },
+        { text: "return", type: "keyword", description: "Return value" },
+        { text: "yield", type: "keyword", description: "Yield value" },
+        { text: "break", type: "keyword", description: "Break loop" },
+        { text: "continue", type: "keyword", description: "Continue loop" },
+        { text: "pass", type: "keyword", description: "Pass statement" },
+
+        // Built-in functions
+        { text: "print()", type: "function", description: "Print to console" },
+        { text: "input()", type: "function", description: "Get user input" },
+        { text: "len()", type: "function", description: "Get length" },
+        { text: "range()", type: "function", description: "Generate range" },
+        { text: "str()", type: "function", description: "Convert to string" },
+        { text: "int()", type: "function", description: "Convert to integer" },
+        { text: "float()", type: "function", description: "Convert to float" },
+        { text: "list()", type: "function", description: "Create list" },
+        { text: "dict()", type: "function", description: "Create dictionary" },
+        { text: "set()", type: "function", description: "Create set" },
+        { text: "tuple()", type: "function", description: "Create tuple" },
+        { text: "type()", type: "function", description: "Get type" },
+        { text: "isinstance()", type: "function", description: "Check instance" },
+        { text: "hasattr()", type: "function", description: "Check attribute" },
+        { text: "getattr()", type: "function", description: "Get attribute" },
+        { text: "setattr()", type: "function", description: "Set attribute" },
+
+        // Common methods
+        { text: ".append()", type: "method", description: "Add to list" },
+        { text: ".extend()", type: "method", description: "Extend list" },
+        { text: ".insert()", type: "method", description: "Insert into list" },
+        { text: ".remove()", type: "method", description: "Remove from list" },
+        { text: ".pop()", type: "method", description: "Pop from list" },
+        { text: ".index()", type: "method", description: "Find index" },
+        { text: ".count()", type: "method", description: "Count occurrences" },
+        { text: ".sort()", type: "method", description: "Sort list" },
+        { text: ".reverse()", type: "method", description: "Reverse list" },
+        { text: ".split()", type: "method", description: "Split string" },
+        { text: ".join()", type: "method", description: "Join strings" },
+        { text: ".replace()", type: "method", description: "Replace in string" },
+        { text: ".strip()", type: "method", description: "Strip whitespace" },
+        { text: ".lower()", type: "method", description: "Convert to lowercase" },
+        { text: ".upper()", type: "method", description: "Convert to uppercase" },
+        { text: ".keys()", type: "method", description: "Get dictionary keys" },
+        { text: ".values()", type: "method", description: "Get dictionary values" },
+        { text: ".items()", type: "method", description: "Get dictionary items" },
+      ]
+    }
+
+    setupSyntaxHighlighting() {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      // Simple syntax highlighting (basic implementation)
+      // In a real IDE, you'd use a proper syntax highlighting library like CodeMirror or Monaco
+      editor.addEventListener("input", () => {
+        this.highlightSyntax()
+      })
+    }
+
+    highlightSyntax() {
+      // This is a simplified syntax highlighting
+      // In production, use CodeMirror or Monaco Editor
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      // For now, we'll just update the status
+      this.updateStatus("Syntax highlighting active")
+    }
+
+    setupAutocompletion() {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      let autocompleteTimeout
+
+      editor.addEventListener("input", (e) => {
+        clearTimeout(autocompleteTimeout)
+        autocompleteTimeout = setTimeout(() => {
+          this.showAutocomplete(e)
+        }, 300)
+      })
+
+      editor.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          this.hideAutocomplete()
+        }
+      })
+    }
+
+    showAutocomplete(event) {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      const cursorPos = editor.selectionStart
+      const text = editor.value.substring(0, cursorPos)
+      const words = text.split(/\s+/)
+      const currentWord = words[words.length - 1]
+
+      if (currentWord.length < 2) {
+        this.hideAutocomplete()
+        return
+      }
+
+      const matches = this.autocompleteData.filter((item) =>
+        item.text.toLowerCase().startsWith(currentWord.toLowerCase()),
+      )
+
+      if (matches.length > 0) {
+        this.renderAutocomplete(matches, currentWord)
+      } else {
+        this.hideAutocomplete()
+      }
+    }
+
+    renderAutocomplete(matches, currentWord) {
+      this.hideAutocomplete()
+
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      const autocomplete = document.createElement("div")
+      autocomplete.id = "ideAutocomplete"
+      autocomplete.className = "ide-autocomplete"
+
+      matches.slice(0, 10).forEach((match, index) => {
+        const item = document.createElement("div")
+        item.className = "ide-autocomplete-item"
+        if (index === 0) item.classList.add("selected")
+
+        const icon = this.getAutocompleteIcon(match.type)
+        item.innerHTML = `
+          <span class="ide-autocomplete-icon">${icon}</span>
+          <span class="ide-autocomplete-text">${match.text}</span>
+          <span class="ide-autocomplete-type">${match.type}</span>
+        `
+
+        item.addEventListener("click", () => {
+          this.insertAutocomplete(match.text, currentWord)
+        })
+
+        autocomplete.appendChild(item)
+      })
+
+      // Position the autocomplete
+      const rect = editor.getBoundingClientRect()
+      autocomplete.style.position = "absolute"
+      autocomplete.style.left = `${rect.left + 20}px`
+      autocomplete.style.top = `${rect.top + 100}px`
+
+      document.body.appendChild(autocomplete)
+    }
+
+    getAutocompleteIcon(type) {
+      const icons = {
+        keyword: "🔑",
+        function: "⚡",
+        method: "🔧",
+        variable: "📦",
+        class: "🏗️",
+        module: "📚",
+      }
+      return icons[type] || "📄"
+    }
+
+    insertAutocomplete(text, currentWord) {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      const cursorPos = editor.selectionStart
+      const beforeCursor = editor.value.substring(0, cursorPos - currentWord.length)
+      const afterCursor = editor.value.substring(cursorPos)
+
+      editor.value = beforeCursor + text + afterCursor
+      editor.selectionStart = editor.selectionEnd = beforeCursor.length + text.length
+
+      this.hideAutocomplete()
+      editor.focus()
+      this.markFileAsModified()
+    }
+
+    hideAutocomplete() {
+      const autocomplete = getEl("ideAutocomplete")
+      if (autocomplete) {
+        autocomplete.remove()
+      }
+    }
+
+    createNewFile() {
+      const fileName = prompt("Enter file name:", "untitled.py")
+      if (!fileName) return
+
+      if (this.files.has(fileName)) {
+        showNotification("File already exists!", "warning")
+        return
+      }
+
+      this.files.set(fileName, {
+        content: "# New Python file\n",
+        type: "file",
+        modified: false,
+      })
+
+      this.tabs.add(fileName)
+      this.renderFileExplorer()
+      this.renderTabs()
+      this.loadFile(fileName)
+      this.updateStatus(`Created ${fileName}`)
+      showNotification(`Created ${fileName}`, "success")
+    }
+
+    createFolder() {
+      const folderName = prompt("Enter folder name:")
+      if (!folderName) return
+
+      if (this.files.has(folderName)) {
+        showNotification("Folder already exists!", "warning")
+        return
+      }
+
+      this.files.set(folderName, {
+        type: "folder",
+        children: new Set(),
+      })
+
+      this.renderFileExplorer()
+      this.updateStatus(`Created folder ${folderName}`)
+      showNotification(`Created folder ${folderName}`, "success")
+    }
+
+    deleteCurrentFile() {
+      if (this.currentFile === "main.py") {
+        showNotification("Cannot delete main.py", "warning")
+        return
+      }
+
+      if (confirm(`Delete ${this.currentFile}?`)) {
+        this.files.delete(this.currentFile)
+        this.tabs.delete(this.currentFile)
+
+        // Switch to main.py or first available file
+        const firstFile = Array.from(this.tabs)[0] || "main.py"
+        this.loadFile(firstFile)
+
+        this.renderFileExplorer()
+        this.renderTabs()
+        this.updateStatus(`Deleted ${this.currentFile}`)
+        showNotification(`Deleted ${this.currentFile}`, "success")
+      }
+    }
+
+    saveCurrentFile() {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      const file = this.files.get(this.currentFile)
+      if (file) {
+        file.content = editor.value
+        file.modified = false
+        this.renderTabs()
+        this.updateStatus(`Saved ${this.currentFile}`)
+        showNotification(`Saved ${this.currentFile}`, "success")
+      }
+    }
+
+    loadFile(fileName) {
+      const file = this.files.get(fileName)
+      if (!file || file.type !== "file") return
+
+      this.currentFile = fileName
+      const editor = getEl("ideCodeEditor")
+      if (editor) {
+        editor.value = file.content
+      }
+
+      setElementText(getEl("ideCurrentFile"), fileName)
+      this.renderTabs()
+      this.updateCursorPosition()
+      this.updateWordCount()
+    }
+
+    renderFileExplorer() {
+      const explorer = getEl("ideFileExplorer")
+      if (!explorer) return
+
+      setElementHTML(explorer, "")
+
+      for (const [name, file] of this.files) {
+        const item = document.createElement("div")
+        item.className = `ide-file-item ${file.type}`
+        if (name === this.currentFile) {
+          item.classList.add("active")
+        }
+
+        const icon = file.type === "folder" ? "📁" : "📄"
+        item.innerHTML = `
+          <span class="file-icon">${icon}</span>
+          <span>${name}</span>
+        `
+
+        if (file.type === "file") {
+          item.addEventListener("click", () => {
+            this.loadFile(name)
+            if (!this.tabs.has(name)) {
+              this.tabs.add(name)
+              this.renderTabs()
+            }
+          })
+        }
+
+        explorer.appendChild(item)
+      }
+      this.renderMobileFileExplorer() // Update mobile file explorer if open
+    }
+
+    renderTabs() {
+      const tabBar = getEl("ideTabBar")
+      if (!tabBar) return
+
+      setElementHTML(tabBar, "")
+
+      for (const fileName of this.tabs) {
+        const file = this.files.get(fileName)
+        if (!file) continue
+
+        const tab = document.createElement("div")
+        tab.className = "ide-tab"
+        if (fileName === this.currentFile) {
+          tab.classList.add("active")
+        }
+
+        const modifiedIndicator = file.modified ? "●" : ""
+        tab.innerHTML = `
+          <span>${fileName}${modifiedIndicator}</span>
+          <span class="tab-close" data-file="${fileName}">×</span>
+        `
+
+        tab.addEventListener("click", (e) => {
+          if (e.target.classList.contains("tab-close")) {
+            e.stopPropagation()
+            this.closeTab(fileName)
+          } else {
+            this.loadFile(fileName)
+          }
+        })
+
+        tabBar.appendChild(tab)
+      }
+    }
+
+    closeTab(fileName) {
+      if (fileName === "main.py") {
+        showNotification("Cannot close main.py", "warning")
+        return
+      }
+
+      const file = this.files.get(fileName)
+      if (file && file.modified) {
+        if (!confirm(`${fileName} has unsaved changes. Close anyway?`)) {
+          return
+        }
+      }
+
+      this.tabs.delete(fileName)
+
+      if (fileName === this.currentFile) {
+        const remainingTabs = Array.from(this.tabs)
+        const nextFile = remainingTabs[0] || "main.py"
+        this.loadFile(nextFile)
+      }
+
+      this.renderTabs()
+    }
+
+    runCode() {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      this.clearOutput()
+      this.switchOutputTab("output")
+      this.updateStatus("Running...")
+
+      const code = editor.value
+      this.executeCode(code)
+    }
+
+    executeCode(code) {
+      const outputContent = getEl("ideOutputContent")
+      if (!outputContent) return
+
+      setElementHTML(outputContent, '<div class="text-blue-400">Running Python code...</div>')
+
+      // Use the existing Skulpt execution from the main app
+      const Sk = window.Sk
+      if (!Sk) {
+        setElementHTML(outputContent, '<div class="ide-error">Python interpreter not available</div>')
+        this.updateStatus("Error: Python interpreter not available")
+        return
+      }
+
+      Sk.configure({
+        output: (text) => {
+          const currentContent = outputContent.innerHTML
+          if (currentContent.includes("Running Python code...")) {
+            setElementHTML(outputContent, "")
+          }
+          outputContent.innerHTML += text.replace(/\n/g, "<br>")
+          outputContent.scrollTop = outputContent.scrollHeight
+        },
+        read: (filePath) => {
+          if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][filePath] === undefined) {
+            throw new Sk.builtin.IOError(`File not found: '${filePath}'`)
+          }
+          return Sk.builtinFiles["files"][filePath]
+        },
+        __future__: Sk.python3,
+        retainglobals: true,
+      })
+
+      Sk.misceval
+        .asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, code, true))
+        .then(() => {
+          if (outputContent.innerHTML.trim() === "" || outputContent.innerHTML.includes("Running Python code...")) {
+            setElementHTML(outputContent, '<div class="ide-success">✅ Code executed successfully (no output)</div>')
+          }
+          this.updateStatus("Execution completed")
+        })
+        .catch((error) => {
+          console.error("IDE Execution error:", error)
+          let errorMessage = error.toString()
+          if (error.tp$name && error.args && error.args.v.length > 0) {
+            errorMessage = `${error.tp$name}: ${Sk.ffi.remapToJs(error.args.v[0])}`
+            if (error.traceback && error.traceback.length > 0) {
+              const lastTrace = error.traceback[error.traceback.length - 1]
+              if (lastTrace.lineno !== undefined) {
+                errorMessage += ` (line ${lastTrace.lineno})`
+              }
+            }
+          }
+          setElementHTML(outputContent, `<div class="ide-error">❌ ${errorMessage}</div>`)
+          this.updateStatus("Execution failed")
+        })
+    }
+
+    clearOutput() {
+      const outputContent = getEl("ideOutputContent")
+      if (outputContent) {
+        setElementHTML(outputContent, '<div class="text-gray-500 italic">Output cleared</div>')
+      }
+    }
+
+    switchOutputTab(tab) {
+      // Update tab appearance
+      document.querySelectorAll(".ide-output-tab").forEach((t) => {
+        t.classList.remove("active")
+      })
+      getEl(`ide${tab.charAt(0).toUpperCase() + tab.slice(1)}Tab`)?.classList.add("active")
+
+      // Show/hide content
+      const contents = ["ideOutputContent", "ideProblemsContent"]
+      contents.forEach((id) => {
+        const element = getEl(id)
+        if (element) {
+          element.classList.toggle("hidden", !id.includes(tab.charAt(0).toUpperCase() + tab.slice(1)))
+        }
+      })
+    }
+
+    onEditorChange() {
+      this.markFileAsModified()
+      this.updateWordCount()
+      this.updateCursorPosition()
+    }
+
+    onEditorKeyDown(event) {
+      const editor = getEl("ideCodeEditor")
+      if (!editor) return
+
+      // Handle tab key for indentation
+      if (event.key === "Tab") {
+        event.preventDefault()
+        const start = editor.selectionStart
+        const end = editor.selectionEnd
+
+        if (event.shiftKey) {
+          // Unindent
+          const beforeCursor = editor.value.substring(0, start)
+          const afterCursor = editor.value.substring(end)
+          const lines = beforeCursor.split("\n")
+          const currentLine = lines[lines.length - 1]
+
+          if (currentLine.startsWith("    ")) {
+            lines[lines.length - 1] = currentLine.substring(4)
+            editor.value = lines.join("\n") + afterCursor
+            editor.selectionStart = editor.selectionEnd = start - 4
+          }
+        } else {
+          // Indent
+          editor.value = editor.value.substring(0, start) + "    " + editor.value.substring(end)
+          editor.selectionStart = editor.selectionEnd = start + 4
+        }
+
+        this.markFileAsModified()
+      }
+
+      // Auto-close brackets and quotes
+      const pairs = {
+        "(": ")",
+        "[": "]",
+        "{": "}",
+        '"': '"',
+        "'": "'",
+      }
+
+      if (pairs[event.key]) {
+        event.preventDefault()
+        const start = editor.selectionStart
+        const end = editor.selectionEnd
+        const selectedText = editor.value.substring(start, end)
+
+        editor.value =
+          editor.value.substring(0, start) + event.key + selectedText + pairs[event.key] + editor.value.substring(end)
+
+        editor.selectionStart = editor.selectionEnd = start + 1
+        this.markFileAsModified()
+      }
+    }
+
+    handleKeyboardShortcuts(event) {
+      if (event.ctrlKey || event.metaKey) {
+        switch (event.key) {
+          case "s":
+            event.preventDefault()
+            this.saveCurrentFile()
+            break
+          case "n":
+            event.preventDefault()
+            this.createNewFile()
+            break
+          case "r":
+            event.preventDefault()
+            this.runCode()
+            break
+          case "w":
+            event.preventDefault()
+            this.closeTab(this.currentFile)
+            break
+        }
+      }
+
+      if (event.key === "F5") {
+        event.preventDefault()
+        this.runCode()
+      }
+    }
+
+    markFileAsModified() {
+      const file = this.files.get(this.currentFile)
+      if (file) {
+        file.modified = true
+        this.renderTabs()
+      }
+    }
+
+    updateCursorPosition() {
+      const editor = getEl("ideCodeEditor")
+      const lineColElement = getEl("ideLineCol")
+      if (!editor || !lineColElement) return
+
+      const cursorPos = editor.selectionStart
+      const textBeforeCursor = editor.value.substring(0, cursorPos)
+      const lines = textBeforeCursor.split("\n")
+      const line = lines.length
+      const col = lines[lines.length - 1].length + 1
+
+      setElementText(lineColElement, `Line ${line}, Col ${col}`)
+    }
+
+    updateWordCount() {
+      const editor = getEl("ideCodeEditor")
+      const wordCountElement = getEl("ideWordCount")
+      if (!editor || !wordCountElement) return
+
+      const words = editor.value
+        .trim()
+        .split(/\s+/)
+        .filter((word) => word.length > 0)
+      setElementText(wordCountElement, `${words.length} words`)
+    }
+
+    updateStatus(message) {
+      const statusElement = getEl("ideStatus")
+      if (statusElement) {
+        setElementText(statusElement, message)
+        setTimeout(() => {
+          setElementText(statusElement, "Ready")
+        }, 3000)
+      }
+    }
+
+    updateFileCount() {
+      const fileCountElement = getEl("ideFileCount")
+      if (fileCountElement) {
+        const fileCount = Array.from(this.files.values()).filter((f) => f.type === "file").length
+        setElementText(fileCountElement, `${fileCount} file${fileCount !== 1 ? "s" : ""}`)
+      }
+    }
+
+    toggleMobileFiles() {
+      // Create mobile files panel if it doesn't exist
+      let mobileFilesPanel = getEl("mobileFilesPanel")
+      let mobileFilesOverlay = getEl("mobileFilesOverlay")
+
+      if (!mobileFilesPanel) {
+        // Create panel
+        mobileFilesPanel = document.createElement("div")
+        mobileFilesPanel.id = "mobileFilesPanel"
+        mobileFilesPanel.className = "mobile-files-panel"
+
+        // Create header
+        const header = document.createElement("div")
+        header.className = "p-3 border-b border-gray-700/50 flex justify-between items-center"
+        header.innerHTML = `
+          <h3 class="text-sm font-semibold text-gray-300">Files</h3>
+          <button id="closeMobileFiles" class="text-gray-400 hover:text-white">×</button>
+        `
+        mobileFilesPanel.appendChild(header)
+
+        // Create file explorer container
+        const explorerContainer = document.createElement("div")
+        explorerContainer.className = "p-3"
+        explorerContainer.innerHTML = `
+          <div class="flex space-x-1 mb-3">
+            <button id="mobileNewFileBtn" class="text-xs bg-purple-600 hover:bg-purple-700 text-white px-2 py-1 rounded transition-colors duration-200">
+              📄 New File
+            </button>
+            <button id="mobileNewFolderBtn" class="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 px-2 py-1 rounded transition-colors duration-200">
+              📁 New Folder
+            </button>
+          </div>
+          <div id="mobileFileExplorer" class="mt-2"></div>
+        `
+        mobileFilesPanel.appendChild(explorerContainer)
+
+        // Create overlay
+        mobileFilesOverlay = document.createElement("div")
+        mobileFilesOverlay.id = "mobileFilesOverlay"
+        mobileFilesOverlay.className = "mobile-files-overlay"
+
+        // Add to DOM
+        const ideModal = getEl("pythonIDEModal")
+        if (ideModal) {
+          const modalContent = ideModal.querySelector(".modal-content")
+          if (modalContent) {
+            modalContent.appendChild(mobileFilesPanel)
+            modalContent.appendChild(mobileFilesOverlay)
+
+            // Add event listeners
+            getEl("closeMobileFiles")?.addEventListener("click", () => this.toggleMobileFiles())
+            mobileFilesOverlay.addEventListener("click", () => this.toggleMobileFiles())
+            getEl("mobileNewFileBtn")?.addEventListener("click", () => {
+              this.createNewFile()
+              this.toggleMobileFiles()
+            })
+            getEl("mobileNewFolderBtn")?.addEventListener("click", () => {
+              this.createFolder()
+              this.toggleMobileFiles()
+            })
+
+            // Populate files
+            this.renderMobileFileExplorer()
+          }
+        }
+      }
+
+      // Toggle panel visibility
+      const isOpen = mobileFilesPanel.classList.contains("open")
+      mobileFilesPanel.classList.toggle("open", !isOpen)
+      mobileFilesOverlay.classList.toggle("open", !isOpen)
+
+      if (!isOpen) {
+        this.renderMobileFileExplorer()
+      }
+    }
+
+    renderMobileFileExplorer() {
+      const explorer = getEl("mobileFileExplorer")
+      if (!explorer) return
+
+      setElementHTML(explorer, "")
+
+      for (const [name, file] of this.files) {
+        const item = document.createElement("div")
+        item.className = `ide-file-item ${file.type} mb-1`
+        if (name === this.currentFile) {
+          item.classList.add("active")
+        }
+
+        const icon = file.type === "folder" ? "📁" : "📄"
+        item.innerHTML = `
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="file-icon">${icon}</span>
+              <span>${name}</span>
+            </div>
+            ${
+              file.type === "file" && name !== "main.py"
+                ? `<button class="delete-file-btn text-red-400 hover:text-red-600 px-2" data-file="${name}">🗑️</button>`
+                : ""
+            }
+          </div>
+        `
+
+        if (file.type === "file") {
+          item.addEventListener("click", (e) => {
+            if (!e.target.classList.contains("delete-file-btn")) {
+              this.loadFile(name)
+              if (!this.tabs.has(name)) {
+                this.tabs.add(name)
+                this.renderTabs()
+              }
+              this.toggleMobileFiles()
+            }
+          })
+
+          const deleteBtn = item.querySelector(".delete-file-btn")
+          if (deleteBtn) {
+            deleteBtn.addEventListener("click", (e) => {
+              e.stopPropagation()
+              if (confirm(`Delete ${name}?`)) {
+                this.files.delete(name)
+                this.tabs.delete(name)
+                if (name === this.currentFile) {
+                  const firstFile = Array.from(this.tabs)[0] || "main.py"
+                  this.loadFile(firstFile)
+                }
+                this.renderFileExplorer()
+                this.renderMobileFileExplorer()
+                this.renderTabs()
+                showNotification(`Deleted ${name}`, "success")
+              }
+            })
+          }
+        }
+
+        explorer.appendChild(item)
+      }
+    }
+
+    setupResizablePanel() {
+      const resizablePanel = document.querySelector(".resizable-panel")
+      if (!resizablePanel) return
+
+      let startY, startHeight
+
+      const initResize = (e) => {
+        startY = e.clientY || (e.touches && e.touches[0].clientY)
+        startHeight = Number.parseInt(document.defaultView.getComputedStyle(resizablePanel).height, 10)
+
+        document.addEventListener("mousemove", resize)
+        document.addEventListener("touchmove", resize)
+        document.addEventListener("mouseup", stopResize)
+        document.addEventListener("touchend", stopResize)
+
+        e.preventDefault()
+      }
+
+      const resize = (e) => {
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY)
+        const deltaY = startY - clientY
+        resizablePanel.style.height = `${startHeight + deltaY}px`
+      }
+
+      const stopResize = () => {
+        document.removeEventListener("mousemove", resize)
+        document.removeEventListener("touchmove", resize)
+        document.removeEventListener("mouseup", stopResize)
+        document.removeEventListener("touchend", stopResize)
+      }
+
+      resizablePanel.addEventListener("mousedown", (e) => {
+        if (e.offsetY < 10) initResize(e)
+      })
+
+      resizablePanel.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0]
+        const rect = resizablePanel.getBoundingClientRect()
+        if (touch.clientY - rect.top < 10) initResize(e)
+      })
+    }
+  }
+
+  // Initialize IDE
+  let pythonIDE = null
+
+  // IDE Modal Controls
+  const openIDEBtn = getEl("openIDEBtn")
+  const pythonIDEModal = getEl("pythonIDEModal")
+  const closePythonIDEModal = getEl("closePythonIDEModal")
+
+  if (openIDEBtn) {
+    openIDEBtn.addEventListener("click", () => {
+      if (!pythonIDE) {
+        pythonIDE = new PythonIDE()
+      }
+      pythonIDE.initialize()
+      toggleModal(pythonIDEModal, true)
+      showNotification("🚀 Python IDE opened!", "success")
+    })
+  }
+
+  if (closePythonIDEModal) {
+    closePythonIDEModal.addEventListener("click", () => {
+      toggleModal(pythonIDEModal, false)
+    })
+  }
+
+  // Close IDE modal on escape or backdrop click
+  if (pythonIDEModal) {
+    pythonIDEModal.addEventListener("click", (e) => {
+      if (e.target === pythonIDEModal) {
+        toggleModal(pythonIDEModal, false)
+      }
+    })
+  }
+
+  // Initialize bookmark count on page load
+  updateBookmarkCount()
 })

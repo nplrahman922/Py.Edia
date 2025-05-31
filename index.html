@@ -145,10 +145,18 @@
                         <option value="all" class="bg-gray-800 text-gray-200">Semua Kategori</option>
                     </select>
                 </div>
+                <div class="lg:w-auto flex items-end">
+                    <button id="openIDEBtn" class="ide-button bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
+                        <span class="flex items-center">
+                            <span class="mr-2">💻</span>
+                            <span class="hidden sm:inline">Python</span> IDE
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
             <div class="fun-fact-card p-6 sm:p-8 rounded-2xl shadow-xl card-hover animate-fadeInUp" style="animation-delay: 0.1s">
                 <div class="flex items-center mb-4">
                     <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
@@ -429,6 +437,124 @@
                 </div>
         </div>
     </div>
+
+    <!-- Python IDE Modal -->
+    <div id="pythonIDEModal" class="modal fixed inset-0 z-50 items-center justify-center modal-backdrop p-0 sm:p-4">
+    <div class="modal-content bg-gray-900 text-gray-200 rounded-none sm:rounded-2xl shadow-2xl w-full h-full sm:max-w-7xl sm:max-h-[95vh] flex flex-col border border-gray-600/50 animate-fadeIn overflow-hidden">
+        <!-- IDE Header -->
+        <div class="flex justify-between items-center p-3 sm:p-4 border-b border-gray-700/50 bg-gray-800/50">
+            <div class="flex items-center space-x-2 sm:space-x-4 overflow-x-auto">
+                <h2 class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 whitespace-nowrap">💻 Python IDE</h2>
+                <div class="flex items-center space-x-1 sm:space-x-2">
+                    <button id="ideRunBtn" class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-lg transition-colors duration-200 flex items-center text-sm sm:text-base">
+                        <span class="mr-1 sm:mr-2">▶</span>
+                        Run
+                    </button>
+                    <button id="ideSaveBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-lg transition-colors duration-200 flex items-center text-sm sm:text-base">
+                        <span class="mr-1 sm:mr-2">💾</span>
+                        Save
+                    </button>
+                    <button id="ideNewFileBtn" class="hidden sm:flex bg-purple-500 hover:bg-purple-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-lg transition-colors duration-200 items-center text-sm sm:text-base">
+                        <span class="mr-1 sm:mr-2">📄</span>
+                        New
+                    </button>
+                </div>
+            </div>
+            <button id="closePythonIDEModal" class="text-gray-400 hover:text-gray-200 text-2xl transition-colors duration-200 hover:bg-gray-700/50 rounded-lg p-2">&times;</button>
+        </div>
+
+        <!-- IDE Content -->
+        <div class="flex-1 flex flex-col sm:flex-row overflow-hidden">
+            <!-- File Explorer Sidebar - Hidden on mobile by default -->
+            <div class="hidden sm:flex w-64 bg-gray-800/30 border-r border-gray-700/50 flex-col">
+                <div class="p-3 border-b border-gray-700/50">
+                    <h3 class="text-sm font-semibold text-gray-300 mb-2">Files</h3>
+                    <div class="flex space-x-1">
+                        <button id="ideCreateFolderBtn" class="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 px-2 py-1 rounded transition-colors duration-200">
+                            📁 Folder
+                        </button>
+                        <button id="ideDeleteFileBtn" class="text-xs bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded transition-colors duration-200">
+                            🗑️ Delete
+                        </button>
+                    </div>
+                </div>
+                <div id="ideFileExplorer" class="flex-1 overflow-y-auto p-2">
+                    <!-- File tree will be populated here -->
+                </div>
+            </div>
+
+            <!-- Mobile File Menu Button -->
+            <button id="toggleFilesBtn" class="sm:hidden flex items-center justify-center p-2 bg-gray-800 text-gray-300 border-b border-gray-700/50">
+                <span class="mr-2">📁</span> Toggle Files
+            </button>
+
+            <!-- Main Editor Area -->
+            <div class="flex-1 flex flex-col">
+                <!-- Tab Bar -->
+                <div id="ideTabBar" class="flex bg-gray-800/50 border-b border-gray-700/50 overflow-x-auto">
+                    <!-- Tabs will be populated here -->
+                </div>
+
+                <!-- Editor and Output -->
+                <div class="flex-1 flex flex-col">
+                    <!-- Code Editor -->
+                    <div class="flex-1 flex flex-col">
+                        <div class="flex justify-between items-center p-2 bg-gray-800/30 border-b border-gray-700/50">
+                            <span id="ideCurrentFile" class="text-sm text-gray-400">main.py</span>
+                            <div class="flex items-center space-x-2 text-xs text-gray-500">
+                                <span id="ideLineCol">Line 1, Col 1</span>
+                                <span>Python</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 relative">
+                            <textarea id="ideCodeEditor" 
+                                class="w-full h-full p-4 bg-gray-900 text-gray-100 font-mono text-sm resize-none focus:outline-none border-none"
+                                placeholder="# Welcome to Python IDE
+                                            # Start coding here...
+
+                                            print('Hello, Python IDE!')">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <!-- Output Panel - Resizable on desktop -->
+                    <div class="h-48 sm:h-64 flex flex-col border-t border-gray-700/50 resizable-panel">
+                        <!-- Output Header -->
+                        <div class="flex justify-between items-center p-2 bg-gray-800/30 border-b border-gray-700/50">
+                            <div class="flex space-x-2">
+                                <button id="ideOutputTab" class="ide-output-tab active px-3 py-1 text-xs rounded bg-gray-700 text-white">Output</button>
+                                <button id="ideProblemsTab" class="ide-output-tab px-3 py-1 text-xs rounded text-gray-400 hover:text-white">Problems</button>
+                            </div>
+                            <button id="ideClearOutputBtn" class="text-xs text-gray-400 hover:text-white">Clear</button>
+                        </div>
+
+                        <!-- Output Content -->
+                        <div class="flex-1 overflow-hidden">
+                            <div id="ideOutputContent" class="h-full overflow-y-auto p-4 bg-gray-900 font-mono text-sm">
+                                <div class="text-gray-500 italic">Ready to run Python code...</div>
+                            </div>
+                            <div id="ideProblemsContent" class="h-full overflow-y-auto p-4 bg-gray-900 text-sm hidden">
+                                <div class="text-gray-500 italic">No problems detected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="flex justify-between items-center p-2 bg-gray-800/50 border-t border-gray-700/50 text-xs text-gray-400">
+            <div class="flex items-center space-x-4">
+                <span id="ideStatus">Ready</span>
+                <span id="ideFileCount">1 file</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span>Python 3</span>
+                <span id="ideWordCount">0 words</span>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         // Set current year
