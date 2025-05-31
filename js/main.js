@@ -634,7 +634,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li>🧠 Quiz interaktif untuk setiap topik</li>
                     <li>📚 Sistem bookmark untuk fungsi favorit</li>
                     <li>⚡ Code generator dengan template siap pakai</li>
-                    <li>🗺️ Learning path terstruktur</li>
+                    <li>🗺️ Rute Pembelajaran yang terstruktur</li>
                     <li>🎲 Random function explorer</li>
                 </ul>
             </div>
